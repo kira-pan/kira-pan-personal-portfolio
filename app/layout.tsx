@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Kira Pan",
-  description: "Data Analytics • Marketing • UX • Design",
+  description: "Data Analytics • Marketing • UI/UX • Design",
   icons: {
     icon: [
       { url: "/images/favicon-k.png", type: "image/png" },

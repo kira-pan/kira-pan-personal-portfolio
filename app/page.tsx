@@ -14,16 +14,16 @@ interface ImagePosition {
 
 export default function Home() {
   const [imagePositions, setImagePositions] = useState<Record<string, ImagePosition>>({
-    // Spread out evenly but consolidated toward center, all within safe bounds (5-80% top, 5-85% left)
-    collage1: { top: 12, left: 8, rotation: -3.5 },
-    collage2: { top: 15, left: 78, rotation: 2.8 },
-    collage3: { top: 45, left: 6, rotation: -2.2 },
-    charcoal1: { top: 65, left: 12, rotation: -1.8 },
-    charcoal2: { top: 68, left: 80, rotation: 1.5 },
-    recruitment1: { top: 42, left: 82, rotation: 2.2 },
-    recruitment2: { top: 72, left: 48, rotation: -1.2 },
-    recruitment3: { top: 28, left: 55, rotation: 2.5 },
-    collage4: { top: 18, left: 68, rotation: -0.8 },
+    // Clustered closer together with more overlap, moved up
+    collage1: { top: 8, left: 10, rotation: -3.5 },
+    collage2: { top: 10, left: 75, rotation: 2.8 },
+    collage3: { top: 35, left: 8, rotation: -2.2 },
+    charcoal1: { top: 55, left: 15, rotation: -1.8 },
+    charcoal2: { top: 58, left: 78, rotation: 1.5 },
+    recruitment1: { top: 32, left: 80, rotation: 2.2 },
+    recruitment2: { top: 62, left: 50, rotation: -1.2 },
+    recruitment3: { top: 20, left: 58, rotation: 2.5 },
+    collage4: { top: 12, left: 65, rotation: -0.8 },
   });
 
   const [dragging, setDragging] = useState<string | null>(null);
@@ -46,18 +46,17 @@ export default function Home() {
     dragOffsetRef.current = dragOffset;
   }, [dragOffset]);
 
-  // Mobile-specific static positions for nice collage layout (within safe bounds)
-  // Shifted down to avoid blocking the note
+  // Mobile-specific static positions - clustered closer together with more overlap, moved up
   const mobilePositions: Record<string, ImagePosition> = {
-    collage1: { top: 15, left: 6, rotation: -3 },
-    collage2: { top: 17, left: 72, rotation: 2.5 },
-    collage3: { top: 50, left: 4, rotation: -2 },
-    charcoal1: { top: 72, left: 10, rotation: -1.5 },
-    charcoal2: { top: 75, left: 68, rotation: 1.8 },
-    recruitment1: { top: 55, left: 75, rotation: 1.2 },
-    recruitment2: { top: 85, left: 42, rotation: -0.8 },
-    recruitment3: { top: 35, left: 48, rotation: 2 },
-    collage4: { top: 25, left: 38, rotation: -0.5 },
+    collage1: { top: 8, left: 8, rotation: -3 },
+    collage2: { top: 10, left: 70, rotation: 2.5 },
+    collage3: { top: 35, left: 6, rotation: -2 },
+    charcoal1: { top: 55, left: 12, rotation: -1.5 },
+    charcoal2: { top: 58, left: 66, rotation: 1.8 },
+    recruitment1: { top: 38, left: 72, rotation: 1.2 },
+    recruitment2: { top: 65, left: 45, rotation: -0.8 },
+    recruitment3: { top: 22, left: 50, rotation: 2 },
+    collage4: { top: 15, left: 40, rotation: -0.5 },
   };
 
   useEffect(() => {
@@ -79,6 +78,36 @@ export default function Home() {
     const ratio = (windowWidth - 640) / (768 - 640);
     const position = mobilePosition + (basePosition - mobilePosition) * ratio;
     return `${position}%`;
+  };
+
+  // Calculate responsive image width that scales down smoothly as screen gets narrower
+  const getResponsiveImageWidth = (desktopWidth: number, mobileWidth: number, smallMobileWidth?: number) => {
+    if (windowWidth === 0) return desktopWidth;
+    if (windowWidth >= 768) return desktopWidth;
+    if (windowWidth <= 640) {
+      // For mobile screens, scale down further on very small screens
+      if (smallMobileWidth !== undefined && windowWidth <= 375) {
+        // Smooth transition from 320px to 375px
+        const ratio = Math.max(0, Math.min(1, (windowWidth - 320) / (375 - 320)));
+        return smallMobileWidth + (mobileWidth - smallMobileWidth) * ratio;
+      }
+      return mobileWidth;
+    }
+    // Smooth transition between 640px and 768px
+    const ratio = (windowWidth - 640) / (768 - 640);
+    return mobileWidth + (desktopWidth - mobileWidth) * ratio;
+  };
+
+  // Calculate responsive container height that expands on smaller screens
+  const getContainerHeight = () => {
+    if (windowWidth === 0) return '800px';
+    if (windowWidth >= 768) return '800px'; // Reduced since images are more compact
+    if (windowWidth <= 375) return '600px'; // Compact on very small screens
+    if (windowWidth <= 640) return '550px'; // Compact on mobile
+    // Smooth transition between 640px and 768px
+    const ratio = (windowWidth - 640) / (768 - 640);
+    const height = 550 + (800 - 550) * ratio;
+    return `${height}px`;
   };
 
   // Button positions (approximate, in percentage of container)
@@ -200,7 +229,9 @@ export default function Home() {
     id, 
     src, 
     alt, 
-    width, 
+    desktopWidth, 
+    mobileWidth,
+    smallMobileWidth,
     height, 
     className,
     defaultTop,
@@ -210,7 +241,9 @@ export default function Home() {
     id: string;
     src: string;
     alt: string;
-    width: number;
+    desktopWidth: number;
+    mobileWidth: number;
+    smallMobileWidth?: number;
     height: number;
     className: string;
     defaultTop: number;
@@ -222,11 +255,12 @@ export default function Home() {
       ? (mobilePositions[id] || { top: defaultTop, left: defaultLeft, rotation: defaultRotation })
       : (imagePositions[id] || { top: defaultTop, left: defaultLeft, rotation: defaultRotation });
     const isDragging = dragging === id;
+    const responsiveWidth = getResponsiveImageWidth(desktopWidth, mobileWidth, smallMobileWidth);
     
     return (
       <div
         ref={(el) => { imageRefs.current[id] = el; }}
-        className={`absolute select-none ${isMobile ? 'cursor-default' : 'cursor-move'} ${isDragging ? 'opacity-90' : ''} ${className}`}
+        className={`absolute select-none ${isMobile ? 'cursor-default' : 'cursor-move'} ${isDragging ? 'opacity-90' : ''}`}
         style={{
           top: `${pos.top}%`,
           left: `${pos.left}%`,
@@ -234,6 +268,7 @@ export default function Home() {
           zIndex: isDragging ? 25 : (pos.top < 50 ? 2 : 1),
           userSelect: 'none',
           pointerEvents: isMobile ? 'auto' : 'auto',
+          width: `${responsiveWidth}px`,
         }}
         onMouseDown={(e) => !isMobile && handleMouseDown(e, id)}
         onTouchStart={(e) => e.preventDefault()} // Prevent touch dragging on mobile
@@ -241,7 +276,7 @@ export default function Home() {
         <CutoutImage
           src={src}
           alt={alt}
-          width={width}
+          width={responsiveWidth}
           height={height}
           className={className}
         />
@@ -251,29 +286,46 @@ export default function Home() {
   return (
     <PaperBoard>
       {/* Main title area */}
-      <div className="relative mb-4 md:mb-6 flex flex-col items-center justify-center">
+      <div className="relative mb-3 md:mb-6 flex flex-col items-center justify-center">
         <div className="inline-block" style={{ transform: 'rotate(-1deg)' }}>
           <Image
             src="/images/magazine-kira.png"
             alt="Kira Pan"
             width={800}
             height={300}
-            className="w-[560px] md:w-[800px] h-auto"
+            className="w-[400px] md:w-[800px] h-auto"
             style={{ background: 'transparent' }}
           />
         </div>
       </div>
       
       {/* Thin banner stripe with text - full width */}
-      <div className="w-screen py-1 md:py-1.5 -mt-12 md:-mt-16 mb-4 md:mb-6 flex items-center justify-center" style={{ backgroundColor: '#bf6463', marginLeft: 'calc(50% - 50vw)', marginRight: 'calc(50% - 50vw)', width: '100vw' }}>
-        <p className="text-base md:text-lg text-white text-center" style={{ transform: 'rotate(0.5deg)' }}>
-          Data Analytics • Marketing • UX • Design
-        </p>
+      <div className="w-screen py-1 md:py-1.5 -mt-10 md:-mt-16 mb-3 md:mb-6 marquee-container" style={{ backgroundColor: '#bf6463', marginLeft: 'calc(50% - 50vw)', marginRight: 'calc(50% - 50vw)', width: '100vw' }}>
+        <div className="marquee-content">
+          <span className="text-base md:text-lg text-white whitespace-nowrap px-6 md:px-8">
+            Data Analytics • Marketing • UI/UX • Design
+          </span>
+          <span className="text-base md:text-lg text-white whitespace-nowrap px-6 md:px-8">
+            Data Analytics • Marketing • UI/UX • Design
+          </span>
+          <span className="text-base md:text-lg text-white whitespace-nowrap px-6 md:px-8">
+            Data Analytics • Marketing • UI/UX • Design
+          </span>
+          <span className="text-base md:text-lg text-white whitespace-nowrap px-6 md:px-8">
+            Data Analytics • Marketing • UI/UX • Design
+          </span>
+          <span className="text-base md:text-lg text-white whitespace-nowrap px-6 md:px-8">
+            Data Analytics • Marketing • UI/UX • Design
+          </span>
+          <span className="text-base md:text-lg text-white whitespace-nowrap px-6 md:px-8">
+            Data Analytics • Marketing • UI/UX • Design
+          </span>
+        </div>
       </div>
 
       {/* Intro text card - centered */}
-      <div className="relative mb-4 md:mb-6 text-center" style={{ transform: 'rotate(-0.5deg)' }}>
-        <div className="bg-white border-2 border-ink p-5 md:p-8 shadow-[4px_4px_0px_0px_rgba(21,21,21,0.15)] max-w-2xl mx-auto inline-block">
+      <div className="relative mb-3 md:mb-6 text-center" style={{ transform: 'rotate(-0.5deg)' }}>
+        <div className="bg-white border-2 border-ink p-3 md:p-8 shadow-[4px_4px_0px_0px_rgba(21,21,21,0.15)] max-w-2xl mx-auto inline-block">
           <p className="text-base md:text-xl text-ink leading-relaxed mb-4">
             Hi! I&apos;m Kira, and I am currently an undergraduate student at UC Berkeley. I am pursuing my B.A. in Cognitive Science, a data science minor and my Berkeley Certificate in Design Innovation. I am passionate about data analytics, marketing, user experience and design!
           </p>
@@ -307,7 +359,7 @@ export default function Home() {
       </div>
 
       {/* Main collage area with centered photo, surrounding buttons, and chaotic overlapping portfolio images */}
-      <div ref={containerRef} className="relative min-h-[600px] md:min-h-[900px] flex items-center justify-center overflow-hidden -mt-20 md:-mt-24" style={{ width: '100vw', marginLeft: 'calc(50% - 50vw)', marginRight: 'calc(50% - 50vw)' }}>
+      <div ref={containerRef} className="relative flex items-center justify-center overflow-hidden -mt-12 md:-mt-24" style={{ width: '100vw', minHeight: getContainerHeight(), marginLeft: 'calc(50% - 50vw)', marginRight: 'calc(50% - 50vw)' }}>
         {/* Photo - centered, no container box, non-draggable */}
         <div 
           className="relative z-10 pointer-events-none select-none" 
@@ -318,7 +370,7 @@ export default function Home() {
             alt="Kira Pan"
             width={480}
             height={600}
-            className="w-[320px] md:w-[480px] pointer-events-none"
+            className="w-[280px] md:w-[480px] pointer-events-none"
             style={{ background: 'transparent', userSelect: 'none', pointerEvents: 'none' }}
             draggable={false}
           />
@@ -329,9 +381,11 @@ export default function Home() {
           id="collage1"
           src="/images/IMG_3848.jpeg"
           alt="Collage artwork"
-          width={220}
+          desktopWidth={220}
+          mobileWidth={120}
+          smallMobileWidth={100}
           height={275}
-          className="w-[160px] md:w-[220px]"
+          className=""
           defaultTop={8}
           defaultLeft={8}
           defaultRotation={-4}
@@ -341,9 +395,11 @@ export default function Home() {
           id="collage2"
           src="/images/IMG_3849.jpeg"
           alt="Collage artwork"
-          width={200}
+          desktopWidth={200}
+          mobileWidth={110}
+          smallMobileWidth={90}
           height={250}
-          className="w-[150px] md:w-[200px]"
+          className=""
           defaultTop={16}
           defaultLeft={85}
           defaultRotation={3}
@@ -353,9 +409,11 @@ export default function Home() {
           id="collage3"
           src="/images/IMG_3850.jpeg"
           alt="Collage artwork"
-          width={240}
+          desktopWidth={240}
+          mobileWidth={130}
+          smallMobileWidth={110}
           height={300}
-          className="w-[180px] md:w-[240px]"
+          className=""
           defaultTop={64}
           defaultLeft={4}
           defaultRotation={-2.5}
@@ -365,9 +423,11 @@ export default function Home() {
           id="charcoal1"
           src="/images/IMG_2955.jpeg"
           alt="Charcoal drawing"
-          width={210}
+          desktopWidth={210}
+          mobileWidth={120}
+          smallMobileWidth={100}
           height={265}
-          className="w-[160px] md:w-[210px]"
+          className=""
           defaultTop={75}
           defaultLeft={8}
           defaultRotation={-1.5}
@@ -377,9 +437,11 @@ export default function Home() {
           id="charcoal2"
           src="/images/IMG_3879.jpg"
           alt="Charcoal drawing"
-          width={200}
+          desktopWidth={200}
+          mobileWidth={110}
+          smallMobileWidth={90}
           height={245}
-          className="w-[150px] md:w-[200px]"
+          className=""
           defaultTop={80}
           defaultLeft={85}
           defaultRotation={2}
@@ -389,9 +451,11 @@ export default function Home() {
           id="recruitment1"
           src="/images/IMG_2640.jpeg"
           alt="Charcoal drawing"
-          width={190}
+          desktopWidth={190}
+          mobileWidth={105}
+          smallMobileWidth={85}
           height={235}
-          className="w-[140px] md:w-[190px]"
+          className=""
           defaultTop={72}
           defaultLeft={90}
           defaultRotation={1.5}
@@ -401,9 +465,11 @@ export default function Home() {
           id="recruitment2"
           src="/images/2.png"
           alt="Recruitment design"
-          width={175}
+          desktopWidth={175}
+          mobileWidth={95}
+          smallMobileWidth={80}
           height={220}
-          className="w-[130px] md:w-[175px]"
+          className=""
           defaultTop={96}
           defaultLeft={33.33}
           defaultRotation={-1}
@@ -413,9 +479,11 @@ export default function Home() {
           id="recruitment3"
           src="/images/front.png"
           alt="Recruitment design"
-          width={205}
+          desktopWidth={205}
+          mobileWidth={110}
+          smallMobileWidth={90}
           height={260}
-          className="w-[150px] md:w-[205px]"
+          className=""
           defaultTop={60}
           defaultLeft={25}
           defaultRotation={2.5}
@@ -425,9 +493,11 @@ export default function Home() {
           id="collage4"
           src="/images/74339640290__E21A547C-56D4-4CBC-B45C-FF0DA2A6E8B3.jpeg"
           alt="Collage artwork"
-          width={160}
+          desktopWidth={160}
+          mobileWidth={90}
+          smallMobileWidth={75}
           height={200}
-          className="w-[120px] md:w-[160px]"
+          className=""
           defaultTop={32}
           defaultLeft={50}
           defaultRotation={-0.5}
@@ -468,7 +538,7 @@ export default function Home() {
           className="absolute pointer-events-auto transition-all duration-300 ease-in-out" 
           style={{ 
             top: '50%', 
-            left: getButtonPosition(35, 8), 
+            left: getButtonPosition(35, 15), 
             transform: 'translate(-50%, -50%) rotate(-1.5deg)', 
             zIndex: 20 
           }}
@@ -503,7 +573,7 @@ export default function Home() {
           className="absolute pointer-events-auto transition-all duration-300 ease-in-out" 
           style={{ 
             top: '50%', 
-            right: getButtonPosition(35, 8), 
+            right: getButtonPosition(35, 15), 
             transform: 'translate(50%, -50%) rotate(1.8deg)', 
             zIndex: 20 
           }}
@@ -530,7 +600,7 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="mt-12 md:mt-16 py-6 md:py-8 border-t-2 border-ink/20">
+      <footer className="mt-6 md:mt-16 py-4 md:py-8 border-t-2 border-ink/20">
         <div className="flex flex-col items-center gap-4">
           <div className="flex justify-center items-center gap-6 md:gap-8">
             <a 
