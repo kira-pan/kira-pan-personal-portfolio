@@ -26,6 +26,30 @@ export default function Portfolio() {
               </div>
             </div>
             <div className="flex items-center gap-4 overflow-x-auto pb-4 mb-6">
+              <a 
+                href="https://www.datastoryberkeley.com/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex-shrink-0 relative group cursor-pointer"
+              >
+                <CutoutImage
+                  src="/images/datastory-website-thumbnail.png"
+                  alt="DataStory website"
+                  width={250}
+                  height={350}
+                  className=""
+                />
+                <div className="absolute inset-0 bg-[#bf6463]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <span className="text-white text-xl md:text-2xl font-bold">Visit Our Website</span>
+                </div>
+              </a>
+              <CutoutImage
+                src="/images/recruitment/datastory feed.PNG"
+                alt="DataStory feed"
+                width={250}
+                height={350}
+                className="flex-shrink-0"
+              />
               <div className="flex-shrink-0">
                 <div className="bg-white border-2 border-ink p-2 shadow-[4px_4px_0px_0px_rgba(21,21,21,0.15)]">
                   <video
@@ -38,13 +62,6 @@ export default function Portfolio() {
                   />
                 </div>
               </div>
-              <CutoutImage
-                src="/images/recruitment/datastory feed.PNG"
-                alt="DataStory feed"
-                width={250}
-                height={350}
-                className="flex-shrink-0"
-              />
               <CutoutImage
                 src="/images/recruitment/1.png"
                 alt="Recruitment design 1"
@@ -73,21 +90,6 @@ export default function Portfolio() {
                 height={350}
                 className="flex-shrink-0"
               />
-              <div className="flex-shrink-0 flex items-center justify-center ml-2">
-                <svg
-                  width="40"
-                  height="40"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="text-ink"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </div>
             </div>
           </section>
 

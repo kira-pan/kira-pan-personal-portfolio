@@ -9,7 +9,7 @@ export default function Projects() {
   const [currentImage, setCurrentImage] = useState(1);
   const totalImages = 22;
   const [currentTemplateImage, setCurrentTemplateImage] = useState(1);
-  const totalTemplateImages = 13;
+  const totalTemplateImages = 22;
 
   const nextImage = () => {
     setCurrentImage((prev) => (prev >= totalImages ? 1 : prev + 1));
@@ -17,6 +17,10 @@ export default function Projects() {
 
   const prevImage = () => {
     setCurrentImage((prev) => (prev <= 1 ? totalImages : prev - 1));
+  };
+
+  const jumpToSlide = (slideNumber: number) => {
+    setCurrentImage(slideNumber);
   };
 
   const nextTemplateImage = () => {
@@ -50,19 +54,30 @@ export default function Projects() {
               allowance. I utilized machine learning techniques and Streamlit to build the final front-end dashboard.
             </p>
             <p className="text-base text-olive-grey mb-6">
-              The code is available on my <a href="https://github.com/kira-pan/predictive-patent-dashboard" target="_blank" rel="noopener noreferrer" className="text-deep-olive hover:text-ink underline">Github</a> as well.
+              See video demo of our Streamlit interface on <button onClick={() => jumpToSlide(21)} className="text-deep-olive hover:text-ink underline cursor-pointer">slide 21</button>. The code is available on my <a href="https://github.com/kira-pan/predictive-patent-dashboard" target="_blank" rel="noopener noreferrer" className="text-deep-olive hover:text-ink underline">Github</a> as well.
             </p>
             
             {/* Image Carousel */}
             <div className="relative w-full max-w-3xl mx-auto">
               <div className="relative w-full h-[350px] md:h-[400px] bg-paper flex items-center justify-center overflow-hidden">
-                <Image
-                  src={`/images/jcp_${currentImage}.png`}
-                  alt={`Dashboard screenshot ${currentImage}`}
-                  width={1200}
-                  height={800}
-                  className="object-contain max-w-full max-h-full"
-                />
+                {currentImage === 21 ? (
+                  <video
+                    src="/images/jcp-demo.mov"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="object-contain max-w-full max-h-full"
+                  />
+                ) : (
+                  <Image
+                    src={`/images/jcp_${currentImage}.png`}
+                    alt={`Dashboard screenshot ${currentImage}`}
+                    width={1200}
+                    height={800}
+                    className="object-contain max-w-full max-h-full"
+                  />
+                )}
               </div>
               
               {/* Navigation Buttons */}
@@ -103,7 +118,7 @@ export default function Projects() {
             <div className="relative w-full max-w-3xl mx-auto">
               <div className="relative w-full h-[350px] md:h-[400px] bg-paper flex items-center justify-center overflow-hidden">
                 <Image
-                  src={`/images/template_${currentTemplateImage}.png`}
+                  src={`/images/spring-slideshow-template/${currentTemplateImage}-template.png`}
                   alt={`Template slide ${currentTemplateImage}`}
                   width={1200}
                   height={800}
