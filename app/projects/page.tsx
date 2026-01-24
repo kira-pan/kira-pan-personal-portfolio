@@ -30,8 +30,11 @@ export default function Projects() {
   return (
     <PaperBoard>
       <div className="max-w-4xl mx-auto">
-        <Link href="/" className="inline-block mb-8 text-olive-grey hover:text-ink">
-          ← Back
+        <Link 
+          href="/" 
+          className="inline-block mb-8 bg-white border-2 border-ink rounded-sm px-2 py-1.5 md:px-3 md:py-2 shadow-[4px_4px_0px_0px_rgba(21,21,21,0.15)] hover:shadow-[6px_6px_0px_0px_rgba(21,21,21,0.2)] active:shadow-[2px_2px_0px_0px_rgba(21,21,21,0.15)] transition-all cursor-pointer hover:bg-[#bf6463] group"
+        >
+          <span className="text-sm md:text-base font-bold text-ink group-hover:text-white transition-colors">← Back</span>
         </Link>
         
         <h1 className="text-5xl md:text-6xl font-bold text-ink mb-8" style={{ transform: 'rotate(-1deg)' }}>

@@ -31,6 +31,7 @@ export default function Home() {
   const [imageDimensions, setImageDimensions] = useState<Record<string, { width: number; height: number }>>({});
   const [isMobile, setIsMobile] = useState(false);
   const [showAboutModal, setShowAboutModal] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const draggingRef = useRef<string | null>(null);
   const dragOffsetRef = useRef({ x: 0, y: 0 });
@@ -46,26 +47,39 @@ export default function Home() {
   }, [dragOffset]);
 
   // Mobile-specific static positions for nice collage layout (within safe bounds)
+  // Shifted down to avoid blocking the note
   const mobilePositions: Record<string, ImagePosition> = {
-    collage1: { top: 8, left: 6, rotation: -3 },
-    collage2: { top: 10, left: 72, rotation: 2.5 },
-    collage3: { top: 42, left: 4, rotation: -2 },
-    charcoal1: { top: 65, left: 10, rotation: -1.5 },
-    charcoal2: { top: 68, left: 68, rotation: 1.8 },
-    recruitment1: { top: 48, left: 75, rotation: 1.2 },
-    recruitment2: { top: 78, left: 42, rotation: -0.8 },
-    recruitment3: { top: 28, left: 48, rotation: 2 },
-    collage4: { top: 18, left: 38, rotation: -0.5 },
+    collage1: { top: 15, left: 6, rotation: -3 },
+    collage2: { top: 17, left: 72, rotation: 2.5 },
+    collage3: { top: 50, left: 4, rotation: -2 },
+    charcoal1: { top: 72, left: 10, rotation: -1.5 },
+    charcoal2: { top: 75, left: 68, rotation: 1.8 },
+    recruitment1: { top: 55, left: 75, rotation: 1.2 },
+    recruitment2: { top: 85, left: 42, rotation: -0.8 },
+    recruitment3: { top: 35, left: 48, rotation: 2 },
+    collage4: { top: 25, left: 38, rotation: -0.5 },
   };
 
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
+      setWindowWidth(window.innerWidth);
     };
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  // Calculate button positions based on viewport width for smooth transitions
+  const getButtonPosition = (basePosition: number, mobilePosition: number) => {
+    if (windowWidth === 0) return `${basePosition}%`;
+    if (windowWidth >= 768) return `${basePosition}%`;
+    if (windowWidth <= 640) return `${mobilePosition}%`;
+    // Smooth transition between 640px and 768px
+    const ratio = (windowWidth - 640) / (768 - 640);
+    const position = mobilePosition + (basePosition - mobilePosition) * ratio;
+    return `${position}%`;
+  };
 
   // Button positions (approximate, in percentage of container)
   const buttonZones = useMemo(() => [
@@ -260,8 +274,20 @@ export default function Home() {
       {/* Intro text card - centered */}
       <div className="relative mb-4 md:mb-6 text-center" style={{ transform: 'rotate(-0.5deg)' }}>
         <div className="bg-white border-2 border-ink p-5 md:p-8 shadow-[4px_4px_0px_0px_rgba(21,21,21,0.15)] max-w-2xl mx-auto inline-block">
-          <p className="text-base md:text-xl text-ink leading-relaxed">
+          <p className="text-base md:text-xl text-ink leading-relaxed mb-4">
             Hi! I&apos;m Kira, and I am currently an undergraduate student at UC Berkeley. I am pursuing my B.A. in Cognitive Science, a data science minor and my Berkeley Certificate in Design Innovation. I am passionate about data analytics, marketing, user experience and design!
+          </p>
+          <p className="text-base text-olive-grey">
+            The code for this website is available on my{" "}
+            <a 
+              href="https://github.com/kira-pan/kira-pan-personal-portfolio" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-deep-olive hover:text-ink underline"
+            >
+              Github
+            </a>
+            .
           </p>
         </div>
       </div>
@@ -409,66 +435,96 @@ export default function Home() {
 
         {/* Portfolio sticker - top left of photo (higher z-index to be clickable) */}
         <div 
-          className="absolute pointer-events-auto" 
-          style={{ top: '35%', left: '35%', transform: 'translate(-50%, -50%) rotate(-3deg)', zIndex: 20 }}
+          className="absolute pointer-events-auto transition-all duration-300 ease-in-out" 
+          style={{ 
+            top: '35%', 
+            left: getButtonPosition(35, 12), 
+            transform: 'translate(-50%, -50%) rotate(-3deg)', 
+            zIndex: 20 
+          }}
         >
           <StickerLink href="/portfolio">
-            <span className="text-xl md:text-3xl font-bold text-ink group-hover:text-white transition-colors">Portfolio</span>
+            <span className="text-base md:text-3xl font-bold text-ink group-hover:text-white transition-colors">Portfolio</span>
           </StickerLink>
         </div>
 
         {/* Projects sticker - top right of photo */}
         <div 
-          className="absolute pointer-events-auto" 
-          style={{ top: '35%', right: '35%', transform: 'translate(50%, -50%) rotate(2.5deg)', zIndex: 20 }}
+          className="absolute pointer-events-auto transition-all duration-300 ease-in-out" 
+          style={{ 
+            top: '35%', 
+            right: getButtonPosition(35, 12), 
+            transform: 'translate(50%, -50%) rotate(2.5deg)', 
+            zIndex: 20 
+          }}
         >
           <StickerLink href="/projects">
-            <span className="text-xl md:text-3xl font-bold text-ink group-hover:text-white transition-colors">Projects</span>
+            <span className="text-base md:text-3xl font-bold text-ink group-hover:text-white transition-colors">Projects</span>
           </StickerLink>
         </div>
 
         {/* Publications sticker - left side of photo */}
         <div 
-          className="absolute pointer-events-auto" 
-          style={{ top: '50%', left: '35%', transform: 'translate(-50%, -50%) rotate(-1.5deg)', zIndex: 20 }}
+          className="absolute pointer-events-auto transition-all duration-300 ease-in-out" 
+          style={{ 
+            top: '50%', 
+            left: getButtonPosition(35, 8), 
+            transform: 'translate(-50%, -50%) rotate(-1.5deg)', 
+            zIndex: 20 
+          }}
         >
           <StickerLink href="/publications">
-            <span className="text-lg md:text-2xl font-bold text-ink group-hover:text-white transition-colors">Publications</span>
+            <span className="text-sm md:text-2xl font-bold text-ink group-hover:text-white transition-colors">Publications</span>
           </StickerLink>
         </div>
 
         {/* Resume sticker - bottom left of photo */}
         <div 
-          className="absolute pointer-events-auto" 
-          style={{ bottom: '35%', left: '35%', transform: 'translate(-50%, 50%) rotate(-2.5deg)', zIndex: 20 }}
+          className="absolute pointer-events-auto transition-all duration-300 ease-in-out" 
+          style={{ 
+            bottom: '35%', 
+            left: getButtonPosition(35, 12), 
+            transform: 'translate(-50%, 50%) rotate(-2.5deg)', 
+            zIndex: 20 
+          }}
         >
           <a 
             href="/resume.pdf" 
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-white border-2 border-ink rounded-sm px-3 py-2 md:px-4 md:py-3 shadow-[4px_4px_0px_0px_rgba(21,21,21,0.15)] hover:shadow-[6px_6px_0px_0px_rgba(21,21,21,0.2)] active:shadow-[2px_2px_0px_0px_rgba(21,21,21,0.15)] transition-all cursor-pointer touch-manipulation hover:bg-[#bf6463] group"
+            className="inline-block bg-white border-2 border-ink rounded-sm px-2 py-1.5 md:px-4 md:py-3 shadow-[4px_4px_0px_0px_rgba(21,21,21,0.15)] hover:shadow-[6px_6px_0px_0px_rgba(21,21,21,0.2)] active:shadow-[2px_2px_0px_0px_rgba(21,21,21,0.15)] transition-all cursor-pointer touch-manipulation hover:bg-[#bf6463] group"
           >
-            <span className="text-xl md:text-3xl font-bold text-ink group-hover:text-white transition-colors">Resume</span>
+            <span className="text-base md:text-3xl font-bold text-ink group-hover:text-white transition-colors">Resume</span>
           </a>
         </div>
 
         {/* About sticker - right side of photo */}
         <div 
-          className="absolute pointer-events-auto" 
-          style={{ top: '50%', right: '35%', transform: 'translate(50%, -50%) rotate(1.8deg)', zIndex: 20 }}
+          className="absolute pointer-events-auto transition-all duration-300 ease-in-out" 
+          style={{ 
+            top: '50%', 
+            right: getButtonPosition(35, 8), 
+            transform: 'translate(50%, -50%) rotate(1.8deg)', 
+            zIndex: 20 
+          }}
         >
           <StickerLink href="/about">
-            <span className="text-lg md:text-2xl font-bold text-ink group-hover:text-white transition-colors">About</span>
+            <span className="text-sm md:text-2xl font-bold text-ink group-hover:text-white transition-colors">About</span>
           </StickerLink>
         </div>
 
         {/* Contact sticker - bottom right of photo */}
         <div 
-          className="absolute pointer-events-auto" 
-          style={{ bottom: '35%', right: '35%', transform: 'translate(50%, 50%) rotate(-1deg)', zIndex: 20 }}
+          className="absolute pointer-events-auto transition-all duration-300 ease-in-out" 
+          style={{ 
+            bottom: '35%', 
+            right: getButtonPosition(35, 12), 
+            transform: 'translate(50%, 50%) rotate(-1deg)', 
+            zIndex: 20 
+          }}
         >
           <StickerLink href="/contact">
-            <span className="text-lg md:text-xl font-bold text-ink group-hover:text-white transition-colors">Contact</span>
+            <span className="text-sm md:text-xl font-bold text-ink group-hover:text-white transition-colors">Contact</span>
           </StickerLink>
         </div>
       </div>
