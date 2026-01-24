@@ -354,7 +354,7 @@ export default function Home() {
             pointerEvents: 'none'
           }}
         >
-          This site is best viewed on a desktop! Drag the images around to make your own collage.
+          This site is interactive on a desktop! Drag the images around to make your own collage.
         </p>
       </div>
 
