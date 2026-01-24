@@ -210,7 +210,7 @@ export default function Home() {
         <p 
           className="text-sm md:text-base text-olive-grey inline-block"
           style={{ 
-            fontFamily: "'Nanum Pen Script', cursive",
+            fontFamily: 'var(--font-nanum-pen), cursive',
             transform: 'rotate(-0.3deg)',
             userSelect: 'none',
             pointerEvents: 'none',

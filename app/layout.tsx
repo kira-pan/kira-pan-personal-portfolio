@@ -1,5 +1,13 @@
 import type { Metadata } from "next";
+import { Nanum_Pen_Script } from "next/font/google";
 import "./globals.css";
+
+const nanumPenScript = Nanum_Pen_Script({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-nanum-pen",
+});
 
 export const metadata: Metadata = {
   title: "Kira Pan",
@@ -13,12 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet" />
-      </head>
-      <body>{children}</body>
+      <body className={nanumPenScript.variable}>{children}</body>
     </html>
   );
 }
