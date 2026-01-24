@@ -1,44 +1,36 @@
 # Personal Site
 
-A scrapbook/collage-style personal website built with Next.js and Tailwind CSS.
+A scrapbook-style personal portfolio website built with Next.js, React, and Tailwind CSS.
 
 ## Getting Started
 
-1. Install dependencies:
+Install dependencies:
 ```bash
 npm install
 ```
 
-2. Run the development server:
+Run the development server:
 ```bash
 npm run dev
 ```
 
-3. Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Project Structure
+## Tech Stack
 
-- `app/` - Next.js App Router pages
-  - `page.tsx` - Homepage with collage-style layout
-  - `portfolio/`, `projects/`, `publications/`, `resume/`, `about/`, `contact/` - Route pages
-- `components/` - Reusable components
-  - `PaperBoard.tsx` - Main container with paper texture
-  - `StickerLink.tsx` - Clickable sticker-style links
-  - `CutoutImage.tsx` - Image cutouts with white borders
-  - `Doodle.tsx` - SVG doodle accents (stars, arrows, scribbles)
-- `public/` - Static assets
-  - `resume.pdf` - Resume file
-  - `images/` - Portfolio images
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS
 
-## Color Palette
+## Features
 
-- Paper: `#F7F3EA`
-- Ink: `#151515`
-- Olive Grey: `#88958D`
-- Deep Olive: `#606D5D`
-- Blush: `#FCBFB7`
+- Interactive collage-style homepage with draggable images
+- Responsive design for mobile and desktop
+- Animated marquee banner
+- Portfolio, projects, publications, and contact pages
 
-## Build
+## Build for Production
 
 ```bash
 npm run build
