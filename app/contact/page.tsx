@@ -17,8 +17,8 @@ export default function Contact() {
           <p className="text-lg text-ink mb-6">
             Get in touch! I&apos;d love to hear from you.
           </p>
-          <p className="text-base text-olive-grey">
-            Contact information coming soon...
+          <p className="text-base text-ink">
+            Email: <a href="mailto:kirap@berkeley.edu" className="text-deep-olive hover:text-ink underline">kirap@berkeley.edu</a>
           </p>
         </div>
       </div>

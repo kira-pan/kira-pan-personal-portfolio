@@ -30,9 +30,11 @@ export default function StickerLink({
         shadow-[4px_4px_0px_0px_rgba(21,21,21,0.15)]
         hover:shadow-[6px_6px_0px_0px_rgba(21,21,21,0.2)]
         active:shadow-[2px_2px_0px_0px_rgba(21,21,21,0.15)]
-        transition-shadow
+        transition-all
         cursor-pointer
         touch-manipulation
+        hover:bg-[#bf6463]
+        group
         ${className}
       `}
       style={style}

@@ -1,5 +1,6 @@
 import PaperBoard from "@/components/PaperBoard";
 import Link from "next/link";
+import CutoutImage from "@/components/CutoutImage";
 
 export default function About() {
   return (
@@ -17,13 +18,73 @@ export default function About() {
           <div className="bg-white border-2 border-ink p-6 md:p-8 shadow-[4px_4px_0px_0px_rgba(21,21,21,0.15)]">
             <p className="text-lg md:text-xl text-ink leading-relaxed mb-4">
               Hi! I&apos;m Kira, an undergraduate student at UC Berkeley passionate about data analytics,
-              marketing, user experience, and design. I love turning insights into stories and systems.
+              marketing, user experience, and human-centered design.
             </p>
             <p className="text-lg text-ink leading-relaxed">
-              I&apos;m interested in the intersection of data, storytelling, and human-centered design. 
-              Whether it&apos;s analyzing patterns, creating compelling narratives, or designing intuitive 
-              experiences, I enjoy bringing together analytical thinking and creative expression.
+              Outside of school, I love to do all things creative, including editing my website, journaling, collaging, drawing, and crocheting. I also enjoy dance, trying new restaurants, and traveling!
             </p>
+          </div>
+          
+          {/* Image Gallery */}
+          <div className="bg-white border-2 border-ink p-6 md:p-8 shadow-[4px_4px_0px_0px_rgba(21,21,21,0.15)]">
+            <div className="flex items-center gap-4 overflow-x-auto pb-4">
+              <CutoutImage
+                src="/images/about_1.jpeg"
+                alt="About photo"
+                width={250}
+                height={350}
+                className="flex-shrink-0"
+              />
+              <CutoutImage
+                src="/images/about_2.jpg"
+                alt="About photo"
+                width={250}
+                height={350}
+                className="flex-shrink-0"
+              />
+              <CutoutImage
+                src="/images/about_3.jpeg"
+                alt="About photo"
+                width={250}
+                height={350}
+                className="flex-shrink-0"
+              />
+              <CutoutImage
+                src="/images/about_4.jpg"
+                alt="About photo"
+                width={250}
+                height={350}
+                className="flex-shrink-0"
+              />
+              <CutoutImage
+                src="/images/about_5.jpeg"
+                alt="About photo"
+                width={250}
+                height={350}
+                className="flex-shrink-0"
+              />
+              <CutoutImage
+                src="/images/about_6.jpeg"
+                alt="About photo"
+                width={250}
+                height={350}
+                className="flex-shrink-0"
+              />
+              <CutoutImage
+                src="/images/about_7.jpeg"
+                alt="About photo"
+                width={250}
+                height={350}
+                className="flex-shrink-0"
+              />
+              <CutoutImage
+                src="/images/about_8.jpg"
+                alt="About photo"
+                width={250}
+                height={350}
+                className="flex-shrink-0"
+              />
+            </div>
           </div>
         </div>
       </div>
