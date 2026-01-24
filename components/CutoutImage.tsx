@@ -31,13 +31,14 @@ export default function CutoutImage({
       `}
       style={style}
     >
-      <div style={{ background: 'transparent' }}>
+      <div style={{ background: 'transparent', pointerEvents: 'none' }}>
         <Image
           src={src}
           alt={alt}
           width={width}
           height={height}
           className="object-contain"
+          style={{ pointerEvents: 'none' }}
         />
       </div>
     </div>

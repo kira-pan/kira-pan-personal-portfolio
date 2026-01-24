@@ -15,7 +15,7 @@ export default function Contact() {
 
         <div className="bg-white border-2 border-ink p-6 md:p-8 shadow-[4px_4px_0px_0px_rgba(21,21,21,0.15)]">
           <p className="text-lg text-ink mb-6">
-            Get in touch! I'd love to hear from you.
+            Get in touch! I&apos;d love to hear from you.
           </p>
           <p className="text-base text-olive-grey">
             Contact information coming soon...

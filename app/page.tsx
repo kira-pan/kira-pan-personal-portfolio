@@ -4,7 +4,7 @@ import PaperBoard from "@/components/PaperBoard";
 import StickerLink from "@/components/StickerLink";
 import Image from "next/image";
 import CutoutImage from "@/components/CutoutImage";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 
 interface ImagePosition {
   top: number;
@@ -29,6 +29,17 @@ export default function Home() {
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const draggingRef = useRef<string | null>(null);
+  const dragOffsetRef = useRef({ x: 0, y: 0 });
+  
+  // Keep refs in sync with state
+  useEffect(() => {
+    draggingRef.current = dragging;
+  }, [dragging]);
+  
+  useEffect(() => {
+    dragOffsetRef.current = dragOffset;
+  }, [dragOffset]);
 
   // Mobile-specific static positions for nice collage layout
   const mobilePositions: Record<string, ImagePosition> = {
@@ -53,38 +64,25 @@ export default function Home() {
   }, []);
 
   // Button positions (approximate, in percentage of container)
-  const buttonZones = [
+  const buttonZones = useMemo(() => [
     { top: 8, left: 4, width: 15, height: 10 }, // Portfolio
     { top: 8, left: 85, width: 15, height: 10 }, // Projects
     { top: 50, left: 2, width: 12, height: 8 }, // Publications
     { top: 85, left: 4, width: 15, height: 10 }, // Resume
     { top: 50, left: 88, width: 12, height: 8 }, // About
     { top: 85, left: 85, width: 12, height: 8 }, // Contact
-  ];
-
-  const isOverButton = (top: number, left: number, width: number = 20, height: number = 25) => {
-    // Check if image rectangle overlaps with any button zone
-    return buttonZones.some(zone => {
-      const imageRight = left + width;
-      const imageBottom = top + height;
-      const zoneRight = zone.left + zone.width;
-      const zoneBottom = zone.top + zone.height;
-      
-      // Check for rectangle overlap
-      return !(imageRight < zone.left || 
-               left > zoneRight || 
-               imageBottom < zone.top || 
-               top > zoneBottom);
-    });
-  };
+  ], []);
 
   const handleMouseDown = (e: React.MouseEvent, id: string) => {
-    if (isMobile) return; // Disable dragging on mobile
+    if (isMobile) return;
     e.preventDefault();
+    e.stopPropagation();
+    
     const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
     const containerRect = containerRef.current?.getBoundingClientRect();
     if (!containerRect) return;
 
+    // Calculate offset from mouse position to image top-left
     const offsetX = e.clientX - rect.left;
     const offsetY = e.clientY - rect.top;
     
@@ -92,44 +90,68 @@ export default function Home() {
     setDragging(id);
   };
 
-  const handleMouseMove = (e: MouseEvent) => {
-    if (!dragging || !containerRef.current) return;
-
-    const containerRect = containerRef.current.getBoundingClientRect();
-    const newLeft = ((e.clientX - containerRect.left - dragOffset.x) / containerRect.width) * 100;
-    const newTop = ((e.clientY - containerRect.top - dragOffset.y) / containerRect.height) * 100;
-
-    // Estimate image size in percentage (approximate based on typical image sizes)
-    const imageWidthPercent = 15; // ~200-300px out of ~2000px container
-    const imageHeightPercent = 20; // ~300-400px out of ~2000px container
-
-    // Prevent dragging over buttons
-    if (!isOverButton(newTop, newLeft, imageWidthPercent, imageHeightPercent)) {
-      setImagePositions(prev => ({
-        ...prev,
-        [dragging]: {
-          ...prev[dragging],
-          top: Math.max(0, Math.min(95, newTop)),
-          left: Math.max(0, Math.min(95, newLeft)),
-        },
-      }));
-    }
-  };
-
-  const handleMouseUp = () => {
-    setDragging(null);
-  };
-
   useEffect(() => {
-    if (dragging) {
-      window.addEventListener("mousemove", handleMouseMove);
-      window.addEventListener("mouseup", handleMouseUp);
-      return () => {
-        window.removeEventListener("mousemove", handleMouseMove);
-        window.removeEventListener("mouseup", handleMouseUp);
-      };
-    }
-  }, [dragging, dragOffset]);
+    if (!dragging || isMobile) return;
+
+    // Capture current values at the time the effect runs
+    const currentDraggingId = dragging;
+    const currentOffsetValue = dragOffset;
+
+    const checkOverButton = (top: number, left: number, width: number = 20, height: number = 25) => {
+      return buttonZones.some((zone: { top: number; left: number; width: number; height: number }) => {
+        const imageRight = left + width;
+        const imageBottom = top + height;
+        const zoneRight = zone.left + zone.width;
+        const zoneBottom = zone.top + zone.height;
+        return !(imageRight < zone.left || 
+                 left > zoneRight || 
+                 imageBottom < zone.top || 
+                 top > zoneBottom);
+      });
+    };
+
+    const handleMove = (e: MouseEvent) => {
+      // Use refs as fallback, but prefer captured values
+      const activeId = draggingRef.current || currentDraggingId;
+      const offset = dragOffsetRef.current || currentOffsetValue;
+      
+      if (!activeId || !containerRef.current) return;
+
+      const containerRect = containerRef.current.getBoundingClientRect();
+      // Calculate new position: mouse position minus offset (where mouse clicked on image), converted to percentage
+      const mouseX = e.clientX - containerRect.left;
+      const mouseY = e.clientY - containerRect.top;
+      const newLeft = ((mouseX - offset.x) / containerRect.width) * 100;
+      const newTop = ((mouseY - offset.y) / containerRect.height) * 100;
+
+      // Estimate image size in percentage
+      const imageWidthPercent = 15;
+      const imageHeightPercent = 20;
+
+      // Prevent dragging over buttons
+      if (!checkOverButton(newTop, newLeft, imageWidthPercent, imageHeightPercent)) {
+        setImagePositions(prev => ({
+          ...prev,
+          [activeId]: {
+            ...prev[activeId],
+            top: Math.max(0, Math.min(95, newTop)),
+            left: Math.max(0, Math.min(95, newLeft)),
+          },
+        }));
+      }
+    };
+
+    const handleUp = () => {
+      setDragging(null);
+    };
+
+    document.addEventListener("mousemove", handleMove, { passive: false });
+    document.addEventListener("mouseup", handleUp);
+    return () => {
+      document.removeEventListener("mousemove", handleMove);
+      document.removeEventListener("mouseup", handleUp);
+    };
+  }, [dragging, dragOffset, isMobile, buttonZones]);
 
   const DraggableImage = ({ 
     id, 
@@ -199,7 +221,7 @@ export default function Home() {
       <div className="relative mb-4 md:mb-6 text-center" style={{ transform: 'rotate(-0.5deg)' }}>
         <div className="bg-white border-2 border-ink p-5 md:p-8 shadow-[4px_4px_0px_0px_rgba(21,21,21,0.15)] max-w-2xl mx-auto inline-block">
           <p className="text-base md:text-xl text-ink leading-relaxed">
-            Hi! I'm Kira, an undergraduate student at UC Berkeley passionate about data analytics,
+            Hi! I&apos;m Kira, an undergraduate student at UC Berkeley passionate about data analytics,
             marketing, user experience, and design. I love turning insights into stories and systems.
           </p>
         </div>
@@ -210,11 +232,9 @@ export default function Home() {
         <p 
           className="text-sm md:text-base text-olive-grey inline-block"
           style={{ 
-            fontFamily: 'var(--font-nanum-pen), cursive',
             transform: 'rotate(-0.3deg)',
             userSelect: 'none',
-            pointerEvents: 'none',
-            fontWeight: 400
+            pointerEvents: 'none'
           }}
         >
           This site is best viewed on a desktop! Drag the images around to make your own collage.
