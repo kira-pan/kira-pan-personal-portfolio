@@ -267,7 +267,7 @@ export default function Home() {
       {/* Thin banner stripe with text - full width */}
       <div className="w-screen py-1 md:py-1.5 -mt-12 md:-mt-16 mb-4 md:mb-6 flex items-center justify-center" style={{ backgroundColor: '#bf6463', marginLeft: 'calc(50% - 50vw)', marginRight: 'calc(50% - 50vw)', width: '100vw' }}>
         <p className="text-base md:text-lg text-white text-center" style={{ transform: 'rotate(0.5deg)' }}>
-          Data • Marketing • UX • Design
+          Data Analytics • Marketing • UX • Design
         </p>
       </div>
 

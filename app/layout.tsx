@@ -3,7 +3,14 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Kira Pan",
-  description: "Data • Marketing • UX • Design",
+  description: "Data Analytics • Marketing • UX • Design",
+  icons: {
+    icon: [
+      { url: "/images/favicon-k.png", type: "image/png" },
+    ],
+    shortcut: "/images/favicon-k.png",
+    apple: "/images/favicon-k.png",
+  },
 };
 
 export default function RootLayout({
