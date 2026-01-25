@@ -331,18 +331,6 @@ export default function Home() {
           <p className="text-base md:text-xl text-ink leading-relaxed mb-4">
             Hi! I&apos;m Kira, and I am currently an undergraduate student at UC Berkeley. I am pursuing my B.A. in Cognitive Science, a data science minor and my Berkeley Certificate in Design Innovation. Welcome to my website!
           </p>
-          <p className="text-base text-olive-grey">
-            The code for this website is available on my{" "}
-            <a 
-              href="https://github.com/kira-pan/kira-pan-personal-portfolio" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="text-deep-olive hover:text-ink underline"
-            >
-              Github
-            </a>
-            .
-          </p>
         </div>
       </div>
 
@@ -688,8 +676,20 @@ export default function Home() {
             >
               ×
             </button>
-            <p className="text-base md:text-lg text-ink leading-relaxed">
+            <p className="text-base md:text-lg text-ink leading-relaxed mb-4">
               This site was designed and built by me using React, Next.js, and modern development tools, including AI-assisted workflows for iteration and debugging.
+            </p>
+            <p className="text-sm text-olive-grey">
+              The code for this website is available on my{" "}
+              <a 
+                href="https://github.com/kira-pan/kira-pan-personal-portfolio" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-deep-olive hover:text-ink underline"
+              >
+                Github
+              </a>
+              .
             </p>
           </div>
         </div>
