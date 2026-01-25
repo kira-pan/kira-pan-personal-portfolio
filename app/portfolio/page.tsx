@@ -44,14 +44,14 @@ export default function Portfolio() {
                 </div>
               </a>
               <div className="flex-shrink-0">
-                <div className="bg-white border-2 border-ink p-1 shadow-[4px_4px_0px_0px_rgba(21,21,21,0.15)]" style={{ height: '350px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div className="bg-white border-2 border-ink p-1 shadow-[4px_4px_0px_0px_rgba(21,21,21,0.15)] flex items-center justify-center" style={{ height: '350px', minWidth: 'fit-content' }}>
                   <Image
                     src="/images/recruitment/datastory feed.PNG"
                     alt="DataStory feed"
                     width={250}
                     height={350}
-                    className="object-contain max-h-full max-w-full"
-                    style={{ height: '350px', width: 'auto' }}
+                    className="object-contain"
+                    style={{ maxHeight: 'calc(350px - 8px)', width: 'auto', height: 'auto' }}
                   />
                 </div>
               </div>
