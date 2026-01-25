@@ -24,6 +24,7 @@ export default function Home() {
     recruitment2: { top: 62, left: 50, rotation: -1.2 },
     recruitment3: { top: 20, left: 58, rotation: 2.5 },
     collage4: { top: 12, left: 65, rotation: -0.8 },
+    venice1: { top: 25, left: 25, rotation: 1.8 },
   });
 
   const [dragging, setDragging] = useState<string | null>(null);
@@ -57,6 +58,7 @@ export default function Home() {
     recruitment2: { top: 65, left: 45, rotation: -0.8 },
     recruitment3: { top: 22, left: 50, rotation: 2 },
     collage4: { top: 15, left: 40, rotation: -0.5 },
+    venice1: { top: 28, left: 30, rotation: 1.5 },
   };
 
   useEffect(() => {
@@ -327,7 +329,7 @@ export default function Home() {
       <div className="relative mb-3 md:mb-6 text-center" style={{ transform: 'rotate(-0.5deg)' }}>
         <div className="bg-white border-2 border-ink p-3 md:p-8 shadow-[4px_4px_0px_0px_rgba(21,21,21,0.15)] max-w-2xl mx-auto inline-block">
           <p className="text-base md:text-xl text-ink leading-relaxed mb-4">
-            Hi! I&apos;m Kira, and I am currently an undergraduate student at UC Berkeley. I am pursuing my B.A. in Cognitive Science, a data science minor and my Berkeley Certificate in Design Innovation. I am passionate about data analytics, marketing, user experience and design!
+            Hi! I&apos;m Kira, and I am currently an undergraduate student at UC Berkeley. I am pursuing my B.A. in Cognitive Science, a data science minor and my Berkeley Certificate in Design Innovation. Welcome to my website!
           </p>
           <p className="text-base text-olive-grey">
             The code for this website is available on my{" "}
@@ -344,8 +346,8 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Handwritten note */}
-      <div className="text-center mb-0 pointer-events-none select-none -mt-2 md:-mt-3">
+      {/* Handwritten note - desktop only */}
+      <div className="hidden md:block text-center mb-0 pointer-events-none select-none -mt-2 md:-mt-3">
         <p 
           className="text-sm md:text-base text-olive-grey inline-block"
           style={{ 
@@ -503,6 +505,20 @@ export default function Home() {
           defaultRotation={-0.5}
         />
 
+        <DraggableImage
+          id="venice1"
+          src="/images/venice_drawing.jpeg"
+          alt="Venice pen & ink drawing"
+          desktopWidth={200}
+          mobileWidth={110}
+          smallMobileWidth={90}
+          height={250}
+          className=""
+          defaultTop={25}
+          defaultLeft={25}
+          defaultRotation={1.8}
+        />
+
         {/* Portfolio sticker - top left of photo (higher z-index to be clickable) */}
         <div 
           className="absolute pointer-events-auto transition-all duration-300 ease-in-out" 
@@ -597,6 +613,20 @@ export default function Home() {
             <span className="text-sm md:text-xl font-bold text-ink group-hover:text-white transition-colors">Contact</span>
           </StickerLink>
         </div>
+      </div>
+
+      {/* Handwritten note - mobile only, above footer */}
+      <div className="block md:hidden text-center mb-4 pointer-events-none select-none">
+        <p 
+          className="text-sm text-olive-grey inline-block"
+          style={{ 
+            transform: 'rotate(-0.3deg)',
+            userSelect: 'none',
+            pointerEvents: 'none'
+          }}
+        >
+          This site is interactive on a desktop! Drag the images around to make your own collage.
+        </p>
       </div>
 
       {/* Footer */}

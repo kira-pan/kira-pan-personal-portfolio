@@ -43,13 +43,18 @@ export default function Portfolio() {
                   <span className="text-white text-xl md:text-2xl font-bold">Visit Our Website</span>
                 </div>
               </a>
-              <CutoutImage
-                src="/images/recruitment/datastory feed.PNG"
-                alt="DataStory feed"
-                width={250}
-                height={350}
-                className="flex-shrink-0"
-              />
+              <div className="flex-shrink-0">
+                <div className="bg-white border-2 border-ink p-1 shadow-[4px_4px_0px_0px_rgba(21,21,21,0.15)]" style={{ height: '350px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Image
+                    src="/images/recruitment/datastory feed.PNG"
+                    alt="DataStory feed"
+                    width={250}
+                    height={350}
+                    className="object-contain max-h-full max-w-full"
+                    style={{ height: '350px', width: 'auto' }}
+                  />
+                </div>
+              </div>
               <div className="flex-shrink-0">
                 <div className="bg-white border-2 border-ink p-2 shadow-[4px_4px_0px_0px_rgba(21,21,21,0.15)]">
                   <video
@@ -58,7 +63,19 @@ export default function Portfolio() {
                     loop
                     muted
                     playsInline
-                    className="w-[280px] h-[450px] object-cover"
+                    className="h-[350px] w-auto object-contain"
+                  />
+                </div>
+              </div>
+              <div className="flex-shrink-0">
+                <div className="bg-white border-2 border-ink p-2 shadow-[4px_4px_0px_0px_rgba(21,21,21,0.15)]">
+                  <video
+                    src="/images/Recruitment-Timeline.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="h-[350px] w-auto object-contain"
                   />
                 </div>
               </div>
@@ -94,6 +111,43 @@ export default function Portfolio() {
           </section>
 
           <section>
+            <div className="inline-block mb-4" style={{ transform: 'rotate(-0.5deg)' }}>
+              <div className="bg-white border-2 border-ink px-4 py-2 shadow-[4px_4px_0px_0px_rgba(21,21,21,0.15)]">
+                <h2 className="text-2xl md:text-3xl font-bold text-ink">Digital Art</h2>
+              </div>
+            </div>
+            <div className="flex items-center gap-4 overflow-x-auto pb-4 mb-6">
+              <CutoutImage
+                src="/images/KiraPan_Bird_Calling_Poster.jpg"
+                alt="Bird Calling digital art poster"
+                width={250}
+                height={350}
+                className="flex-shrink-0"
+              />
+              <div className="flex-shrink-0" style={{ filter: 'drop-shadow(1px 1px 0px #151515) drop-shadow(-1px -1px 0px #151515) drop-shadow(1px -1px 0px #151515) drop-shadow(-1px 1px 0px #151515) drop-shadow(4px 4px 0px rgba(21,21,21,0.15))' }}>
+                <Image
+                  src="/images/cssa-sticker.png"
+                  alt="CSSA sticker"
+                  width={300}
+                  height={300}
+                  className="object-contain"
+                  style={{ background: 'transparent' }}
+                />
+              </div>
+              <div className="flex-shrink-0" style={{ filter: 'drop-shadow(1px 1px 0px #151515) drop-shadow(-1px -1px 0px #151515) drop-shadow(1px -1px 0px #151515) drop-shadow(-1px 1px 0px #151515) drop-shadow(4px 4px 0px rgba(21,21,21,0.15))' }}>
+                <Image
+                  src="/images/roxie-sticker.png"
+                  alt="Roxie sticker"
+                  width={300}
+                  height={300}
+                  className="object-contain"
+                  style={{ background: 'transparent' }}
+                />
+              </div>
+            </div>
+          </section>
+
+          <section>
             <div className="inline-block mb-4" style={{ transform: 'rotate(1deg)' }}>
               <div className="bg-white border-2 border-ink px-4 py-2 shadow-[4px_4px_0px_0px_rgba(21,21,21,0.15)]">
                 <h2 className="text-2xl md:text-3xl font-bold text-ink">Charcoal Drawings</h2>
@@ -117,6 +171,37 @@ export default function Portfolio() {
               <CutoutImage
                 src="/images/IMG_2640.jpeg"
                 alt="Charcoal drawing"
+                width={250}
+                height={350}
+                className="flex-shrink-0"
+              />
+            </div>
+          </section>
+
+          <section>
+            <div className="inline-block mb-4" style={{ transform: 'rotate(-1.5deg)' }}>
+              <div className="bg-white border-2 border-ink px-4 py-2 shadow-[4px_4px_0px_0px_rgba(21,21,21,0.15)]">
+                <h2 className="text-2xl md:text-3xl font-bold text-ink">Pen & Ink Drawings</h2>
+              </div>
+            </div>
+            <div className="flex items-center gap-4 overflow-x-auto pb-4 mb-6">
+              <CutoutImage
+                src="/images/london_postcard.jpg"
+                alt="London postcard pen & ink drawing"
+                width={250}
+                height={350}
+                className="flex-shrink-0"
+              />
+              <CutoutImage
+                src="/images/venice_drawing.jpeg"
+                alt="Venice pen & ink drawing"
+                width={250}
+                height={350}
+                className="flex-shrink-0"
+              />
+              <CutoutImage
+                src="/images/KiraPan_Lineart.jpeg"
+                alt="Line art pen & ink drawing"
                 width={250}
                 height={350}
                 className="flex-shrink-0"
@@ -160,15 +245,6 @@ export default function Portfolio() {
                 className="flex-shrink-0"
               />
             </div>
-          </section>
-
-          <section>
-            <div className="inline-block mb-4" style={{ transform: 'rotate(-0.5deg)' }}>
-              <div className="bg-white border-2 border-ink px-4 py-2 shadow-[4px_4px_0px_0px_rgba(21,21,21,0.15)]">
-                <h2 className="text-2xl md:text-3xl font-bold text-ink">Digital Art</h2>
-              </div>
-            </div>
-            <p className="text-lg text-olive-grey mb-6">Coming soon...</p>
           </section>
         </div>
       </div>

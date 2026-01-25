@@ -3,13 +3,35 @@
 import PaperBoard from "@/components/PaperBoard";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Projects() {
   const [currentImage, setCurrentImage] = useState(1);
   const totalImages = 22;
   const [currentTemplateImage, setCurrentTemplateImage] = useState(1);
   const totalTemplateImages = 22;
+  const [windowWidth, setWindowWidth] = useState(0);
+
+  useEffect(() => {
+    const checkWidth = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    checkWidth();
+    window.addEventListener('resize', checkWidth);
+    return () => window.removeEventListener('resize', checkWidth);
+  }, []);
+
+  // Calculate responsive container height that reduces on smaller screens
+  const getSlideshowHeight = () => {
+    if (windowWidth === 0) return '400px';
+    if (windowWidth >= 768) return '400px';
+    if (windowWidth <= 375) return '250px'; // Shorter on very small screens
+    if (windowWidth <= 640) return '280px'; // Shorter on mobile
+    // Smooth transition between 640px and 768px
+    const ratio = (windowWidth - 640) / (768 - 640);
+    const height = 280 + (400 - 280) * ratio;
+    return `${height}px`;
+  };
 
   const nextImage = () => {
     setCurrentImage((prev) => (prev >= totalImages ? 1 : prev + 1));
@@ -59,7 +81,7 @@ export default function Projects() {
             
             {/* Image Carousel */}
             <div className="relative w-full max-w-3xl mx-auto">
-              <div className="relative w-full h-[350px] md:h-[400px] bg-paper flex items-center justify-center overflow-hidden">
+              <div className="relative w-full bg-paper flex items-center justify-center overflow-hidden transition-all duration-300" style={{ height: getSlideshowHeight() }}>
                 {currentImage === 21 ? (
                   <video
                     src="/images/jcp-demo.mov"
@@ -116,7 +138,7 @@ export default function Projects() {
             
             {/* Image Carousel */}
             <div className="relative w-full max-w-3xl mx-auto">
-              <div className="relative w-full h-[350px] md:h-[400px] bg-paper flex items-center justify-center overflow-hidden">
+              <div className="relative w-full bg-paper flex items-center justify-center overflow-hidden transition-all duration-300" style={{ height: getSlideshowHeight() }}>
                 <Image
                   src={`/images/spring-slideshow-template/${currentTemplateImage}-template.png`}
                   alt={`Template slide ${currentTemplateImage}`}

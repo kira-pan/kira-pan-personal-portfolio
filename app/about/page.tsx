@@ -23,8 +23,11 @@ export default function About() {
               Hi! I&apos;m Kira, an undergraduate student at UC Berkeley passionate about data analytics,
               marketing, user experience, and human-centered design.
             </p>
+            <p className="text-lg text-ink leading-relaxed mb-4">
+              At Berkeley, I am involved with DataStory Consulting as Director of Marketing and Consultant, The Daily Californian as a Data Reporter, and a dancer with Danceworx.
+            </p>
             <p className="text-lg text-ink leading-relaxed">
-              Outside of school, I love to do all things creative, including editing my website, journaling, collaging, drawing, and crocheting. I also enjoy dance, trying new restaurants, and traveling!
+              Outside of school, I love to do all things creative, including editing my website, journaling, collaging, drawing, and crocheting. I also enjoy dance, <a href="https://beliapp.co/app/kira0520" target="_blank" rel="noopener noreferrer" className="text-deep-olive hover:text-ink underline">trying new restaurants</a>, and traveling!
             </p>
           </div>
           

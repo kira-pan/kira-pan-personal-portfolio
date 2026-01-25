@@ -20,8 +20,14 @@ export default function Contact() {
           <p className="text-lg text-ink mb-6">
             Get in touch! I&apos;d love to hear from you.
           </p>
-          <p className="text-base text-ink">
+          <p className="text-base text-ink mb-2">
             Email: <a href="mailto:kirap@berkeley.edu" className="text-deep-olive hover:text-ink underline">kirap@berkeley.edu</a>
+          </p>
+          <p className="text-base text-ink mb-2">
+            LinkedIn: <a href="https://www.linkedin.com/in/kira-z-pan" target="_blank" rel="noopener noreferrer" className="text-deep-olive hover:text-ink underline">www.linkedin.com/in/kira-z-pan</a>
+          </p>
+          <p className="text-base text-ink">
+            Github: <a href="https://github.com/kira-pan" target="_blank" rel="noopener noreferrer" className="text-deep-olive hover:text-ink underline">https://github.com/kira-pan</a>
           </p>
         </div>
       </div>
