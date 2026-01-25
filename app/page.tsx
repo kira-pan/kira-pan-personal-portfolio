@@ -575,7 +575,7 @@ export default function Home() {
           }}
         >
           <a 
-            href="/resume.pdf" 
+            href="/KiraPan-Resume.pdf" 
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-white border-2 border-ink rounded-sm px-2 py-1.5 md:px-4 md:py-3 shadow-[4px_4px_0px_0px_rgba(21,21,21,0.15)] hover:shadow-[6px_6px_0px_0px_rgba(21,21,21,0.2)] active:shadow-[2px_2px_0px_0px_rgba(21,21,21,0.15)] transition-all cursor-pointer touch-manipulation hover:bg-[#bf6463] group"
