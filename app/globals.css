@@ -17,6 +17,16 @@
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
       sans-serif;
   }
+  
+  ::selection {
+    background-color: rgba(191, 100, 99, 0.3);
+    color: inherit;
+  }
+  
+  ::-moz-selection {
+    background-color: rgba(191, 100, 99, 0.3);
+    color: inherit;
+  }
 }
 
 @keyframes marquee {
@@ -74,4 +84,42 @@
 
 .button-hover-tilt-right-about:hover {
   transform: translate(50%, -50%) rotate(4deg) scale(1.1) !important;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1.6);
+    opacity: 1;
+  }
+}
+
+.modal-backdrop {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content {
+  animation: zoomIn 0.2s ease-out forwards;
+}
+
+.flip-card {
+  transform-style: preserve-3d;
+}
+
+.flip-card-front,
+.flip-card-back {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
