@@ -88,10 +88,10 @@ export default function Publications() {
         </h1>
 
         <div className="bg-white border-2 border-ink p-6 md:p-8 shadow-[4px_4px_0px_0px_rgba(21,21,21,0.15)] mb-8">
-          <p className="text-lg text-ink leading-relaxed mb-4">
+          <p className="text-xl md:text-2xl text-ink leading-relaxed mb-4 font-handwriting">
             A collection of articles I&apos;ve written for The Daily Californian, UC Berkeley&apos;s official paper of record, covering campus news, local business, research, and community events.
           </p>
-          <p className="text-lg text-ink leading-relaxed">
+          <p className="text-xl md:text-2xl text-ink leading-relaxed font-handwriting">
             At The Daily Californian, I&apos;ve served as a General Assignment News Reporter, Business and Economy Beat Reporter, Deputy News Editor to now being a Data Reporter.
           </p>
         </div>

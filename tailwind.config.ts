@@ -15,6 +15,9 @@ const config: Config = {
         "deep-olive": "#606D5D",
         blush: "#FCBFB7",
       },
+      fontFamily: {
+        handwriting: ['KiraHandwriting', 'cursive'],
+      },
     },
   },
   plugins: [],

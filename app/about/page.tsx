@@ -19,14 +19,14 @@ export default function About() {
 
         <div className="space-y-6">
           <div className="bg-white border-2 border-ink p-6 md:p-8 shadow-[4px_4px_0px_0px_rgba(21,21,21,0.15)]">
-            <p className="text-lg md:text-xl text-ink leading-relaxed mb-4">
+            <p className="text-xl md:text-2xl text-ink leading-relaxed mb-4 font-handwriting">
               Hi! I&apos;m Kira, an undergraduate student at UC Berkeley passionate about data analytics,
               marketing, user experience, and human-centered design.
             </p>
-            <p className="text-lg text-ink leading-relaxed mb-4">
+            <p className="text-xl md:text-2xl text-ink leading-relaxed mb-4 font-handwriting">
               At Berkeley, I am involved with DataStory Consulting as Director of Marketing and Consultant, The Daily Californian as a Data Reporter, and a dancer with Danceworx.
             </p>
-            <p className="text-lg text-ink leading-relaxed">
+            <p className="text-xl md:text-2xl text-ink leading-relaxed font-handwriting">
               Outside of school, I love to do all things creative, including editing my website, journaling, collaging, drawing, and crocheting. I also enjoy dance, <a href="https://beliapp.co/app/kira0520" target="_blank" rel="noopener noreferrer" className="text-deep-olive hover:text-ink underline">trying new restaurants</a>, and traveling!
             </p>
           </div>

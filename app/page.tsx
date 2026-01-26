@@ -328,7 +328,7 @@ export default function Home() {
       {/* Intro text card - centered */}
       <div className="relative mb-3 md:mb-6 text-center" style={{ transform: 'rotate(-0.5deg)' }}>
         <div className="bg-white border-2 border-ink p-3 md:p-8 shadow-[4px_4px_0px_0px_rgba(21,21,21,0.15)] max-w-2xl mx-auto inline-block">
-          <p className="text-base md:text-xl text-ink leading-relaxed mb-4">
+          <p className="text-xl md:text-3xl text-ink leading-relaxed mb-4 font-handwriting">
             Hi! I&apos;m Kira, and I am currently an undergraduate student at UC Berkeley. I am pursuing my B.A. in Cognitive Science, a data science minor and my Berkeley Certificate in Design Innovation. Welcome to my website!
           </p>
         </div>
@@ -337,7 +337,7 @@ export default function Home() {
       {/* Handwritten note - desktop only */}
       <div className="hidden md:block text-center mb-0 pointer-events-none select-none -mt-2 md:-mt-3">
         <p 
-          className="text-sm md:text-base text-olive-grey inline-block"
+          className="text-base md:text-lg text-olive-grey inline-block font-handwriting"
           style={{ 
             transform: 'rotate(-0.3deg)',
             userSelect: 'none',
@@ -606,7 +606,7 @@ export default function Home() {
       {/* Handwritten note - mobile only, above footer */}
       <div className="block md:hidden text-center mb-4 pointer-events-none select-none">
         <p 
-          className="text-sm text-olive-grey inline-block"
+          className="text-base text-olive-grey inline-block font-handwriting"
           style={{ 
             transform: 'rotate(-0.3deg)',
             userSelect: 'none',
@@ -653,7 +653,7 @@ export default function Home() {
             </a>
           </div>
           <p className="text-xs md:text-sm text-olive-grey text-center">
-            © 2026 Kira Pan · <button onClick={() => setShowAboutModal(true)} className="hover:text-ink underline">About this site</button>
+            © 2026 <span className="font-handwriting text-sm md:text-base">Kira Pan</span> · <button onClick={() => setShowAboutModal(true)} className="hover:text-ink underline font-handwriting text-sm md:text-base">About this site</button>
           </p>
         </div>
       </footer>
@@ -676,10 +676,10 @@ export default function Home() {
             >
               ×
             </button>
-            <p className="text-base md:text-lg text-ink leading-relaxed mb-4">
-              This site was designed and built by me using React, Next.js, and modern development tools, including AI-assisted workflows for iteration and debugging.
+            <p className="text-lg md:text-xl text-ink leading-relaxed mb-4 font-handwriting">
+              This site was designed and built by me using React, Next.js, and modern development tools, including AI-assisted workflows for iteration and debugging. This site also utilizes a custom font I created with my handwriting.
             </p>
-            <p className="text-sm text-olive-grey">
+            <p className="text-base text-olive-grey font-handwriting">
               The code for this website is available on my{" "}
               <a 
                 href="https://github.com/kira-pan/kira-pan-personal-portfolio" 
