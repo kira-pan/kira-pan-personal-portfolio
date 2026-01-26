@@ -509,7 +509,7 @@ export default function Home() {
 
         {/* Portfolio sticker - top left of photo (higher z-index to be clickable) */}
         <div 
-          className="absolute pointer-events-auto transition-all duration-300 ease-in-out" 
+          className="absolute pointer-events-auto button-hover-tilt" 
           style={{ 
             top: '35%', 
             left: getButtonPosition(35, 12), 
@@ -524,7 +524,7 @@ export default function Home() {
 
         {/* Projects sticker - top right of photo */}
         <div 
-          className="absolute pointer-events-auto transition-all duration-300 ease-in-out" 
+          className="absolute pointer-events-auto button-hover-tilt-right" 
           style={{ 
             top: '35%', 
             right: getButtonPosition(35, 12), 
@@ -539,7 +539,7 @@ export default function Home() {
 
         {/* Publications sticker - left side of photo */}
         <div 
-          className="absolute pointer-events-auto transition-all duration-300 ease-in-out" 
+          className="absolute pointer-events-auto button-hover-tilt-left-pub" 
           style={{ 
             top: '50%', 
             left: getButtonPosition(35, 15), 
@@ -554,7 +554,7 @@ export default function Home() {
 
         {/* Resume sticker - bottom left of photo */}
         <div 
-          className="absolute pointer-events-auto transition-all duration-300 ease-in-out" 
+          className="absolute pointer-events-auto button-hover-tilt-bottom-left" 
           style={{ 
             bottom: '35%', 
             left: getButtonPosition(35, 12), 
@@ -574,7 +574,7 @@ export default function Home() {
 
         {/* About sticker - right side of photo */}
         <div 
-          className="absolute pointer-events-auto transition-all duration-300 ease-in-out" 
+          className="absolute pointer-events-auto button-hover-tilt-right-about" 
           style={{ 
             top: '50%', 
             right: getButtonPosition(35, 15), 
@@ -589,7 +589,7 @@ export default function Home() {
 
         {/* Contact sticker - bottom right of photo */}
         <div 
-          className="absolute pointer-events-auto transition-all duration-300 ease-in-out" 
+          className="absolute pointer-events-auto button-hover-tilt-bottom-right" 
           style={{ 
             bottom: '35%', 
             right: getButtonPosition(35, 12), 
