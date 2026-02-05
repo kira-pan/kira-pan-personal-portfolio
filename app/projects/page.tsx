@@ -175,6 +175,35 @@ export default function Projects() {
               </div>
             </div>
           </div>
+
+          <div className="bg-white border-2 border-ink p-6 md:p-8 shadow-[4px_4px_0px_0px_rgba(21,21,21,0.15)]">
+            <h2 className="text-3xl font-bold text-ink mb-4">
+              Uncertain Foot<em>notes</em>
+            </h2>
+            <p className="text-lg text-ink leading-relaxed mb-4">
+              An interactive sentence generator where you build syntactically valid English sentences from scanned word-cutout images. Click any phrase to swap it within the same grammatical slot, or hit Regenerate for a brand new structure—each iteration follows phrase-structure rules from my linguistics coursework (e.g. S → NP VP), with part-of-speech “footnote” sounds that change by category.
+            </p>
+            <p className="text-base text-olive-grey mb-6">
+              Test it yourself <a href="https://kira-pan.github.io/uncertain-footnotes/" target="_blank" rel="noopener noreferrer" className="text-deep-olive hover:text-ink underline">here</a>, or read my <a href="/images/Kira%20Pan%20-%20_Uncertain%20Footnotes_%20Documentation.pdf" target="_blank" rel="noopener noreferrer" className="text-deep-olive hover:text-ink underline">documentation</a> and code on <a href="https://github.com/kira-pan/uncertain-footnotes" target="_blank" rel="noopener noreferrer" className="text-deep-olive hover:text-ink underline">Github</a>.
+            </p>
+
+            <div className="relative w-full max-w-3xl mx-auto">
+              <div
+                className="relative w-full bg-paper flex items-center justify-center overflow-hidden transition-all duration-300"
+                style={{ height: getSlideshowHeight() }}
+              >
+                <video
+                  src="/images/KiraPan_UncertainFootnotes_Demo.mov"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                  className="object-contain max-w-full max-h-full"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </PaperBoard>
