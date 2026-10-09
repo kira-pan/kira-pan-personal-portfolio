@@ -43,7 +43,9 @@ taste and communication skills (journalism, art, video).
   Contents → Features → Case Files → The Desk → Studio → Contributor's Note → Footer.
 - Storyline rule: a recruiter or peer must be able to follow Kira's through-line (interests →
   experience → what ties it together) without being told "hire me". The Letter from the
-  editor (`components/home/EditorsLetter.tsx`) tells it once, with an "At a glance" sidebar.
+  editor (`components/home/EditorsLetter.tsx`) tells it once, with an "At a glance" sidebar
+  (half-width on laptops; each degree/role gets a red ✦ with the org on a muted second line;
+  Studying includes the Berkeley Certificate in Design Innovation).
   Feature titles say plainly what the project is; personality lives in deks and design.
 - Feature data lives in `lib/features.ts` (single source for cover lines and Features).
 - Feature-grid images: straight, uniform 4:3, 1px hairline border (cohesive grid).
