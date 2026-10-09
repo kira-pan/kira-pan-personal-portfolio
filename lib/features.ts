@@ -1,0 +1,92 @@
+// One source of truth for the four features: used by the cover lines and the Features section.
+// Titles say plainly what each project is; personality lives in the deks and the design.
+
+export type Feature = {
+  slug: string;
+  page: string; // magazine page number on the cover
+  kicker: string; // what kind of work, at a glance
+  coverTitle: string; // short version for the cover
+  title: string; // full, plain-language headline
+  italic: string; // the phrase in `title` set in italic
+  dek: string;
+  media: { kind: "video" | "image"; src: string; poster?: string; alt: string; caption: string };
+  link: { href: string; label: string };
+};
+
+export const FEATURES: Feature[] = [
+  {
+    slug: "patent-dashboard",
+    page: "P. 04",
+    kicker: "Machine learning · Dashboard · Nov 2025–Jan 2026",
+    coverTitle: "Predicting patent approval from 408,000 applications",
+    title: "Predicting patent approval from 408,000 USPTO applications",
+    italic: "patent approval",
+    dek: "Patent applicants wait months to learn if they'll be approved. I trained a model on USPTO records to give them an estimate on day one, and built a dashboard anyone can use.",
+    media: {
+      kind: "video",
+      src: "/videos/patent-dashboard-loop.mp4",
+      poster: "/videos/patent-dashboard-poster.jpg",
+      alt: "The patent allowance dashboard returning a prediction and suggested next steps",
+      caption: "The Streamlit dashboard: enter an application's details, get an approval estimate and next steps",
+    },
+    link: { href: "https://github.com/kira-pan/predictive-patent-dashboard", label: "See the code ↗" },
+  },
+  {
+    slug: "cup-fee",
+    page: "P. 08",
+    kicker: "Reporting · City policy · The Daily Californian",
+    coverTitle: "Berkeley's 25-cent cup fee: more reusables, uneven compliance",
+    title: "Berkeley's 25-cent cup fee: more reusables, uneven compliance",
+    italic: "uneven compliance",
+    dek: "Reporting on whether the city's disposable cup fee changed habits, and why some shops struggled to follow it.",
+    media: {
+      kind: "image",
+      src: "/images/features/cup-fee.jpg",
+      alt: "Three disposable cups on a table",
+      caption: "Photo: [PHOTO CREDIT]",
+    },
+    link: {
+      href: "https://www.dailycal.org/news/city/local-businesses/berkeley-s-25-cent-disposable-cup-fee-encourages-reusables-faces-compliance-challenges/article_5913a2f3-dda1-4fa5-a63a-ed10e6e22db6.html",
+      label: "Read the story ↗",
+    },
+  },
+  {
+    slug: "paradise",
+    page: "P. 12",
+    kicker: "GIS · Spatial analysis · Summer 2026",
+    coverTitle: "Mapping how Paradise rebuilt after the Camp Fire",
+    title: "Mapping how Paradise rebuilt after the 2018 Camp Fire",
+    italic: "rebuilt",
+    dek: "With two teammates, I combined building permits, Census housing and population data, and fire perimeters into an ArcGIS StoryMap of the town's recovery from 2019 to 2025.",
+    media: {
+      kind: "image",
+      src: "/images/features/paradise-before-after.jpg",
+      alt: "Satellite view of Paradise, California, before and after the Camp Fire, split side by side",
+      caption: "Paradise before (May 2018) and after (Dec 2019) the Camp Fire",
+    },
+    link: { href: "https://arcg.is/0TPXXi2", label: "Open the StoryMap ↗" },
+  },
+  {
+    slug: "pantrypal",
+    page: "P. 16",
+    kicker: "Product design · UX research · 2026",
+    coverTitle: "PantryPal: a meal planner for first-time cooks",
+    title: "PantryPal: a meal-planning app for students cooking for the first time",
+    italic: "cooking for the first time",
+    dek: "From a notebook sketch to a tested prototype: plan a week of meals around what's already in your pantry, your budget and your time.",
+    media: {
+      kind: "image",
+      src: "/images/features/pantrypal-sketch.jpg",
+      alt: "Hand-drawn PantryPal logo sketches on lined notebook paper",
+      caption: "Where it started: the first logo sketches",
+    },
+    link: { href: "/#features", label: "Case study coming soon" },
+  },
+];
+
+/** Splits a title around its italic phrase so it can be rendered with <em>. */
+export function splitTitle(f: Pick<Feature, "title" | "italic">) {
+  const i = f.title.indexOf(f.italic);
+  if (i < 0) return { before: f.title, em: "", after: "" };
+  return { before: f.title.slice(0, i), em: f.italic, after: f.title.slice(i + f.italic.length) };
+}

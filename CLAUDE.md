@@ -39,8 +39,14 @@ taste and communication skills (journalism, art, video).
 
 ## Site structure
 
-- `/` — one long scroll: Header → Masthead → Cover → Marquee → Contents → Features →
-  Case Files → The Desk → Studio → Contributor's Note → Footer.
+- `/` — one long scroll: Header → Masthead → Cover → Marquee → Letter from the editor →
+  Contents → Features → Case Files → The Desk → Studio → Contributor's Note → Footer.
+- Storyline rule: a recruiter or peer must be able to follow Kira's through-line (interests →
+  experience → what ties it together) without being told "hire me". The Letter from the
+  editor (`components/home/EditorsLetter.tsx`) tells it once, with an "At a glance" sidebar.
+  Feature titles say plainly what the project is; personality lives in deks and design.
+- Feature data lives in `lib/features.ts` (single source for cover lines and Features).
+- Feature-grid images: straight, uniform 4:3, 1px hairline border (cohesive grid).
 - `/features/[slug]` — full case study pages: `patent-dashboard`, `cup-fee`, `paradise`,
   `pantrypal`. All use one shared article template.
 - `/desk` — archive of all Daily Californian articles, grouped by beat, with dates.
@@ -121,7 +127,7 @@ things I draw by hand." Right: mono "COGNITIVE SCIENCE + DATA SCIENCE · UC BERK
   - P. 08 / DATA DESK — "What a 25-cent cup fee actually changed" — "Reusables, compliance and Berkeley's disposable cup fee, for The Daily Californian."
   - P. 12 / MAPS — "Paradise, after the fire" — "Six years of rebuilding permits after the 2018 Camp Fire, mapped."
   - P. 16 / PRODUCT — "Dinner for the first-time cook" — "PantryPal, a meal planner for real student life."
-- Center — portrait cutout `kira-tranparent.png`, pulled up so her head overlaps the masthead
+- Center — black-and-white portrait cutout `cover-kira-bw.png` (arms crossed), pulled up so her head overlaps the masthead
   (classic magazine cover), with two artworks overlapping it
   (`IMG_2955.jpeg` charcoal bottom-left, `venice_drawing.jpeg` top-right), draggable on desktop.
   Note: "that's me! drag the drawings around ↙".

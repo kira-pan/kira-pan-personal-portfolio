@@ -2,33 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Draggable from "@/components/Draggable";
 import NowPlaying from "@/components/home/NowPlaying";
-
-const COVER_LINES = [
-  {
-    page: "P. 04 / Feature",
-    title: "408,000 patents and one question",
-    dek: "Can a model predict USPTO approval before months of review?",
-    href: "/#features",
-  },
-  {
-    page: "P. 08 / Data desk",
-    title: "What a 25-cent cup fee actually changed",
-    dek: "Reusables, compliance and Berkeley's disposable cup fee, for The Daily Californian.",
-    href: "/#features",
-  },
-  {
-    page: "P. 12 / Maps",
-    title: "Paradise, after the fire",
-    dek: "Six years of rebuilding permits after the 2018 Camp Fire, mapped.",
-    href: "/#features",
-  },
-  {
-    page: "P. 16 / Product",
-    title: "Dinner for the first-time cook",
-    dek: "PantryPal, a meal planner for real student life.",
-    href: "/#features",
-  },
-];
+import { FEATURES } from "@/lib/features";
 
 export default function Cover() {
   return (
@@ -47,34 +21,33 @@ export default function Cover() {
           </p>
           <div className="flex flex-col gap-6">
             <span className="label">In this issue</span>
-            {COVER_LINES.map((line) => (
+            {FEATURES.map((f) => (
               <Link
-                key={line.title}
-                href={line.href}
+                key={f.slug}
+                href={`/#feature-${f.slug}`}
                 className="group flex flex-col gap-1.5 border-t border-hairline pt-3.5 no-underline"
               >
                 <span className="font-mono text-[12px] uppercase tracking-[0.08em] text-accent">
-                  {line.page}
+                  {f.page} / {f.kicker.split(" · ")[0]}
                 </span>
-                <span className="font-serif text-[28px] leading-[1.04] decoration-1 underline-offset-4 group-hover:underline">
-                  {line.title}
+                <span className="font-serif text-[25px] leading-[1.06] decoration-1 underline-offset-4 group-hover:underline">
+                  {f.coverTitle}
                 </span>
-                <span className="text-[15px] leading-[1.45] text-muted">{line.dek}</span>
               </Link>
             ))}
           </div>
         </div>
 
         {/* Center: portrait with two drawings that can be picked up */}
-        <div className="relative order-1 -mt-[34vw] self-start md:order-2 md:col-span-5 md:-mt-[19vw] lg:col-span-6 min-[1500px]:-mt-[290px]">
-          <div className="relative mx-auto w-[86%] max-w-[560px] md:w-[92%]">
+        <div className="relative order-1 -mt-[15vw] self-start md:order-2 md:col-span-5 md:-mt-[9vw] lg:col-span-6 min-[1500px]:-mt-[135px]">
+          <div className="relative mx-auto w-[64%] max-w-[420px] md:w-[78%]">
             <Image
-              src="/images/kira-tranparent.png"
-              alt="Kira Pan"
-              width={1080}
-              height={1350}
+              src="/images/cover-kira-bw.png"
+              alt="Portrait of Kira Pan, arms crossed, smiling"
+              width={1084}
+              height={1800}
               priority
-              sizes="(min-width: 768px) 45vw, 86vw"
+              sizes="(min-width: 768px) 420px, 64vw"
               className="relative z-10 h-auto w-full"
             />
           </div>
@@ -82,7 +55,7 @@ export default function Cover() {
           <Draggable
             label="Charcoal drawing by Kira"
             rotate={-6}
-            className="absolute bottom-[4%] left-0 z-20 w-[30%] max-w-[190px]"
+            className="absolute bottom-[8%] left-0 z-20 w-[28%] max-w-[180px]"
           >
             <div className="art-frame">
               <Image
@@ -90,7 +63,7 @@ export default function Cover() {
                 alt=""
                 width={1169}
                 height={1558}
-                sizes="190px"
+                sizes="180px"
                 draggable={false}
                 className="h-auto w-full"
               />
@@ -100,7 +73,7 @@ export default function Cover() {
           <Draggable
             label="Pen and ink drawing of Venice by Kira"
             rotate={5}
-            className="absolute right-0 top-[38%] z-20 w-[26%] max-w-[170px]"
+            className="absolute right-0 top-[30%] z-20 w-[25%] max-w-[160px]"
           >
             <div className="absolute -top-3 left-1/2 h-6 w-20 -translate-x-1/2 -rotate-6 bg-tape" aria-hidden="true" />
             <div className="art-frame">
@@ -109,7 +82,7 @@ export default function Cover() {
                 alt=""
                 width={2325}
                 height={3076}
-                sizes="170px"
+                sizes="160px"
                 draggable={false}
                 className="h-auto w-full"
               />
@@ -117,7 +90,7 @@ export default function Cover() {
           </Draggable>
 
           <p
-            className="pointer-events-none absolute right-[1%] top-[70%] z-30 hidden max-w-[170px] rotate-[-5deg] font-hand text-[26px] leading-[1.05] text-accent md:block"
+            className="pointer-events-none absolute right-[1%] top-[64%] z-30 hidden max-w-[160px] rotate-[-5deg] font-hand text-[26px] leading-[1.05] text-accent md:block"
             aria-hidden="true"
           >
             that&rsquo;s me! drag the drawings around ↙
