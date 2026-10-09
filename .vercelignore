@@ -1,0 +1,5 @@
+# Not part of the live site: originals and old assets kept for later steps.
+# Leading "/" matters: without it, "images" would also match public/images and break the site.
+/source-assets
+/images
+/references
