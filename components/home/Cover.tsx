@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Draggable from "@/components/Draggable";
-import NowPlaying from "@/components/home/NowPlaying";
+import AtAGlance from "@/components/home/AtAGlance";
 import { FEATURES } from "@/lib/features";
 
 export default function Cover() {
@@ -13,9 +13,9 @@ export default function Cover() {
       </h1>
       <div className="relative z-0 mt-3 border-t-2 border-ink" />
 
-      <div className="grid grid-cols-1 gap-x-10 gap-y-10 pb-16 pt-6 lg:grid-cols-12 lg:pb-20">
+      <div className="grid grid-cols-1 gap-x-10 gap-y-10 pb-16 pt-6 sm:grid-cols-2 lg:grid-cols-12 lg:pb-20">
         {/* Left: cover lines */}
-        <div className="order-2 flex flex-col gap-7 lg:order-1 lg:col-span-3">
+        <div className="order-3 flex flex-col gap-7 lg:order-1 lg:col-span-3">
           <div className="flex flex-col gap-6">
             <span className="label">In this issue</span>
             {FEATURES.map((f) => (
@@ -36,9 +36,9 @@ export default function Cover() {
         </div>
 
         {/* Center: portrait with two drawings that can be picked up */}
-        <div className="order-1 -mt-[15vw] flex flex-col gap-8 self-start lg:order-2 lg:-mt-[9vw] lg:col-span-6 min-[1500px]:-mt-[135px]">
+        <div className="order-1 -mt-[15vw] flex flex-col gap-8 self-start sm:col-span-2 lg:order-2 lg:-mt-[9vw] lg:col-span-5 min-[1500px]:-mt-[135px]">
         <div className="relative">
-          <div className="relative mx-auto w-[54%] max-w-[340px] lg:w-[62%]">
+          <div className="relative mx-auto w-[54%] max-w-[340px] lg:w-[68%]">
             <Image
               src="/images/cover-kira-bw.png"
               alt="Portrait of Kira Pan, arms crossed, smiling"
@@ -46,7 +46,7 @@ export default function Cover() {
               height={1800}
               priority
               sizes="(min-width: 768px) 340px, 54vw"
-              className="relative z-10 h-auto w-full"
+              className="photo-warm relative z-10 h-auto w-full"
             />
           </div>
 
@@ -96,26 +96,18 @@ export default function Cover() {
         </div>
 
           {/* The cover line: who this is, said plainly, right under the portrait. */}
-          <div className="mx-auto flex max-w-[600px] flex-col gap-3 text-center">
-            <span className="label text-accent">The portfolio of Kira Pan</span>
-            <p className="font-serif text-[28px] leading-[1.1] tracking-[-0.01em] sm:text-[34px] lg:text-[36px]">
-              I&rsquo;m a data science and cognitive science student at UC Berkeley. I use data to understand
-              people, and design and <em>storytelling</em> to make what I find useful.
-            </p>
-          </div>
+          <figure className="mx-auto flex max-w-[440px] flex-col gap-3 text-center">
+            <figcaption className="label order-first text-accent">The portfolio of Kira Pan</figcaption>
+            <blockquote className="text-balance font-serif text-[22px] italic leading-[1.2] sm:text-[24px]">
+              &ldquo;I&rsquo;m a data science and cognitive science student at UC Berkeley. I use data to
+              understand people, and design and storytelling to make what I find useful.&rdquo;
+            </blockquote>
+          </figure>
         </div>
 
-        {/* Right: video + what I'm doing now */}
-        <div className="order-3 flex flex-col gap-6 sm:grid sm:grid-cols-2 sm:items-start lg:col-span-3 lg:flex">
-          <p className="label text-muted sm:col-span-2">Data · Research · Design · Writing</p>
-          <NowPlaying />
-          <div className="flex flex-col gap-2.5 border border-ink p-[18px]">
-            <span className="label">Currently</span>
-            <p className="text-[15px] leading-[1.5]">
-              Researching AI-generated content on YouTube at Haas. AI consulting with Oracle. Drawing in
-              charcoal and video editing on weekends.
-            </p>
-          </div>
+        {/* Right: fact sheet */}
+        <div className="order-2 lg:order-3 lg:col-span-4">
+          <AtAGlance />
         </div>
       </div>
     </section>

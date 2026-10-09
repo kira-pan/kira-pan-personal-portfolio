@@ -1,7 +1,6 @@
 import Cover from "@/components/home/Cover";
 import Marquee from "@/components/home/Marquee";
 import EditorsLetter from "@/components/home/EditorsLetter";
-import Contents from "@/components/home/Contents";
 import Features from "@/components/home/Features";
 
 export default function Home() {
@@ -10,7 +9,6 @@ export default function Home() {
       <Cover />
       <Marquee />
       <EditorsLetter />
-      <Contents />
       <Features />
       {/* Sections below are built in the next steps (see CLAUDE.md → Build order). */}
       <div className="container-page pb-24">

@@ -18,7 +18,7 @@ export default function LetterBody({ paragraphs }: { paragraphs: string[] }) {
 
   return (
     <div>
-      <div id="letter-body" className="mt-8 flex max-w-[640px] flex-col gap-5 text-[17px] leading-[1.65]">
+      <div id="letter-body" className="flex max-w-[640px] flex-col gap-5 text-[17px] leading-[1.65]">
         {paragraphs.map((p, i) => (
           <p key={p.slice(0, 24)} className={visibility(i)}>
             {p}
@@ -26,7 +26,7 @@ export default function LetterBody({ paragraphs }: { paragraphs: string[] }) {
         ))}
       </div>
       {open ? (
-        <p className="mt-6 rotate-[-3deg] font-hand text-[34px] text-accent" aria-label="Signed, Kira">
+        <p className="mt-6 rotate-[-3deg] font-hand text-[34px] text-accent md:hidden" aria-label="Signed, Kira">
           — Kira
         </p>
       ) : null}

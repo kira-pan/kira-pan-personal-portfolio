@@ -36,7 +36,7 @@ export default function Features() {
   const [lead, ...rest] = FEATURES;
 
   return (
-    <section id="features" aria-labelledby="features-title" className="container-page scroll-mt-6 pb-24">
+    <section id="features" aria-labelledby="features-title" className="container-page scroll-mt-6 pb-24 pt-20 md:pt-24">
       <h2 id="features-title" className="sr-only">
         Features
       </h2>
@@ -89,17 +89,26 @@ export default function Features() {
           <article
             key={f.slug}
             id={`feature-${f.slug}`}
-            className="flex scroll-mt-6 flex-col gap-3 md:row-span-5 md:grid md:grid-rows-subgrid md:gap-0"
+            className="group flex scroll-mt-6 flex-col gap-3 md:row-span-5 md:grid md:grid-rows-subgrid md:gap-0"
           >
-            <figure className="group mb-2">
+            <figure className="mb-2">
               <div className="relative aspect-[4/3] overflow-hidden border border-hairline bg-frame">
                 <Image
                   src={f.media.src}
                   alt={f.media.alt}
                   fill
                   sizes="(min-width: 768px) 30vw, 100vw"
-                  className="object-cover transition-transform duration-700 ease-editorial group-hover:scale-[1.03]"
+                  className="feature-bw object-cover group-hover:scale-[1.03]"
                 />
+                {f.media.halves && (
+                  <div className="pointer-events-none absolute inset-x-0 top-0 grid grid-cols-2" aria-hidden="true">
+                    {f.media.halves.map((h) => (
+                      <span key={h} className="justify-self-start bg-ink px-2 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-paper">
+                        {h}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
               <figcaption className="mt-3 font-mono text-[11px] uppercase leading-[1.6] tracking-[0.08em] text-muted">
                 {f.media.caption}

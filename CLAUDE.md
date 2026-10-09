@@ -48,16 +48,24 @@ taste and communication skills (journalism, art, video).
 ## Site structure
 
 - `/` — one long scroll: Header → Masthead → Cover → Marquee → Letter from the editor →
-  Contents → Features → Case Files → The Desk → Studio → Contributor's Note → Footer.
+  Features → Case Files → The Desk → Studio → Contributor's Note → Footer.
+  (The Contents section was cut: the cover's "In this issue" list and the nav do its job, and
+  Kira wants Features reached quickly.)
 - Storyline rule: a recruiter or peer must be able to follow Kira's through-line (interests →
   experience → what ties it together) without being told "hire me". The Letter from the
-  editor (`components/home/EditorsLetter.tsx`) tells it once, with an "At a glance" sidebar
-  (5/12 width; kept compact: ONE line per degree/role — red ✦, title, then "· org" in muted;
-  Studying includes the Berkeley Certificate in Design Innovation, with "UC Berkeley · 3.92 GPA ·
-  Dean's Honors List" on one muted line under the two items).
+  editor (`components/home/EditorsLetter.tsx`) tells it once, in a magazine split: headline +
+  handwritten "— Kira" on the left, the letter (collapsed, "Keep reading") on the right.
+  "At a glance" (`components/home/AtAGlance.tsx`, data in `lib/glance.ts`) lives on the COVER's
+  right column, in the same 1px ink box style used everywhere: ONE line per degree/role (red ✦,
+  title, "· org" muted); Studying includes the Certificate in Design Innovation plus one muted
+  line "UC Berkeley '28 · 3.92 GPA · Dean's Honors List"; no skills row. On phones/tablets it
+  comes right after the intro quote, before the cover lines.
   Feature titles say plainly what the project is; personality lives in deks and design.
 - Feature data lives in `lib/features.ts` (single source for cover lines and Features).
-- Feature-grid images: straight, uniform 4:3, 1px hairline border (cohesive grid).
+- Feature-grid images: straight, uniform 4:3, 1px hairline border (cohesive grid), shown in warm
+  black and white (`.feature-bw`) that turns to color on hover (desktop only). The cover portrait
+  uses the same warm B&W (`.photo-warm`). The lead patent screenshot stays in color.
+  Paradise image carries BEFORE / AFTER tags on its two halves.
 - `/features/[slug]` — full case study pages: `patent-dashboard`, `cup-fee`, `paradise`,
   `pantrypal`. All use one shared article template.
 - `/desk` — archive of all Daily Californian articles, grouped by beat, with dates.
@@ -147,12 +155,12 @@ useful." Right column label: mono "DATA · RESEARCH · DESIGN · WRITING". Page 
   (classic magazine cover), with two artworks overlapping it
   (`IMG_2955.jpeg` charcoal bottom-left, `venice_drawing.jpeg` top-right), draggable on desktop.
   Note: "that's me! drag the drawings around ↙".
-- Right — "NOW PLAYING" black 4:5 box looping a muted clip of the Yosemite video
-  (`public/videos/yosemite-loop.mp4`). Top mono: "● NOW PLAYING" / "SOUND ON ↗".
-  Bottom: serif "Yosemite, with the club" ("with the club" italic) and mono
-  "EDITED BY ME · DATASTORY MARKETING". Click opens full video with sound in a lightbox.
-  Below: outlined "CURRENTLY" box: "Researching AI-generated content on YouTube at Haas.
-  AI consulting with Oracle. Drawing in charcoal and video editing on weekends."
+- Right — the boxed "At a glance" fact sheet (see Site structure). The Yosemite "Now playing"
+  video and the "Currently" box were REMOVED from the cover (Kira: video shouldn't be a focal
+  point). The Yosemite video becomes the first clip in Studio's Cutting Room
+  (`components/home/NowPlaying.tsx` + `public/videos/yosemite*` are kept for that).
+- Intro under the portrait: small italic serif quote (~22–24px, max ~440px wide, in curly
+  quotes) under the red mono label "THE PORTFOLIO OF KIRA PAN".
 
 ### Marquee
 Full-width ink strip, slow scroll: "DATA ANALYTICS ✦ PRODUCT ✦ UX RESEARCH ✦ DESIGN ✦ WRITING ✦"

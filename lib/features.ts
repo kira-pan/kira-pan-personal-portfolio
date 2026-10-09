@@ -9,7 +9,8 @@ export type Feature = {
   title: string; // full, plain-language headline
   italic: string; // the phrase in `title` set in italic
   dek: string;
-  media: { kind: "image"; src: string; alt: string; caption: string };
+  /** `halves`: labels for a side-by-side image, left then right. */
+  media: { kind: "image"; src: string; alt: string; caption: string; halves?: [string, string] };
   link: { href: string; label: string };
 };
 
@@ -61,7 +62,8 @@ export const FEATURES: Feature[] = [
       kind: "image",
       src: "/images/features/paradise-before-after.jpg",
       alt: "Satellite view of Paradise, California, before and after the Camp Fire, split side by side",
-      caption: "Paradise before (May 2018) and after (Dec 2019)",
+      caption: "Satellite view: May 2018 (left) and Dec 2019 (right)",
+      halves: ["Before", "After"],
     },
     link: { href: "https://arcg.is/0TPXXi2", label: "Open the StoryMap ↗" },
   },

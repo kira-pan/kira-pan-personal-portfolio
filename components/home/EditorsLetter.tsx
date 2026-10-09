@@ -11,97 +11,26 @@ const LETTER = [
 // The storyline, told once, near the top: interests → experience → what ties it together.
 // Letter copy is Kira's own words (final). Don't rewrite it.
 
-// `items` get a red ✦ each (one entry per degree or role); `lines` are plain text.
-type Glance = {
-  label: string;
-  items?: { title: string; detail?: string }[];
-  lines?: string[];
-};
-
-const GLANCE: Glance[] = [
-  {
-    label: "Studying",
-    items: [
-      { title: "B.A. Cognitive Science + Data Science", detail: "'28" },
-      { title: "Certificate in Design Innovation" },
-    ],
-    lines: ["UC Berkeley · 3.92 GPA · Dean's Honors List"],
-  },
-  {
-    label: "Right now",
-    items: [
-      { title: "AI Consultant", detail: "Oracle" },
-      { title: "Research Apprentice", detail: "Berkeley Haas" },
-      { title: "Director of Marketing", detail: "DataStory Consulting" },
-    ],
-  },
-  {
-    label: "Previously",
-    items: [
-      { title: "Data Strategy Consultant", detail: "Aflac" },
-      { title: "Data Reporter + Deputy News Editor", detail: "Daily Cal" },
-    ],
-  },
-  {
-    label: "Works in",
-    lines: ["Python · SQL · R · scikit-learn · XGBoost", "Streamlit · ArcGIS · Figma · Adobe CC"],
-  },
-  { label: "Looking for", lines: ["Summer 2027 internships"] },
-];
-
 export default function EditorsLetter() {
   return (
     <section id="letter" aria-labelledby="letter-title" className="container-page pt-20 md:pt-24">
       <SectionHead title="Letter from the editor" page="p. 02" />
-      <div className="grid grid-cols-1 gap-x-12 gap-y-12 md:grid-cols-12 xl:gap-x-16">
-        <div className="md:col-span-7">
+      {/* Magazine split: headline + signature on the left, the letter at a readable width on the right. */}
+      <div className="grid grid-cols-1 gap-x-12 gap-y-8 md:grid-cols-12 xl:gap-x-16">
+        <div className="flex flex-col gap-5 md:col-span-5">
           <h2
             id="letter-title"
-            className="max-w-[720px] text-balance font-serif text-[44px] font-normal leading-[0.98] tracking-[-0.02em] md:text-[56px] xl:text-[64px]"
+            className="text-balance font-serif text-[44px] font-normal leading-[0.98] tracking-[-0.02em] md:text-[52px] xl:text-[60px]"
           >
             How a cognitive science student ended up at the <em>data desk</em>
           </h2>
+          <p className="hidden rotate-[-3deg] font-hand text-[34px] text-accent md:block" aria-label="Signed, Kira">
+            — Kira
+          </p>
+        </div>
+        <div className="md:col-span-7 lg:col-span-6 lg:col-start-7">
           <LetterBody paragraphs={LETTER} />
         </div>
-
-        <aside aria-label="At a glance" className="md:col-span-5">
-          <h3 className="label mb-1">At a glance</h3>
-          <dl>
-            {GLANCE.map((g, i) => (
-              <div
-                key={g.label}
-                className={`grid grid-cols-1 gap-1.5 py-3 sm:grid-cols-[96px_1fr] sm:gap-3 ${i === 0 ? "border-t border-ink" : "border-t border-hairline"}`}
-              >
-                <dt className="pt-0.5 font-mono text-[11px] uppercase tracking-[0.1em] text-muted">{g.label}</dt>
-                <dd>
-                  {g.items && (
-                    <ul className="flex flex-col gap-1">
-                      {g.items.map((it) => (
-                        <li key={it.title} className="grid grid-cols-[12px_1fr] items-baseline text-[14px] leading-[1.4]">
-                          <span className="text-[9px] text-accent" aria-hidden="true">
-                            ✦
-                          </span>
-                          {/* Title and detail each stay whole; if both don't fit, the detail drops to the next line. */}
-                          <span className="flex flex-wrap gap-x-1">
-                            <span>{it.title}</span>
-                            {it.detail && <span className="whitespace-nowrap text-muted">· {it.detail}</span>}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                  {g.lines && (
-                    <div className={`flex flex-col gap-1 text-[14px] leading-[1.4] ${g.items ? "mt-1 pl-3 text-muted" : ""}`}>
-                      {g.lines.map((l) => (
-                        <span key={l}>{l}</span>
-                      ))}
-                    </div>
-                  )}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </aside>
       </div>
     </section>
   );
