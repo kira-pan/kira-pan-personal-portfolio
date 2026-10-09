@@ -4,8 +4,8 @@ import { useState } from "react";
 import Draggable from "@/components/Draggable";
 import Zoomable from "@/components/Zoomable";
 
-// "On paper": drawings and collage. Desktop: a loose row you can rearrange (drag), each piece tilts
-// on hover and opens large on click. Phones: a swipeable strip (tap to enlarge).
+// "On paper": drawings and collage. Desktop: a loose row you can rearrange (drag), each piece comes
+// into color on hover and opens large on click. Phones: a swipeable strip (tap to enlarge).
 const PIECES = [
   { src: "/images/studio/charcoal-portrait.jpg", w: 675, h: 900, alt: "Charcoal portrait", label: "Charcoal — portrait", rotate: -4, offset: "md:mt-0" },
   { src: "/images/venice_drawing.jpeg", w: 900, h: 1191, alt: "Pen and ink drawing of a Venice canal", label: "Pen & ink — Venice", rotate: 3, offset: "md:mt-6" },
@@ -46,7 +46,7 @@ export default function PaperWall() {
             className={`w-[58vw] max-w-[260px] flex-none snap-center md:w-[17%] md:max-w-none ${p.offset}`}
           >
             <figure>
-              <Zoomable src={p.src} alt={p.alt} width={p.w} height={p.h} sizes="(min-width: 768px) 17vw, 58vw" framed />
+              <Zoomable src={p.src} alt={p.alt} width={p.w} height={p.h} sizes="(min-width: 768px) 17vw, 58vw" framed tilt={false} />
               <figcaption className="mt-2 font-mono text-[11px] uppercase tracking-[0.08em] text-on-ink-muted">{p.label}</figcaption>
             </figure>
           </Draggable>

@@ -16,6 +16,7 @@ export default function Zoomable({
   className = "",
   imgClassName = "",
   framed = false,
+  tilt = true,
 }: {
   src: string;
   alt: string;
@@ -25,6 +26,8 @@ export default function Zoomable({
   className?: string;
   imgClassName?: string;
   framed?: boolean;
+  /** false = no tilt on hover (it still comes into color). */
+  tilt?: boolean;
 }) {
   const ref = useRef<HTMLDialogElement>(null);
 
@@ -34,7 +37,7 @@ export default function Zoomable({
         type="button"
         onClick={() => ref.current?.showModal()}
         aria-label={`Enlarge: ${alt}`}
-        className={`zoomable group block w-full cursor-zoom-in text-left ${className}`}
+        className={`${tilt ? "zoomable" : ""} group block w-full cursor-zoom-in text-left ${className}`}
       >
         <span className={`block overflow-hidden ${framed ? "art-frame" : ""}`}>
           <Image src={src} alt={alt} width={width} height={height} sizes={sizes} draggable={false} className={`feature-bw h-auto w-full ${imgClassName}`} />

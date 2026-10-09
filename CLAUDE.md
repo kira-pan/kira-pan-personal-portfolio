@@ -163,7 +163,7 @@ get her OK, then build. Keep whitespace tight — avoid empty columns and long b
   "All my Daily Cal stories →" (author page until `/desk` exists).
 - Studio (`Studio.tsx`, `PaperWall.tsx`, `FilmTile.tsx`): "Things I make, *on paper, on screen
   and on film*". 01 On paper: charcoal portrait, Venice, charcoal window, London, B&W collage
-  (desktop: drag to rearrange + Reset; every piece also tilts on hover and opens large on a
+  (desktop: drag to rearrange + Reset; pieces turn to color on hover (no tilt) and open large on a
   plain click via `components/Zoomable.tsx` — a drag never opens it). 02 On screen: DataStory website ("Designed, built + maintained by me"),
   stickers (DataStory, Cog Sci Students Association, Roxie), Bird Calling poster. 03 On film:
   Yosemite (lightbox) + a "Currently editing" placeholder until Kira's next video arrives.
@@ -189,6 +189,16 @@ DATES) → full-width hero media → body column (max 680px, 18px, line-height 1
 section heads: The question / The data / The approach / What I found / What I'd do next →
 stat callouts breaking wider than the text column → mono captions on all media → one pull
 quote → "Next feature →". Content is drafted with Kira; never invent findings.
+
+## Still to build (after the first launch)
+- Case study pages `/features/[slug]` (template below): patent-dashboard first, then cup-fee,
+  paradise, pantrypal. Drafted with Kira; until then feature cards link out or stay unlinked.
+- `/desk` archive of all Daily Cal articles (the Desk "All my stories →" link points to the
+  Daily Cal author page until then).
+- Yosemite's neighbour in "On film": replace the "Currently editing" placeholder with Kira's next video.
+- Mobile pass at 375px, accessibility pass (contrast, focus, alt text), Lighthouse.
+- Make the old-page redirects permanent (308) once the redesign has settled.
+- Analytics (Google Analytics or Vercel Analytics), once Kira has chosen and has a measurement ID.
 
 ## Build order
 1–5. DONE: shell, cover, letter, features, case files, desk, studio, contributor's note, phone nav.

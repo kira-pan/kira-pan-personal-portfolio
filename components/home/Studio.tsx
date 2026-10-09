@@ -43,6 +43,7 @@ export default function Studio() {
               height={786}
               sizes="(min-width: 768px) 40vw, 100vw"
               className="border border-paper/25"
+              tilt={false}
             />
             <figcaption className="mt-2.5 flex items-start justify-between gap-3">
               <span>
