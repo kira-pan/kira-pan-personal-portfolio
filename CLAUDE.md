@@ -31,8 +31,16 @@ taste and communication skills (journalism, art, video).
 - Tokens live in `tailwind.config.ts` (`paper`, `ink`, `muted`, `accent`, `manila`, `frame`,
   `hairline`, `on-ink-muted`, `tape`; fonts `serif`, `sans`, `mono`, `hand`). Shared classes
   `.label`, `.container-page`, `.art-frame` are in `app/globals.css`.
+- **Vercel deployment storage is limited (free Hobby plan, 10 GB) and every push uploads
+  `public/` again, to two Vercel projects.** So:
+  - `public/` holds ONLY files the live site uses, already web-sized (images ≤ ~1600px wide,
+    usually < 500 KB). Keep the whole folder small (~15 MB today).
+  - Originals and not-yet-used assets live in `source-assets/` (excluded via `.vercelignore`,
+    along with `images/` and `references/`). When a step needs one, export a compressed web
+    copy into `public/`; never move the original in.
+  - Push only at checkpoints Kira will look at — batch small fixes into one push.
 - Videos: compressed H.264 MP4 in `public/videos/`. Loops ≤ 3 MB (6–10 s, 720p, no audio).
-  Full videos ≤ 20 MB; anything larger goes on Vimeo/YouTube unlisted and is embedded.
+  Full videos ≤ 10 MB; anything larger goes on Vimeo/YouTube unlisted and is embedded.
   Convert `.mov` files to `.mp4`. Never commit a file over 50 MB.
 - Old pages (`/portfolio`, `/projects`, `/publications`, `/about`, `/contact`) are replaced.
   Add redirects in `next.config.mjs` so old links still work.
