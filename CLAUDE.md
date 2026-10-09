@@ -129,7 +129,7 @@ NEVER:
 - Cover stacks until lg: photo → intro quote → At a glance → cover lines.
 - No hover on touch screens: feature-card descriptions show under the title, and `.feature-bw`
   images turn to color as they cross the middle of the screen (`components/ColorOnView.tsx`).
-- On paper (Studio) becomes a swipeable scroll-snap strip; dragging is desktop-only.
+- On paper (Studio) becomes a swipeable scroll-snap strip (tap a piece to enlarge).
 - Body text ≥ 15px. No horizontal scrolling anywhere except intentional strips.
 
 ## Workflow rule: mockup first
@@ -163,7 +163,8 @@ get her OK, then build. Keep whitespace tight — avoid empty columns and long b
   "All my Daily Cal stories →" (author page until `/desk` exists).
 - Studio (`Studio.tsx`, `PaperWall.tsx`, `FilmTile.tsx`): "Things I make, *on paper, on screen
   and on film*". 01 On paper: charcoal portrait, Venice, charcoal window, London, B&W collage
-  (draggable, Reset). 02 On screen: DataStory website ("Designed, built + maintained by me"),
+  (no dragging in Studio: every piece tilts on hover and opens large on click via
+  `components/Zoomable.tsx`; dragging lives only on the cover). 02 On screen: DataStory website ("Designed, built + maintained by me"),
   stickers (DataStory, Cog Sci Students Association, Roxie), Bird Calling poster. 03 On film:
   Yosemite (lightbox) + a "Currently editing" placeholder until Kira's next video arrives.
   No Uncertain Footnotes, no recruitment/coffee-chat videos.
@@ -172,13 +173,15 @@ get her OK, then build. Keep whitespace tight — avoid empty columns and long b
   kirap@berkeley.edu / LinkedIn / GitHub / Resume.
 - Footer: slim line "© 2026 Kira Pan" · "Vol. 04 · Berkeley, CA" (room for doodles later).
 
-### Loader (first visit per session only, click to skip)
-Paper background. Top corners mono: "KIRA PAN — VOL. 04" / "FALL ISSUE 2026". Center: a
-slightly rotated stack of 4–5 sketchbook images flipping every ~150ms, note "flipping
-through…". Bottom-left: italic serif "Printing the fall issue" + mono "CLICK ANYWHERE TO
-SKIP". Bottom-right: huge serif counter 000→100 with small "/100". 3px accent progress line
-on the bottom edge. At 100, the panel slides up to reveal the page. 2.5s desktop / 1.5s
-mobile. sessionStorage flag wrapped in try/catch. None for reduced motion.
+### Loader (`components/Loader.tsx`; first visit per session only, click to skip) — BUILT
+Paper background. Top corners mono: "KIRA PAN — VOL. 04" / "FALL ISSUE 2026". Center: a stack of
+9 whole (never cropped) pieces of Kira's work — no photos of Kira. Drawings get the 8px frame;
+stickers stay die-cut, unframed. The top page flies off to the side every beat (alternating
+left/right), handwritten note "flipping through…" → "ready!". Bottom-left: italic serif
+"Printing the fall issue" + mono "CLICK ANYWHERE TO SKIP". Bottom-right: huge serif counter
+000→100 + "/100". 3px accent bar on the bottom edge. At 100 the panel lifts to reveal the page.
+2.5s desktop / 1.5s phones. An inline script in `app/layout.tsx` sets `<html data-loader="on">`
+before paint (sessionStorage flag in try/catch; never for reduced motion; 4s failsafe).
 
 ## Feature page template (`/features/[slug]`)
 Mono kicker → huge serif headline → summary paragraph → byline row (ROLE · TEAM · TOOLS ·
@@ -189,7 +192,7 @@ quote → "Next feature →". Content is drafted with Kira; never invent finding
 
 ## Build order
 1–5. DONE: shell, cover, letter, features, case files, desk, studio, contributor's note, phone nav.
-6. Loader (mock up first).
+6. DONE: loader; Studio hover-tilt + click-to-enlarge; patent cover from the dashboard screenshot.
 7. Feature page template + patent-dashboard page; then the other three.
 8. `/desk` archive.
 9. Mobile pass at 375px, accessibility pass (contrast, focus states, alt text), Lighthouse.

@@ -1,7 +1,7 @@
-import Image from "next/image";
 import SectionHead from "@/components/SectionHead";
 import PaperWall from "@/components/home/PaperWall";
 import FilmTile from "@/components/home/FilmTile";
+import Zoomable from "@/components/Zoomable";
 
 // Studio: three groups so the range reads at a glance — on paper, on screen, on film.
 // Everything sits in warm black and white and turns to color on hover (or as it scrolls into view on phones).
@@ -36,16 +36,14 @@ export default function Studio() {
         <GroupHead label="02 — On screen" />
         <div className="grid grid-cols-1 items-start gap-x-8 gap-y-12 md:grid-cols-12">
           <figure className="md:col-span-5">
-            <a href="https://www.datastoryberkeley.org/" target="_blank" rel="noopener" className="group block overflow-hidden border border-paper/25">
-              <Image
-                src="/images/studio/datastory-site.jpg"
-                alt="The DataStory at Berkeley website homepage"
-                width={1200}
-                height={786}
-                sizes="(min-width: 768px) 40vw, 100vw"
-                className="feature-bw aspect-[3/2] w-full object-cover object-top group-hover:scale-[1.03]"
-              />
-            </a>
+            <Zoomable
+              src="/images/studio/datastory-site.jpg"
+              alt="The DataStory at Berkeley website homepage"
+              width={1200}
+              height={786}
+              sizes="(min-width: 768px) 40vw, 100vw"
+              className="border border-paper/25"
+            />
             <figcaption className="mt-2.5 flex items-start justify-between gap-3">
               <span>
                 <span className="block font-serif text-[22px]">DataStory website</span>
@@ -67,16 +65,13 @@ export default function Studio() {
           <figure className="md:col-span-4">
             <div className="grid grid-cols-3 items-center gap-3 md:grid-cols-2 md:gap-4">
               {STICKERS.map((s) => (
-                <Image key={s.src} src={s.src} alt={s.alt} width={s.w} height={s.h} sizes="200px" className={`feature-bw h-auto w-full ${s.rot}`} />
+                <div key={s.src} className={s.rot}>
+                  <Zoomable src={s.src} alt={s.alt} width={s.w} height={s.h} sizes="200px" />
+                </div>
               ))}
-              <Image
-                src="/images/studio/sticker-roxie.png"
-                alt="Roxie Market storefront sticker"
-                width={600}
-                height={600}
-                sizes="200px"
-                className="feature-bw h-auto w-full -rotate-2 md:col-span-2 md:w-[62%] md:justify-self-center"
-              />
+              <div className="-rotate-2 md:col-span-2 md:w-[62%] md:justify-self-center">
+                <Zoomable src="/images/studio/sticker-roxie.png" alt="Roxie Market storefront sticker" width={600} height={600} sizes="200px" />
+              </div>
             </div>
             <figcaption className="mt-2.5">
               <span className="block font-serif text-[22px]">Stickers</span>
@@ -87,13 +82,13 @@ export default function Studio() {
           </figure>
 
           <figure className="w-[70%] md:col-span-3 md:w-auto">
-            <Image
+            <Zoomable
               src="/images/studio/bird-calling.jpg"
               alt="Bird Calling Contest event poster with swallows and roses"
               width={695}
               height={900}
               sizes="(min-width: 768px) 22vw, 100vw"
-              className="feature-bw h-auto w-full border border-paper/25"
+              className="border border-paper/25"
             />
             <figcaption className="mt-2.5">
               <span className="block font-serif text-[22px]">Bird Calling Contest</span>

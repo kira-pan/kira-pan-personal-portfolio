@@ -7,6 +7,10 @@ import "@fontsource/geist-mono/500.css";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Loader from "@/components/Loader";
+
+// Runs before paint: show the loader on the first visit of a session, never with reduced motion.
+const LOADER_SCRIPT = `try{if(!sessionStorage.getItem("kp-loader-seen")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){var d=document.documentElement;d.setAttribute("data-loader","on");setTimeout(function(){if(d.getAttribute("data-loader")==="on")d.removeAttribute("data-loader")},4000)}}catch(e){}`;
 
 export const metadata: Metadata = {
   title: "Kira Pan — Portfolio",
@@ -29,8 +33,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: LOADER_SCRIPT }} />
+      </head>
       <body>
+        <Loader />
         <a
           href="#main"
           className="label sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-ink focus:px-4 focus:py-3 focus:text-paper"
