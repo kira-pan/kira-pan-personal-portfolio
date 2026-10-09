@@ -14,15 +14,8 @@ export default function Cover() {
       <div className="relative z-0 mt-3 border-t-2 border-ink" />
 
       <div className="grid grid-cols-1 gap-x-10 gap-y-10 pb-16 pt-6 lg:grid-cols-12 lg:pb-20">
-        {/* Left: what this is + cover lines */}
+        {/* Left: cover lines */}
         <div className="order-2 flex flex-col gap-7 lg:order-1 lg:col-span-3">
-          <div className="flex flex-col gap-3">
-            <span className="label text-accent">Portfolio</span>
-            <p className="font-serif text-[26px] leading-[1.12] sm:text-[28px]">
-              I&rsquo;m a data science and cognitive science student at UC Berkeley. I use data to understand
-              people, and design and storytelling to make what I find useful.
-            </p>
-          </div>
           <div className="flex flex-col gap-6">
             <span className="label">In this issue</span>
             {FEATURES.map((f) => (
@@ -43,7 +36,8 @@ export default function Cover() {
         </div>
 
         {/* Center: portrait with two drawings that can be picked up */}
-        <div className="relative order-1 -mt-[15vw] self-start lg:order-2 lg:-mt-[9vw] lg:col-span-6 min-[1500px]:-mt-[135px]">
+        <div className="order-1 -mt-[15vw] flex flex-col gap-8 self-start lg:order-2 lg:-mt-[9vw] lg:col-span-6 min-[1500px]:-mt-[135px]">
+        <div className="relative">
           <div className="relative mx-auto w-[54%] max-w-[340px] lg:w-[62%]">
             <Image
               src="/images/cover-kira-bw.png"
@@ -99,6 +93,16 @@ export default function Cover() {
           >
             that&rsquo;s me! drag the drawings around ↙
           </p>
+        </div>
+
+          {/* The cover line: who this is, said plainly, right under the portrait. */}
+          <div className="mx-auto flex max-w-[600px] flex-col gap-3 text-center">
+            <span className="label text-accent">The portfolio of Kira Pan</span>
+            <p className="font-serif text-[28px] leading-[1.1] tracking-[-0.01em] sm:text-[34px] lg:text-[36px]">
+              I&rsquo;m a data science and cognitive science student at UC Berkeley. I use data to understand
+              people, and design and <em>storytelling</em> to make what I find useful.
+            </p>
+          </div>
         </div>
 
         {/* Right: video + what I'm doing now */}

@@ -121,7 +121,7 @@ Studio, Contributor's Note. Right: outlined buttons "LINKEDIN ↗" and "RESUME �
 
 ### Masthead
 "Kira Pan" with "Pan" italic in accent, clamp(96px, 17vw, 250px), line-height 0.82.
-Below a 2px rule: accent mono kicker "PORTFOLIO", then serif one-liner (Kira asked for this; wording is a draft for her to approve,
+Centered under the portrait (fills the cover gap): accent mono kicker "THE PORTFOLIO OF KIRA PAN", then large serif one-liner (Kira asked for this; wording is a draft for her to approve,
 must say plainly it's her portfolio): "I'm a data science and cognitive science student at UC
 Berkeley. I use data to understand people, and design and storytelling to make what I find
 useful." Right column label: mono "DATA · RESEARCH · DESIGN · WRITING". Page title "Kira Pan — Portfolio".
