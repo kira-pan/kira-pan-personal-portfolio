@@ -18,14 +18,14 @@ export default function ContributorsNote() {
           <div className="art-frame overflow-hidden">
             <Image
               src="/images/about/kira-hike.jpg"
-              alt="Kira on a mountain trail"
+              alt="Kira at the Kehlsteinhaus in Germany"
               width={768}
               height={1024}
               sizes="(min-width: 768px) 30vw, 78vw"
               className="feature-bw aspect-[4/5] w-full object-cover object-[50%_70%]"
             />
           </div>
-          <figcaption className="mt-2 font-mono text-[11px] uppercase tracking-[0.08em] text-muted">Somewhere new, as usual</figcaption>
+          <figcaption className="mt-2 font-mono text-[11px] uppercase tracking-[0.08em] text-muted">Kehlsteinhaus, Germany</figcaption>
         </figure>
         <div className="flex flex-col gap-5 md:col-span-7 md:col-start-6">
           <h2 id="about-title" className="text-balance font-serif text-[34px] font-normal leading-[1.04] tracking-[-0.01em] md:text-[44px]">
