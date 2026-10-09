@@ -18,9 +18,27 @@ const IS_LIVE = process.env.VERCEL_ENV === "production";
 const LOADER_SCRIPT = `try{if(!sessionStorage.getItem("kp-loader-seen")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){var d=document.documentElement;d.setAttribute("data-loader","on");setTimeout(function(){if(d.getAttribute("data-loader")==="on")d.removeAttribute("data-loader")},4000)}}catch(e){}`;
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://kira-pan.com"),
   title: "Kira Pan — Portfolio",
   description:
     "Kira Pan studies cognitive science and data science at UC Berkeley. Data, research, design and writing.",
+  // Link preview (iMessage, Slack, LinkedIn…): public/og.jpg, 1200x630.
+  openGraph: {
+    type: "website",
+    url: "https://kira-pan.com",
+    siteName: "Kira Pan",
+    title: "Kira Pan — Portfolio",
+    description:
+      "Data, research, design and writing. Cognitive science + data science at UC Berkeley.",
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Kira Pan — the portfolio of Kira Pan" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kira Pan — Portfolio",
+    description:
+      "Data, research, design and writing. Cognitive science + data science at UC Berkeley.",
+    images: ["/og.jpg"],
+  },
   icons: {
     icon: [{ url: "/images/favicon-k.png", type: "image/png" }],
     shortcut: "/images/favicon-k.png",

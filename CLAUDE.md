@@ -71,6 +71,7 @@ taste and communication skills (journalism, art, video).
 - `/desk` — archive of all Daily Californian articles, grouped by beat, with dates.
 - Nav links Case Files, Studio and Contributor's Note smooth-scroll to home sections.
 - Resume button → `/KiraPan-Resume.pdf`.
+- Link preview (Open Graph/Twitter): `public/og.jpg` 1200x630, metadata in `app/layout.tsx`.
 - Google Analytics `G-ZDV1S9YPRD` (Kira's own "Kira Pan" account) loads from `app/layout.tsx`, live site only
   (`VERCEL_ENV === "production"`), so previews are not counted.
 
@@ -170,7 +171,7 @@ get her OK, then build. Keep whitespace tight — avoid empty columns and long b
   stickers (DataStory, Cog Sci Students Association, Roxie), Bird Calling poster. 03 On film:
   Yosemite (lightbox) + a "Currently editing" placeholder until Kira's next video arrives.
   No Uncertain Footnotes, no recruitment/coffee-chat videos.
-- Contributor's Note (`ContributorsNote.tsx`): hiking photo (B&W, color on hover), headline
+- Contributor's Note (`ContributorsNote.tsx`): hiking photo (caption "Kehlsteinhaus, Germany") (B&W, color on hover), headline
   "Usually looking for a new place to eat or a new place *to go.*", Kira's paragraph, buttons
   kirap@berkeley.edu / LinkedIn / GitHub / Resume.
 - Footer: slim line "© 2026 Kira Pan" · "Vol. 04 · Berkeley, CA" (room for doodles later).
