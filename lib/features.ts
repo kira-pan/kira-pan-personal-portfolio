@@ -1,50 +1,72 @@
-// One source of truth for the four features: used by the cover lines and the Features section.
-// Titles say plainly what each project is; personality lives in the deks and the design.
+// One source of truth for the four features: cover lines + Features section.
+// Titles say plainly what each project is; personality lives in the design.
+// Order matters: the first entry is the lead (PantryPal, Kira's solo project).
 
 export type Feature = {
   slug: string;
-  page: string; // magazine page number on the cover
-  kicker: string; // what kind of work, at a glance
-  coverTitle: string; // short version for the cover
-  title: string; // full, plain-language headline
-  italic: string; // the phrase in `title` set in italic
-  dek: string;
-  /** `halves`: labels for a side-by-side image, left then right. */
-  media: { kind: "image"; src: string; alt: string; caption: string; halves?: [string, string] };
-  link: { href: string; label: string };
+  num: string; // 01–04, shown in red italic
+  page: string; // magazine page on the cover
+  kicker: string; // short category under the number
+  coverTitle: string;
+  title: string;
+  italic: string; // phrase in `title` set in italic
+  dek: string; // on small cards this shows on hover (and under the title on phones)
+  /** `position`: object-position for the 4:3 crop; `halves`: labels for a side-by-side image. */
+  image: { src: string; width: number; height: number; alt: string; position?: string; halves?: [string, string] };
+  credit?: string;
+  link: { href: string; label: string } | null; // null = case study coming soon
 };
+
+export const LEAD_PROCESS = ["Persona + problem", "Wireframes", "User testing", "Next iteration"];
+export const LEAD_TOOLS = "Balsamiq · Miro · Figma · UX research";
 
 export const FEATURES: Feature[] = [
   {
-    slug: "patent-dashboard",
+    slug: "pantrypal",
+    num: "01",
     page: "P. 04",
-    kicker: "Machine learning · Dashboard · Nov 2025–Jan 2026",
+    kicker: "Product design · UX research · Solo project · 2026",
+    coverTitle: "PantryPal: a meal planner for first-time cooks",
+    title: "PantryPal: a meal-planning app for students cooking for the first time",
+    italic: "cooking for the first time",
+    dek: "Planning meals on a student budget eats up time and often ends in wasted food. I designed PantryPal on my own, from a notebook sketch to a tested prototype: tell it what's in your pantry, what you can spend and how much time you have, and it plans your week and builds a cost-estimated grocery list.",
+    image: {
+      src: "/images/features/pantrypal-wireframes.png",
+      width: 1500,
+      height: 670,
+      alt: "Four PantryPal screens: swap a meal, the weekly plan, the grocery list and a saved plan",
+    },
+    link: null,
+  },
+  {
+    slug: "patent-dashboard",
+    num: "02",
+    page: "P. 08",
+    kicker: "Machine learning",
     coverTitle: "Predicting patent approval from 408,000 applications",
     title: "Predicting patent approval from 408,000 USPTO applications",
     italic: "patent approval",
-    dek: "Patent applicants wait months to learn if they'll be approved. With a partner, I trained a model on USPTO records to estimate the odds on day one, and built a dashboard anyone can use.",
-    media: {
-      kind: "image",
+    dek: "With a partner, I trained a model that estimates approval odds on day one (74% accuracy) and built a Streamlit dashboard around it.",
+    image: {
       src: "/images/features/patent-dashboard.jpg",
-      alt: "The patent allowance dashboard showing a 13.1% estimated allowance probability and suggested next steps",
-      caption: "The Streamlit dashboard returning an estimate and suggested next steps",
+      width: 1600,
+      height: 902,
+      alt: "The patent dashboard returning a 13.1% estimated allowance probability",
+      position: "left top",
     },
     link: { href: "https://github.com/kira-pan/predictive-patent-dashboard", label: "See the code ↗" },
   },
   {
     slug: "cup-fee",
-    page: "P. 08",
-    kicker: "Reporting · City policy · The Daily Californian",
+    num: "03",
+    page: "P. 12",
+    kicker: "Reporting · Daily Cal",
     coverTitle: "Berkeley's 25-cent cup fee: more reusables, uneven compliance",
     title: "Berkeley's 25-cent cup fee: more reusables, uneven compliance",
     italic: "uneven compliance",
     dek: "Reporting on whether the city's disposable cup fee changed habits, and why some shops struggled to follow it.",
-    media: {
-      kind: "image",
-      src: "/images/features/cup-fee.jpg",
-      alt: "Three disposable cups on a table",
-      caption: "Photo: The Daily Californian Photo Department",
-    },
+    image: { src: "/images/features/cup-fee.jpg", width: 1793, height: 1155, alt: "Three disposable cups on a table" },
+    credit: "Photo: The Daily Californian Photo Department",
     link: {
       href: "https://www.dailycal.org/news/city/local-businesses/berkeley-s-25-cent-disposable-cup-fee-encourages-reusables-faces-compliance-challenges/article_5913a2f3-dda1-4fa5-a63a-ed10e6e22db6.html",
       label: "Read the story ↗",
@@ -52,36 +74,21 @@ export const FEATURES: Feature[] = [
   },
   {
     slug: "paradise",
-    page: "P. 12",
-    kicker: "GIS · Spatial analysis · Summer 2026",
+    num: "04",
+    page: "P. 16",
+    kicker: "GIS · Spatial analysis",
     coverTitle: "Mapping how Paradise rebuilt after the Camp Fire",
     title: "Mapping how Paradise rebuilt after the 2018 Camp Fire",
     italic: "rebuilt",
-    dek: "With two teammates, I combined building permits, Census housing and population data, and fire perimeters into an ArcGIS StoryMap of the town's recovery from 2019 to 2025.",
-    media: {
-      kind: "image",
+    dek: "With two teammates, I combined building permits, Census housing and population data, and fire perimeters into an ArcGIS StoryMap of the town's recovery, 2019–2025.",
+    image: {
       src: "/images/features/paradise-before-after.jpg",
-      alt: "Satellite view of Paradise, California, before and after the Camp Fire, split side by side",
-      caption: "Satellite view: May 2018 (left) and Dec 2019 (right)",
+      width: 1988,
+      height: 1116,
+      alt: "Satellite view of Paradise, California: May 2018 on the left, December 2019 on the right",
       halves: ["Before", "After"],
     },
     link: { href: "https://arcg.is/0TPXXi2", label: "Open the StoryMap ↗" },
-  },
-  {
-    slug: "pantrypal",
-    page: "P. 16",
-    kicker: "Product design · UX research · 2026",
-    coverTitle: "PantryPal: a meal planner for first-time cooks",
-    title: "PantryPal: a meal-planning app for students cooking for the first time",
-    italic: "cooking for the first time",
-    dek: "From a notebook sketch to a tested prototype: plan a week of meals around what's already in your pantry, your budget and your time.",
-    media: {
-      kind: "image",
-      src: "/images/features/pantrypal-logo.jpg",
-      alt: "The PantryPal logo: a smiling P in a chef's hat, with the tagline Meal Planning Made for Real Student Life",
-      caption: "The PantryPal brand mark, designed alongside the app",
-    },
-    link: { href: "/#features", label: "Case study coming soon" },
   },
 ];
 

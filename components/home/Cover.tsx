@@ -38,7 +38,7 @@ export default function Cover() {
         {/* Center: portrait with two drawings that can be picked up */}
         <div className="order-1 -mt-[15vw] flex flex-col gap-8 self-start sm:col-span-2 lg:order-2 lg:-mt-[9vw] lg:col-span-5 min-[1500px]:-mt-[135px]">
         <div className="relative">
-          <div className="relative mx-auto w-[54%] max-w-[340px] lg:w-[68%]">
+          <div className="relative mx-auto w-[54%] max-w-[340px] lg:w-[62%]">
             <Image
               src="/images/cover-kira-bw.png"
               alt="Portrait of Kira Pan, arms crossed, smiling"
@@ -53,14 +53,14 @@ export default function Cover() {
           <Draggable
             label="Charcoal drawing by Kira"
             rotate={-6}
-            className="absolute bottom-[8%] left-0 z-20 w-[28%] max-w-[180px]"
+            className="absolute left-0 top-[54%] z-20 w-[27%] max-w-[180px]"
           >
             <div className="art-frame">
               <Image
                 src="/images/IMG_2955.jpeg"
                 alt=""
-                width={1169}
-                height={1558}
+                width={900}
+                height={1199}
                 sizes="180px"
                 draggable={false}
                 className="h-auto w-full"
@@ -71,15 +71,15 @@ export default function Cover() {
           <Draggable
             label="Pen and ink drawing of Venice by Kira"
             rotate={5}
-            className="absolute right-0 top-[30%] z-20 w-[25%] max-w-[160px]"
+            className="absolute right-0 top-[19%] z-20 w-[24%] max-w-[160px]"
           >
             <div className="absolute -top-3 left-1/2 h-6 w-20 -translate-x-1/2 -rotate-6 bg-tape" aria-hidden="true" />
             <div className="art-frame">
               <Image
                 src="/images/venice_drawing.jpeg"
                 alt=""
-                width={2325}
-                height={3076}
+                width={900}
+                height={1191}
                 sizes="160px"
                 draggable={false}
                 className="h-auto w-full"
@@ -88,10 +88,10 @@ export default function Cover() {
           </Draggable>
 
           <p
-            className="pointer-events-none absolute right-[1%] top-[64%] z-30 hidden max-w-[160px] rotate-[-5deg] font-hand text-[26px] leading-[1.05] text-accent lg:block"
+            className="pointer-events-none absolute right-0 top-[74%] z-30 hidden w-[30%] rotate-[-5deg] font-hand text-[22px] leading-[1.1] text-accent lg:block"
             aria-hidden="true"
           >
-            that&rsquo;s me! drag the drawings around ↙
+            ↖ that&rsquo;s me! drag the drawings around
           </p>
         </div>
 

@@ -102,7 +102,8 @@ Image treatment (this is what makes it cohesive — apply to every image the sam
   At most one strip of masking tape (`rgba(214,196,150,0.75)`) per cluster.
 - Screenshots of software/data work: straight (no rotation), 1px hairline border, no device
   mockups, no browser chrome.
-- Every image gets a mono caption underneath, museum-label style.
+- Images are warm black and white (`.feature-bw`) and turn to color on hover; most get a mono
+  caption, but small feature cards keep text minimal (description on hover).
 
 Motion:
 - Slow and deliberate: 600–900ms, `cubic-bezier(0.65, 0, 0.35, 1)`.
@@ -115,130 +116,61 @@ NEVER:
 - emoji, icon-in-colored-circle cards, generic feature cards
 - Inter, Roboto, Arial, system-ui as a visible font
 - invented copy, stats or testimonials; lorem ipsum. Missing facts stay as [PLACEHOLDER].
-- a hamburger menu (the nav wraps instead)
+- a hamburger icon (phones use the labeled "Contents" bar instead)
 
 ## Mobile (under 760px)
 
 - Masthead fills the width on one line (~24vw).
-- Cover order: photo, then cover lines, then the video box.
-- Dragging is desktop-only; on mobile draggable images become a horizontal scroll-snap strip.
-- Grids collapse to one column; stat rows stay 3 columns with smaller numbers.
-- Case File stamps sit above the headline, never over it.
 - Header: row 1 = "VOL. 04" + LinkedIn/Resume buttons; row 2 = nav as one row of 5 boxed tabs
   (Features · Cases · Desk · Studio · About; full labels from lg; plain inline links from xl).
   Kira asked for this instead of wrapping text or a hidden menu. Every tap target ≥ 44px tall.
-- Cover stays stacked (photo → one-liner + cover lines → video/Currently side by side) until lg.
-- Body text ≥ 15px. Loader 1.5s instead of 2.5s.
-- Videos: `muted playsInline loop` so they autoplay on iPhone.
-- No horizontal scrolling anywhere except intentional strips.
+- Past the cover, a black "following" bar sits at the bottom of the screen ("02 · Case Files …
+  Contents ↑"); tapping it opens a Contents sheet (`components/MobileContents.tsx`). Phones only.
+- Cover stacks until lg: photo → intro quote → At a glance → cover lines.
+- No hover on touch screens: feature-card descriptions show under the title, and `.feature-bw`
+  images turn to color as they cross the middle of the screen (`components/ColorOnView.tsx`).
+- On paper (Studio) becomes a swipeable scroll-snap strip; dragging is desktop-only.
+- Body text ≥ 15px. No horizontal scrolling anywhere except intentional strips.
 
-## Content, section by section (use this copy)
+## Workflow rule: mockup first
 
-### Header
-Left: "VOL. 04 — FALL ISSUE 2026 · BERKELEY, CA". Nav: Features, Case Files, The Desk,
-Studio, Contributor's Note. Right: outlined buttons "LINKEDIN ↗" and "RESUME ↗".
+Kira reviews changes on the design canvas (claude.ai artifact "Kira Pan Portfolio Cover",
+board "Home-v2") BEFORE they're coded. For anything beyond a small fix: update the mockup,
+get her OK, then build. Keep whitespace tight — avoid empty columns and long blank gaps.
 
-### Masthead
-"Kira Pan" with "Pan" italic in accent, clamp(96px, 17vw, 250px), line-height 0.82.
-Centered under the portrait (fills the cover gap): accent mono kicker "THE PORTFOLIO OF KIRA PAN", then large serif one-liner (Kira asked for this; wording is a draft for her to approve,
-must say plainly it's her portfolio): "I'm a data science and cognitive science student at UC
-Berkeley. I use data to understand people, and design and storytelling to make what I find
-useful." Right column label: mono "DATA · RESEARCH · DESIGN · WRITING". Page title "Kira Pan — Portfolio".
+## Content (source of truth is the code; this is the map)
 
-### Cover (three columns)
-- Left — "IN THIS ISSUE" cover lines (each links to its feature):
-  - P. 04 / FEATURE — "408,000 patents and one question" — "Can a model predict USPTO approval before months of review?"
-  - P. 08 / DATA DESK — "What a 25-cent cup fee actually changed" — "Reusables, compliance and Berkeley's disposable cup fee, for The Daily Californian."
-  - P. 12 / MAPS — "Paradise, after the fire" — "Six years of rebuilding permits after the 2018 Camp Fire, mapped."
-  - P. 16 / PRODUCT — "Dinner for the first-time cook" — "PantryPal, a meal planner for real student life."
-- Center — black-and-white portrait cutout `cover-kira-bw.png` (arms crossed), pulled up so her head overlaps the masthead
-  (classic magazine cover), with two artworks overlapping it
-  (`IMG_2955.jpeg` charcoal bottom-left, `venice_drawing.jpeg` top-right), draggable on desktop.
-  Note: "that's me! drag the drawings around ↙".
-- Right — the boxed "At a glance" fact sheet (see Site structure). The Yosemite "Now playing"
-  video and the "Currently" box were REMOVED from the cover (Kira: video shouldn't be a focal
-  point). The Yosemite video becomes the first clip in Studio's Cutting Room
-  (`components/home/NowPlaying.tsx` + `public/videos/yosemite*` are kept for that).
-- Intro under the portrait: small italic serif quote (~22–24px, max ~440px wide, in curly
-  quotes) under the red mono label "THE PORTFOLIO OF KIRA PAN".
-
-### Marquee
-Full-width ink strip, slow scroll: "DATA ANALYTICS ✦ PRODUCT ✦ UX RESEARCH ✦ DESIGN ✦ WRITING ✦"
-
-### Contents
-Serif "Contents" ("tents" italic). Numbered rows: 01 Features — Data and product stories,
-start to finish — p. 04 · 02 Case Files — Consulting for Oracle and Aflac — p. 20 ·
-03 The Desk — Reporting and editing at The Daily Californian — p. 26 · 04 Studio —
-Charcoal, ink, collage, video — p. 30 · 05 Contributor's Note — About me, resume, contact — p. 36.
-
-### Features
-- Lead: Patent dashboard (team project with Chiara Rignot — say "with a partner"). The headline,
-  dek and stats lead; media is a small static screenshot (`public/images/features/patent-dashboard.jpg`),
-  never a big video — Kira doesn't want video as the focal point.
-  PantryPal thumbnail is the brand logo card (`pantrypal-logo.jpg`), not the notebook sketch.
-  Cup photo credit: "Photo: The Daily Californian Photo Department". Looking for: "Summer 2027 internships".
-  (Final copy for all four lives in `lib/features.ts`; the copy below is the original draft.) Kicker "DATA · MACHINE LEARNING ·
-  NOV 2025–JAN 2026". Headline "408,000 patents and one question". Body: "Patent applicants
-  wait months to learn if they'll be approved. I trained a model on USPTO records to give
-  them an estimate on day one, and built a dashboard anyone can use." Stats: 408K+
-  applications · 74% accuracy · 9 tech centers. Tools: Python · XGBoost · Random Forest ·
-  SMOTE · Streamlit. Code: github.com/kira-pan/predictive-patent-dashboard.
-- Three smaller features:
-  - Cup fee — "REPORTING · CITY & LOCAL BUSINESS" — "What a 25-cent cup fee actually changed" —
-    "Berkeley's disposable cup fee nudged people toward reusables. Getting shops to comply
-    was harder." Links to the Daily Cal article. Image: [NEEDED FROM KIRA].
-  - Paradise — "SPATIAL ANALYSIS · 2026" — "Paradise, after the fire" — "Permits, Census data
-    and fire perimeters show who rebuilt in Paradise, CA from 2019 to 2025." Image: [NEEDED].
-  - PantryPal — "PRODUCT · UX RESEARCH" — "Dinner for the first-time cook" — "PantryPal turns
-    what's in your pantry, your budget and your time into a week of meals." Image: the
-    hand-drawn logo sketch → app icon, from Kira's deck [NEEDED AS IMAGE FILES].
-- Pull quote: "Users understood the concept right away. The grocery list needed a clearer
-  path." — FROM PANTRYPAL USABILITY TESTING.
-
-### Case Files (manila background)
-- FILE 01 · AFLAC · JAN–JUN 2026 — stamp "CLIENT FILE" (accent) — "Five years of federal
-  filings, made into one clean dataset" — profiled Form 5500 data; Python regex pipelines
-  consolidating carrier/broker names; GCP ingestion workflow. Stats: 1,200+ name variants… /
-  ~280 …became entities / 96% coverage.
-- FILE 02 · ORACLE · AUG 2026–NOW — stamp "IN PROGRESS" (ink) — "Scoring exercise form from
-  two phone sensors, in real time" — streaming pipeline on OCI, pose estimation scoring reps,
-  tempo, range of motion and form; Oracle Database 23ai. Stats: 2 phone sensors / 3 exercises
-  scored / <1s target latency.
-- A few inline black redaction bars for confidential specifics.
-- Footnote: "Client details redacted." Do NOT say "via/through DataStory Consulting" anywhere —
-  Kira wants Oracle and Aflac listed as roles in their own right.
-- Kira is confirming what she may show; show nothing beyond the above until she says so.
-
-### The Desk
-Left: "From the newsroom to the data desk" + vertical timeline: General Assignment News
-Reporter → Business & Economy Reporter → Deputy News Editor (May–Aug 2025, 60+ stories
-edited) → Data Reporter (Aug 2025–Jun 2026, highlighted).
-Right, 2×2 clips linking to dailycal.org (URLs are on the current `/publications` page):
-- 'A new life': Students adorn apartments with furniture found on the street (CITY)
-- Campus researchers replicate disruptive Chinese AI for $30 (RESEARCH & IDEAS)
-- Bakar Labs set to launch largest climate tech incubator (RESEARCH & IDEAS)
-- "All 17 stories, by beat →" → /desk
-`/desk` lists every article from the current publications page, grouped by beat.
-
-### Studio (ink background)
-"Things I make by hand" + note "go on, rearrange them ↓". Curated, max 6 pieces:
-`IMG_2955.jpeg` or `IMG_3879.jpg` (charcoal — use one), `london_postcard.jpg` (pen & ink),
-`IMG_3848.jpeg` (recycled collage), `KiraPan_Bird_Calling_Poster.jpg` (digital),
-Uncertain Footnotes (still from `KiraPan_UncertainFootnotes_Demo.mov`, links to
-https://kira-pan.github.io/uncertain-footnotes/). Museum labels in mono under each.
-Draggable on desktop (pointer events; dragged piece comes to front and straightens; "RESET").
-Below: "Cutting Room" row of edited videos (Yosemite, `Recruitment-Timeline.mp4`, the
-coffee chat story). Each tile plays muted on hover (tap on mobile), lightbox with sound.
-Labels: TITLE · FOR: project · I DID: editing, motion graphics, sound.
-
-### Contributor's Note
-Portrait (one of `about_1`–`about_8`, Kira picks) + serif "I'm Kira. I study how people
-think, work with messy data, and try to make the answer easy to see." + [KIRA'S BIO —
-2–3 sentences in her own words] + links: kirap@berkeley.edu, LinkedIn
-(linkedin.com/in/kira-z-pan), GitHub (github.com/kira-pan), Resume (PDF).
-
-### Footer
-Serif "Let's make something." ("something." italic accent). Mono line: "© 2026 Kira Pan". No colophon.
+- Header: "VOL. 04 — FALL ISSUE 2026 · BERKELEY, CA", nav, LinkedIn ↗ + Resume ↗ buttons.
+- Cover (`components/home/Cover.tsx`): masthead "Kira *Pan*"; left = "In this issue" cover lines
+  from `lib/features.ts`; center = B&W portrait overlapping the masthead with two draggable
+  drawings (Venice top-right, charcoal window left) and the handwritten "↖ that's me! drag the
+  drawings around" placed in the empty space right of her torso (never over an image); under it
+  the red label "THE PORTFOLIO OF KIRA PAN" + small italic quote; right = At a glance box.
+- Marquee: DATA ANALYTICS ✦ PRODUCT ✦ UX RESEARCH ✦ DESIGN ✦ WRITING.
+- Letter from the editor (`EditorsLetter.tsx`): COLLAPSED teaser (headline + one line + "Read
+  the letter ↓"); opens to Kira's four paragraphs in two columns, signed "Kira" (no dash).
+- Features (`Features.tsx`, data `lib/features.ts`): 01 PantryPal is the lead (solo project; process
+  row Persona + problem → Wireframes → User testing → Next iteration; tools Balsamiq · Miro ·
+  Figma · UX research; background-free wireframes image). Then cards 02 Patent (with a partner,
+  74% accuracy), 03 Cup fee (photo credit The Daily Californian Photo Department), 04 Paradise
+  (BEFORE/AFTER tags). Cards show number + kicker + title; description + link appear on hover.
+  Pull quote from PantryPal usability testing.
+- Case Files (`CaseFiles.tsx`): Aflac + Oracle files, stamps, redaction bars, "Client details
+  redacted." Never say "via DataStory". Details were public on the club's Instagram.
+- The Desk (`Desk.tsx`): timeline General News Reporter (Sep 2024–Jan 2025) → Business & Economy
+  Beat Reporter (Jan–May 2025) → Deputy News Editor (May–Aug 2025, 60+ stories edited) → Data
+  Reporter (Sep 2025–May 2026); clips: Help deliver dreams, Chinese AI for $30, Bakar Labs, and
+  "All my Daily Cal stories →" (author page until `/desk` exists).
+- Studio (`Studio.tsx`, `PaperWall.tsx`, `FilmTile.tsx`): "Things I make, *on paper, on screen
+  and on film*". 01 On paper: charcoal portrait, Venice, charcoal window, London, B&W collage
+  (draggable, Reset). 02 On screen: DataStory website ("Designed, built + maintained by me"),
+  stickers (DataStory, Cog Sci Students Association, Roxie), Bird Calling poster. 03 On film:
+  Yosemite (lightbox) + a "Currently editing" placeholder until Kira's next video arrives.
+  No Uncertain Footnotes, no recruitment/coffee-chat videos.
+- Contributor's Note (`ContributorsNote.tsx`): hiking photo (B&W, color on hover), headline
+  "Usually looking for a new place to eat or a new place *to go.*", Kira's paragraph, buttons
+  kirap@berkeley.edu / LinkedIn / GitHub / Resume.
+- Footer: slim line "© 2026 Kira Pan" · "Vol. 04 · Berkeley, CA" (room for doodles later).
 
 ### Loader (first visit per session only, click to skip)
 Paper background. Top corners mono: "KIRA PAN — VOL. 04" / "FALL ISSUE 2026". Center: a
@@ -256,12 +188,8 @@ stat callouts breaking wider than the text column → mono captions on all media
 quote → "Next feature →". Content is drafted with Kira; never invent findings.
 
 ## Build order
-1. Design tokens, fonts, layout shell, header, footer, redirects.
-2. Masthead + Cover + Marquee + Contents.
-3. Features (home).
-4. Case Files + The Desk.
-5. Studio (drag) + Cutting Room + Contributor's Note.
-6. Loader.
+1–5. DONE: shell, cover, letter, features, case files, desk, studio, contributor's note, phone nav.
+6. Loader (mock up first).
 7. Feature page template + patent-dashboard page; then the other three.
 8. `/desk` archive.
 9. Mobile pass at 375px, accessibility pass (contrast, focus states, alt text), Lighthouse.
