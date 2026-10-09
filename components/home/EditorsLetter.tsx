@@ -1,7 +1,7 @@
 import SectionHead from "@/components/SectionHead";
 
 // The storyline, told once, near the top: interests → experience → what ties it together.
-// DRAFT COPY — Kira to edit into her own voice.
+// Letter copy is Kira's own words (final). Don't rewrite it.
 
 const GLANCE = [
   {
@@ -44,20 +44,29 @@ export default function EditorsLetter() {
           </h2>
           <div className="mt-8 flex max-w-[640px] flex-col gap-5 text-[17px] leading-[1.65]">
             <p>
-              I study cognitive science because I want to know how people think and decide. Reporting for
-              The Daily Californian taught me the other half: how to find the story in what people tell you,
-              check it, and explain it clearly on deadline.
+              I study cognitive science because I&rsquo;ve always been interested in how people think, make
+              decisions, and respond to the world around them. Reporting for The Daily Californian gave me a
+              different way to explore that. I learned how to ask better questions, figure out what actually
+              matters in a story, fact-check everything, and explain it clearly.
             </p>
             <p>
-              The stories I kept coming back to had data in them, so I moved to the data desk, and then into
-              the work behind the numbers: a model that predicts patent approvals, pipelines that turned five
-              years of federal filings into one clean dataset for Aflac, real-time motion scoring for Oracle,
-              and research at Haas on how AI-generated videos change what people watch.
+              A lot of the stories I was most drawn to had data behind them, which is how I ended up at the
+              data desk. From there, I started getting more interested in what you could do with the numbers
+              themselves: building a model to predict patent approvals, turning years of federal filings into
+              a usable dataset for Aflac, working on real-time motion scoring for Oracle, and now researching
+              at Haas how people respond to AI-generated content.
             </p>
             <p>
-              I still draw, edit video and design things for people, like PantryPal, which I tested with
-              students. This issue collects all of it. The thread through every page: figure out what people
-              actually need, get the data right, and make the answer easy to see.
+              At the same time, I&rsquo;ve never really wanted to choose between the analytical and creative
+              sides of what I like. I draw, edit videos, design, and like building things people can actually
+              use. For PantryPal, that meant designing around real students and testing what worked instead of
+              just assuming I knew what they wanted.
+            </p>
+            <p>
+              I think that&rsquo;s the thread through most of what I do. I&rsquo;m interested in people first:
+              what they pay attention to, what they need, and why they make the choices they do. Data helps me
+              understand that more clearly, and design and storytelling help me turn what I find into something
+              useful.
             </p>
           </div>
           <p className="mt-6 rotate-[-3deg] font-hand text-[34px] text-accent" aria-label="Signed, Kira">
