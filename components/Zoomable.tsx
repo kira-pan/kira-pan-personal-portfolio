@@ -37,7 +37,7 @@ export default function Zoomable({
         className={`zoomable group block w-full cursor-zoom-in text-left ${className}`}
       >
         <span className={`block overflow-hidden ${framed ? "art-frame" : ""}`}>
-          <Image src={src} alt={alt} width={width} height={height} sizes={sizes} className={`feature-bw h-auto w-full ${imgClassName}`} />
+          <Image src={src} alt={alt} width={width} height={height} sizes={sizes} draggable={false} className={`feature-bw h-auto w-full ${imgClassName}`} />
         </span>
       </button>
       <dialog

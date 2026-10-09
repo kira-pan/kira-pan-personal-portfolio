@@ -7,7 +7,7 @@ type Props = {
   /** Resting rotation in degrees. Straightens slightly while dragged. */
   rotate?: number;
   className?: string;
-  label: string;
+  label?: string;
 };
 
 let topZ = 20;
@@ -31,18 +31,28 @@ export default function Draggable({ children, rotate = 0, className = "", label 
     return () => mq.removeEventListener("change", update);
   }, []);
 
+  // A press only becomes a drag once the pointer moves a few pixels, so a plain click still
+  // reaches whatever is inside (e.g. click-to-enlarge in Studio). A click right after a drag is swallowed.
+  const pending = useRef(false);
+  const justDragged = useRef(false);
+
   function onPointerDown(e: React.PointerEvent<HTMLDivElement>) {
     if (!enabled || e.button !== 0) return;
-    e.preventDefault();
-    e.currentTarget.setPointerCapture(e.pointerId);
     start.current = { px: e.clientX, py: e.clientY, x: offset.x, y: offset.y };
-    topZ += 1;
-    setZ(topZ);
-    setDragging(true);
+    pending.current = true;
+    justDragged.current = false;
   }
 
   function onPointerMove(e: React.PointerEvent<HTMLDivElement>) {
-    if (!dragging) return;
+    if (pending.current && !dragging) {
+      if (Math.hypot(e.clientX - start.current.px, e.clientY - start.current.py) < 5) return;
+      e.currentTarget.setPointerCapture(e.pointerId);
+      topZ += 1;
+      setZ(topZ);
+      setDragging(true);
+      justDragged.current = true;
+    }
+    if (!pending.current) return;
     setOffset({
       x: start.current.x + e.clientX - start.current.px,
       y: start.current.y + e.clientY - start.current.py,
@@ -50,16 +60,25 @@ export default function Draggable({ children, rotate = 0, className = "", label 
   }
 
   function onPointerUp(e: React.PointerEvent<HTMLDivElement>) {
+    pending.current = false;
     if (!dragging) return;
-    e.currentTarget.releasePointerCapture(e.pointerId);
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId);
     setDragging(false);
+  }
+
+  function onClickCapture(e: React.MouseEvent) {
+    if (justDragged.current) {
+      e.preventDefault();
+      e.stopPropagation();
+      justDragged.current = false;
+    }
   }
 
   const angle = dragging ? rotate * 0.3 : rotate;
 
   return (
     <div
-      role="img"
+      role={label ? "img" : undefined}
       aria-label={label}
       className={`${className} select-none ${enabled ? (dragging ? "cursor-grabbing" : "cursor-grab") : ""}`}
       style={{
@@ -72,6 +91,8 @@ export default function Draggable({ children, rotate = 0, className = "", label 
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
       onPointerCancel={onPointerUp}
+      onClickCapture={onClickCapture}
+      onDragStart={(e) => e.preventDefault()}
     >
       {children}
     </div>

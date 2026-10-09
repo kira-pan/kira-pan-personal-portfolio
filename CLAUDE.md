@@ -163,8 +163,8 @@ get her OK, then build. Keep whitespace tight — avoid empty columns and long b
   "All my Daily Cal stories →" (author page until `/desk` exists).
 - Studio (`Studio.tsx`, `PaperWall.tsx`, `FilmTile.tsx`): "Things I make, *on paper, on screen
   and on film*". 01 On paper: charcoal portrait, Venice, charcoal window, London, B&W collage
-  (no dragging in Studio: every piece tilts on hover and opens large on click via
-  `components/Zoomable.tsx`; dragging lives only on the cover). 02 On screen: DataStory website ("Designed, built + maintained by me"),
+  (desktop: drag to rearrange + Reset; every piece also tilts on hover and opens large on a
+  plain click via `components/Zoomable.tsx` — a drag never opens it). 02 On screen: DataStory website ("Designed, built + maintained by me"),
   stickers (DataStory, Cog Sci Students Association, Roxie), Bird Calling poster. 03 On film:
   Yosemite (lightbox) + a "Currently editing" placeholder until Kira's next video arrives.
   No Uncertain Footnotes, no recruitment/coffee-chat videos.
@@ -192,7 +192,7 @@ quote → "Next feature →". Content is drafted with Kira; never invent finding
 
 ## Build order
 1–5. DONE: shell, cover, letter, features, case files, desk, studio, contributor's note, phone nav.
-6. DONE: loader; Studio hover-tilt + click-to-enlarge; patent cover from the dashboard screenshot.
+6. DONE: loader; Studio hover-tilt + click-to-enlarge (On paper keeps drag-to-rearrange); patent cover from the dashboard screenshot.
 7. Feature page template + patent-dashboard page; then the other three.
 8. `/desk` archive.
 9. Mobile pass at 375px, accessibility pass (contrast, focus states, alt text), Lighthouse.
