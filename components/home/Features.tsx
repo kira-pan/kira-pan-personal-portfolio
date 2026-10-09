@@ -83,10 +83,15 @@ export default function Features() {
       </article>
 
       {/* Three smaller features */}
-      <div className="mt-20 grid grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-3">
+      {/* Subgrid keeps image, kicker, title, dek and link on the same rows across all three. */}
+      <div className="mt-20 grid grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-3 md:gap-y-3">
         {rest.map((f) => (
-          <article key={f.slug} id={`feature-${f.slug}`} className="flex scroll-mt-6 flex-col gap-3">
-            <figure className="group">
+          <article
+            key={f.slug}
+            id={`feature-${f.slug}`}
+            className="flex scroll-mt-6 flex-col gap-3 md:row-span-5 md:grid md:grid-rows-subgrid md:gap-0"
+          >
+            <figure className="group mb-2">
               <div className="relative aspect-[4/3] overflow-hidden border border-hairline bg-frame">
                 <Image
                   src={f.media.src}
@@ -100,7 +105,7 @@ export default function Features() {
                 {f.media.caption}
               </figcaption>
             </figure>
-            <span className="mt-2 font-mono text-[12px] uppercase tracking-[0.1em] text-accent">{f.kicker}</span>
+            <span className="self-end pt-2 font-mono text-[12px] uppercase md:pt-4 tracking-[0.1em] text-accent">{f.kicker}</span>
             <Title f={f} className="font-serif text-[30px] font-normal leading-[1.02] tracking-[-0.01em]" />
             <p className="text-[15px] leading-[1.55] text-muted">{f.dek}</p>
             <FeatureLink f={f} />

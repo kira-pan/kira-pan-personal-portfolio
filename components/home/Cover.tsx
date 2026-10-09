@@ -40,14 +40,14 @@ export default function Cover() {
 
         {/* Center: portrait with two drawings that can be picked up */}
         <div className="relative order-1 -mt-[15vw] self-start md:order-2 md:col-span-5 md:-mt-[9vw] lg:col-span-6 min-[1500px]:-mt-[135px]">
-          <div className="relative mx-auto w-[64%] max-w-[420px] md:w-[78%]">
+          <div className="relative mx-auto w-[54%] max-w-[340px] md:w-[62%]">
             <Image
               src="/images/cover-kira-bw.png"
               alt="Portrait of Kira Pan, arms crossed, smiling"
               width={1084}
               height={1800}
               priority
-              sizes="(min-width: 768px) 420px, 64vw"
+              sizes="(min-width: 768px) 340px, 54vw"
               className="relative z-10 h-auto w-full"
             />
           </div>

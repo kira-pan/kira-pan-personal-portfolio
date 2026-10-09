@@ -61,7 +61,7 @@ export const FEATURES: Feature[] = [
       kind: "image",
       src: "/images/features/paradise-before-after.jpg",
       alt: "Satellite view of Paradise, California, before and after the Camp Fire, split side by side",
-      caption: "Paradise before (May 2018) and after (Dec 2019) the Camp Fire",
+      caption: "Paradise before (May 2018) and after (Dec 2019)",
     },
     link: { href: "https://arcg.is/0TPXXi2", label: "Open the StoryMap ↗" },
   },
