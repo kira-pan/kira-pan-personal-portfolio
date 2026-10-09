@@ -8,6 +8,11 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Loader from "@/components/Loader";
+import Script from "next/script";
+
+// Google Analytics (property "Kira Pan Portfolio"). Only on the live site, so preview visits aren't counted.
+const GA_ID = "G-ZDV1S9YPRD";
+const IS_LIVE = process.env.VERCEL_ENV === "production";
 
 // Runs before paint: show the loader on the first visit of a session, never with reduced motion.
 const LOADER_SCRIPT = `try{if(!sessionStorage.getItem("kp-loader-seen")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){var d=document.documentElement;d.setAttribute("data-loader","on");setTimeout(function(){if(d.getAttribute("data-loader")==="on")d.removeAttribute("data-loader")},4000)}}catch(e){}`;
@@ -48,6 +53,14 @@ export default function RootLayout({
         <Header />
         <main id="main">{children}</main>
         <Footer />
+        {IS_LIVE && (
+          <>
+            <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
+            <Script id="ga" strategy="afterInteractive">
+              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   );

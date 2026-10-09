@@ -1,3 +1,4 @@
+import Image from "next/image";
 import SectionHead from "@/components/SectionHead";
 import PaperWall from "@/components/home/PaperWall";
 import FilmTile from "@/components/home/FilmTile";
@@ -36,15 +37,22 @@ export default function Studio() {
         <GroupHead label="02 — On screen" />
         <div className="grid grid-cols-1 items-start gap-x-8 gap-y-12 md:grid-cols-12">
           <figure className="md:col-span-5">
-            <Zoomable
-              src="/images/studio/datastory-site.jpg"
-              alt="The DataStory at Berkeley website homepage"
-              width={1200}
-              height={786}
-              sizes="(min-width: 768px) 40vw, 100vw"
-              className="border border-paper/25"
-              tilt={false}
-            />
+            <a
+              href="https://www.datastoryberkeley.org/"
+              target="_blank"
+              rel="noopener"
+              aria-label="Visit the DataStory website (opens in a new tab)"
+              className="group block overflow-hidden border border-paper/25"
+            >
+              <Image
+                src="/images/studio/datastory-site.jpg"
+                alt="The DataStory at Berkeley website homepage"
+                width={1200}
+                height={786}
+                sizes="(min-width: 768px) 40vw, 100vw"
+                className="feature-bw h-auto w-full"
+              />
+            </a>
             <figcaption className="mt-2.5 flex items-start justify-between gap-3">
               <span>
                 <span className="block font-serif text-[22px]">DataStory website</span>

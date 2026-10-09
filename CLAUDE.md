@@ -71,6 +71,8 @@ taste and communication skills (journalism, art, video).
 - `/desk` — archive of all Daily Californian articles, grouped by beat, with dates.
 - Nav links Case Files, Studio and Contributor's Note smooth-scroll to home sections.
 - Resume button → `/KiraPan-Resume.pdf`.
+- Google Analytics `G-ZDV1S9YPRD` (Kira's own "Kira Pan" account) loads from `app/layout.tsx`, live site only
+  (`VERCEL_ENV === "production"`), so previews are not counted.
 
 ## Design system
 
@@ -198,7 +200,6 @@ quote → "Next feature →". Content is drafted with Kira; never invent finding
 - Yosemite's neighbour in "On film": replace the "Currently editing" placeholder with Kira's next video.
 - Mobile pass at 375px, accessibility pass (contrast, focus, alt text), Lighthouse.
 - Make the old-page redirects permanent (308) once the redesign has settled.
-- Analytics (Google Analytics or Vercel Analytics), once Kira has chosen and has a measurement ID.
 
 ## Build order
 1–5. DONE: shell, cover, letter, features, case files, desk, studio, contributor's note, phone nav.
