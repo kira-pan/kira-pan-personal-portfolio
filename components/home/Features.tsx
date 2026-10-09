@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import SectionHead from "@/components/SectionHead";
-import LoopVideo from "@/components/LoopVideo";
 import { FEATURES, splitTitle, type Feature } from "@/lib/features";
 
 function Title({ f, className }: { f: Feature; className: string }) {
@@ -43,28 +42,15 @@ export default function Features() {
       </h2>
       <SectionHead number="01" title="Features" page="p. 04" />
 
-      {/* Lead feature */}
-      <article id={`feature-${lead.slug}`} className="grid scroll-mt-6 grid-cols-1 gap-x-12 gap-y-8 md:grid-cols-12">
-        <figure className="md:col-span-7">
-          <div className="overflow-hidden border border-hairline bg-ink">
-            <LoopVideo
-              src={lead.media.src}
-              poster={lead.media.poster}
-              label={lead.media.alt}
-              className="block aspect-[16/9] w-full object-cover object-top"
-            />
-          </div>
-          <figcaption className="mt-3 font-mono text-[11px] uppercase leading-[1.6] tracking-[0.08em] text-muted">
-            {lead.media.caption}
-          </figcaption>
-        </figure>
-        <div className="flex flex-col justify-center gap-5 md:col-span-5">
+      {/* Lead feature: the story and numbers lead; the screenshot supports them. */}
+      <article id={`feature-${lead.slug}`} className="grid scroll-mt-6 grid-cols-1 gap-x-14 gap-y-10 md:grid-cols-12">
+        <div className="flex flex-col gap-5 md:col-span-7">
           <span className="font-mono text-[12px] uppercase tracking-[0.1em] text-accent">{lead.kicker}</span>
           <Title
             f={lead}
-            className="font-serif text-[40px] font-normal leading-[0.98] tracking-[-0.02em] lg:text-[52px]"
+            className="max-w-[760px] font-serif text-[42px] font-normal leading-[0.96] tracking-[-0.025em] lg:text-[68px]"
           />
-          <p className="max-w-[480px] text-[17px] leading-[1.6]">{lead.dek}</p>
+          <p className="max-w-[560px] text-[17px] leading-[1.6]">{lead.dek}</p>
           <dl className="grid grid-cols-3 gap-4 border-y border-hairline py-4">
             {[
               ["408K+", "applications"],
@@ -80,6 +66,20 @@ export default function Features() {
           <p className="font-mono text-[12px] text-muted">Python · XGBoost · Random Forest · SMOTE · Streamlit</p>
           <FeatureLink f={lead} />
         </div>
+        <figure className="group self-center md:col-span-5">
+          <div className="relative aspect-[16/9] overflow-hidden border border-hairline bg-ink">
+            <Image
+              src={lead.media.src}
+              alt={lead.media.alt}
+              fill
+              sizes="(min-width: 768px) 40vw, 100vw"
+              className="object-cover object-top transition-transform duration-700 ease-editorial group-hover:scale-[1.03]"
+            />
+          </div>
+          <figcaption className="mt-3 font-mono text-[11px] uppercase leading-[1.6] tracking-[0.08em] text-muted">
+            {lead.media.caption}
+          </figcaption>
+        </figure>
       </article>
 
       {/* Three smaller features */}
@@ -95,18 +95,9 @@ export default function Features() {
                   sizes="(min-width: 768px) 30vw, 100vw"
                   className="object-cover transition-transform duration-700 ease-editorial group-hover:scale-[1.03]"
                 />
-                {f.slug === "pantrypal" && (
-                  <Image
-                    src="/images/features/pantrypal/icon.png"
-                    alt="The finished PantryPal app icon"
-                    width={321}
-                    height={315}
-                    className="absolute bottom-4 right-4 w-[26%] rotate-[4deg]"
-                  />
-                )}
               </div>
               <figcaption className="mt-3 font-mono text-[11px] uppercase leading-[1.6] tracking-[0.08em] text-muted">
-                {f.slug === "pantrypal" ? "From the first logo sketch to the app icon" : f.media.caption}
+                {f.media.caption}
               </figcaption>
             </figure>
             <span className="mt-2 font-mono text-[12px] uppercase tracking-[0.1em] text-accent">{f.kicker}</span>

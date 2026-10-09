@@ -148,7 +148,12 @@ start to finish — p. 04 · 02 Case Files — Consulting for Oracle and Aflac �
 Charcoal, ink, collage, video — p. 30 · 05 Contributor's Note — About me, resume, contact — p. 36.
 
 ### Features
-- Lead: Patent dashboard. Media: `jcp-demo.mov` → mp4 loop. Kicker "DATA · MACHINE LEARNING ·
+- Lead: Patent dashboard (team project with Chiara Rignot — say "with a partner"). The headline,
+  dek and stats lead; media is a small static screenshot (`public/images/features/patent-dashboard.jpg`),
+  never a big video — Kira doesn't want video as the focal point.
+  PantryPal thumbnail is the brand logo card (`pantrypal-logo.jpg`), not the notebook sketch.
+  Cup photo credit: "Photo: The Daily Californian Photo Department". Looking for: "Summer 2027 internships".
+  (Final copy for all four lives in `lib/features.ts`; the copy below is the original draft.) Kicker "DATA · MACHINE LEARNING ·
   NOV 2025–JAN 2026". Headline "408,000 patents and one question". Body: "Patent applicants
   wait months to learn if they'll be approved. I trained a model on USPTO records to give
   them an estimate on day one, and built a dashboard anyone can use." Stats: 408K+
@@ -176,7 +181,8 @@ Charcoal, ink, collage, video — p. 30 · 05 Contributor's Note — About me, r
   tempo, range of motion and form; Oracle Database 23ai. Stats: 2 phone sensors / 3 exercises
   scored / <1s target latency.
 - A few inline black redaction bars for confidential specifics.
-- Footnote: "Through DataStory Consulting. Client details redacted."
+- Footnote: "Client details redacted." Do NOT say "via/through DataStory Consulting" anywhere —
+  Kira wants Oracle and Aflac listed as roles in their own right.
 - Kira is confirming what she may show; show nothing beyond the above until she says so.
 
 ### The Desk

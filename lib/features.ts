@@ -9,7 +9,7 @@ export type Feature = {
   title: string; // full, plain-language headline
   italic: string; // the phrase in `title` set in italic
   dek: string;
-  media: { kind: "video" | "image"; src: string; poster?: string; alt: string; caption: string };
+  media: { kind: "image"; src: string; alt: string; caption: string };
   link: { href: string; label: string };
 };
 
@@ -21,13 +21,12 @@ export const FEATURES: Feature[] = [
     coverTitle: "Predicting patent approval from 408,000 applications",
     title: "Predicting patent approval from 408,000 USPTO applications",
     italic: "patent approval",
-    dek: "Patent applicants wait months to learn if they'll be approved. I trained a model on USPTO records to give them an estimate on day one, and built a dashboard anyone can use.",
+    dek: "Patent applicants wait months to learn if they'll be approved. With a partner, I trained a model on USPTO records to estimate the odds on day one, and built a dashboard anyone can use.",
     media: {
-      kind: "video",
-      src: "/videos/patent-dashboard-loop.mp4",
-      poster: "/videos/patent-dashboard-poster.jpg",
-      alt: "The patent allowance dashboard returning a prediction and suggested next steps",
-      caption: "The Streamlit dashboard: enter an application's details, get an approval estimate and next steps",
+      kind: "image",
+      src: "/images/features/patent-dashboard.jpg",
+      alt: "The patent allowance dashboard showing a 13.1% estimated allowance probability and suggested next steps",
+      caption: "The Streamlit dashboard returning an estimate and suggested next steps",
     },
     link: { href: "https://github.com/kira-pan/predictive-patent-dashboard", label: "See the code ↗" },
   },
@@ -43,7 +42,7 @@ export const FEATURES: Feature[] = [
       kind: "image",
       src: "/images/features/cup-fee.jpg",
       alt: "Three disposable cups on a table",
-      caption: "Photo: [PHOTO CREDIT]",
+      caption: "Photo: The Daily Californian Photo Department",
     },
     link: {
       href: "https://www.dailycal.org/news/city/local-businesses/berkeley-s-25-cent-disposable-cup-fee-encourages-reusables-faces-compliance-challenges/article_5913a2f3-dda1-4fa5-a63a-ed10e6e22db6.html",
@@ -76,9 +75,9 @@ export const FEATURES: Feature[] = [
     dek: "From a notebook sketch to a tested prototype: plan a week of meals around what's already in your pantry, your budget and your time.",
     media: {
       kind: "image",
-      src: "/images/features/pantrypal-sketch.jpg",
-      alt: "Hand-drawn PantryPal logo sketches on lined notebook paper",
-      caption: "Where it started: the first logo sketches",
+      src: "/images/features/pantrypal-logo.jpg",
+      alt: "The PantryPal logo: a smiling P in a chef's hat, with the tagline Meal Planning Made for Real Student Life",
+      caption: "The PantryPal brand mark, designed alongside the app",
     },
     link: { href: "/#features", label: "Case study coming soon" },
   },

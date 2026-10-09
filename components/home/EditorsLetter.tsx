@@ -11,7 +11,7 @@ const GLANCE = [
   {
     label: "Right now",
     lines: [
-      "AI Consultant, Oracle (via DataStory Consulting)",
+      "AI Consultant, Oracle",
       "Research Apprentice, Haas School of Business",
       "Director of Marketing, DataStory Consulting",
     ],
@@ -19,7 +19,7 @@ const GLANCE = [
   {
     label: "Previously",
     lines: [
-      "Data Strategy Consultant, Aflac (via DataStory Consulting)",
+      "Data Strategy Consultant, Aflac",
       "Data Reporter + Deputy News Editor, The Daily Californian",
     ],
   },
@@ -27,7 +27,7 @@ const GLANCE = [
     label: "Works in",
     lines: ["Python · SQL · R · pandas · scikit-learn", "XGBoost · Streamlit · ArcGIS", "Figma · Adobe Creative Suite"],
   },
-  { label: "Looking for", lines: ["[ROLES + TIMING, e.g. summer 2027 internships in data, product or UX research]"] },
+  { label: "Looking for", lines: ["Summer 2027 internships"] },
 ];
 
 export default function EditorsLetter() {
