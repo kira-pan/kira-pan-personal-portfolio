@@ -5,10 +5,7 @@ export default function Footer() {
         <p className="font-serif text-[56px] leading-[0.95] tracking-[-0.02em] sm:text-[72px]">
           Let&rsquo;s make <em className="text-accent">something.</em>
         </p>
-        <p className="max-w-[340px] font-mono text-[11px] uppercase leading-[1.7] tracking-[0.08em] text-muted">
-          Colophon — Set in Instrument Serif, Hanken Grotesk &amp; Geist Mono. Margin notes in
-          Kira&rsquo;s own handwriting. Drawings, photos and code by Kira Pan, 2026.
-        </p>
+        <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted">© 2026 Kira Pan</p>
       </div>
     </footer>
   );

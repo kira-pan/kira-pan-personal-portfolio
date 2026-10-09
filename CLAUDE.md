@@ -114,7 +114,7 @@ NEVER:
 
 ### Header
 Left: "VOL. 04 — FALL ISSUE 2026 · BERKELEY, CA". Nav: Features, Case Files, The Desk,
-Studio, Contributor's Note. Right: outlined button "RESUME ↗".
+Studio, Contributor's Note. Right: outlined buttons "LINKEDIN ↗" and "RESUME ↗".
 
 ### Masthead
 "Kira Pan" with "Pan" italic in accent, clamp(96px, 17vw, 250px), line-height 0.82.
@@ -214,8 +214,7 @@ think, work with messy data, and try to make the answer easy to see." + [KIRA'S 
 (linkedin.com/in/kira-z-pan), GitHub (github.com/kira-pan), Resume (PDF).
 
 ### Footer
-Serif "Let's make something." ("something." italic accent). Mono colophon: "COLOPHON — Set in
-Instrument Serif, Hanken Grotesk & Geist Mono. Drawings, photos and code by Kira Pan, 2026."
+Serif "Let's make something." ("something." italic accent). Mono line: "© 2026 Kira Pan". No colophon.
 
 ### Loader (first visit per session only, click to skip)
 Paper background. Top corners mono: "KIRA PAN — VOL. 04" / "FALL ISSUE 2026". Center: a
