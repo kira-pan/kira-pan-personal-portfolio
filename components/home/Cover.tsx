@@ -8,17 +8,21 @@ export default function Cover() {
   return (
     <section aria-label="Cover" className="container-page pt-4 sm:pt-6">
       {/* Masthead. Kira's portrait overlaps its lower half, like a magazine cover. */}
-      <h1 className="reveal relative z-0 whitespace-nowrap text-center font-serif text-[24vw] font-normal leading-[0.8] tracking-[-0.045em] md:text-[clamp(96px,19vw,280px)]">
+      <h1 className="reveal relative z-0 whitespace-nowrap text-center font-serif text-[24vw] font-normal leading-[0.8] tracking-[-0.045em] lg:text-[clamp(96px,19vw,280px)]">
         Kira <em className="text-accent">Pan</em>
       </h1>
       <div className="relative z-0 mt-3 border-t-2 border-ink" />
 
-      <div className="grid grid-cols-1 gap-x-10 gap-y-10 pb-16 pt-6 md:grid-cols-12 md:pb-20">
+      <div className="grid grid-cols-1 gap-x-10 gap-y-10 pb-16 pt-6 lg:grid-cols-12 lg:pb-20">
         {/* Left: what this is + cover lines */}
-        <div className="order-2 flex flex-col gap-7 md:order-1 md:col-span-4 lg:col-span-3">
-          <p className="font-serif text-[26px] leading-[1.12] sm:text-[28px]">
-            A personal magazine about data, the people behind it, and the things I draw by hand.
-          </p>
+        <div className="order-2 flex flex-col gap-7 lg:order-1 lg:col-span-3">
+          <div className="flex flex-col gap-3">
+            <span className="label text-accent">Portfolio</span>
+            <p className="font-serif text-[26px] leading-[1.12] sm:text-[28px]">
+              I&rsquo;m a data science and cognitive science student at UC Berkeley. I use data to understand
+              people, and design and storytelling to make what I find useful.
+            </p>
+          </div>
           <div className="flex flex-col gap-6">
             <span className="label">In this issue</span>
             {FEATURES.map((f) => (
@@ -39,8 +43,8 @@ export default function Cover() {
         </div>
 
         {/* Center: portrait with two drawings that can be picked up */}
-        <div className="relative order-1 -mt-[15vw] self-start md:order-2 md:col-span-5 md:-mt-[9vw] lg:col-span-6 min-[1500px]:-mt-[135px]">
-          <div className="relative mx-auto w-[54%] max-w-[340px] md:w-[62%]">
+        <div className="relative order-1 -mt-[15vw] self-start lg:order-2 lg:-mt-[9vw] lg:col-span-6 min-[1500px]:-mt-[135px]">
+          <div className="relative mx-auto w-[54%] max-w-[340px] lg:w-[62%]">
             <Image
               src="/images/cover-kira-bw.png"
               alt="Portrait of Kira Pan, arms crossed, smiling"
@@ -90,7 +94,7 @@ export default function Cover() {
           </Draggable>
 
           <p
-            className="pointer-events-none absolute right-[1%] top-[64%] z-30 hidden max-w-[160px] rotate-[-5deg] font-hand text-[26px] leading-[1.05] text-accent md:block"
+            className="pointer-events-none absolute right-[1%] top-[64%] z-30 hidden max-w-[160px] rotate-[-5deg] font-hand text-[26px] leading-[1.05] text-accent lg:block"
             aria-hidden="true"
           >
             that&rsquo;s me! drag the drawings around ↙
@@ -98,8 +102,8 @@ export default function Cover() {
         </div>
 
         {/* Right: video + what I'm doing now */}
-        <div className="order-3 flex flex-col gap-6 md:col-span-3">
-          <p className="label text-muted">Cognitive Science + Data Science · UC Berkeley &rsquo;28</p>
+        <div className="order-3 flex flex-col gap-6 sm:grid sm:grid-cols-2 sm:items-start lg:col-span-3 lg:flex">
+          <p className="label text-muted sm:col-span-2">Data · Research · Design · Writing</p>
           <NowPlaying />
           <div className="flex flex-col gap-2.5 border border-ink p-[18px]">
             <span className="label">Currently</span>

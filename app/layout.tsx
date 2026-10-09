@@ -9,7 +9,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Kira Pan",
+  title: "Kira Pan — Portfolio",
   description:
     "Kira Pan studies cognitive science and data science at UC Berkeley. Data, research, design and writing.",
   icons: {

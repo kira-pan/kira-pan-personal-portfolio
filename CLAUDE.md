@@ -105,7 +105,10 @@ NEVER:
 - Dragging is desktop-only; on mobile draggable images become a horizontal scroll-snap strip.
 - Grids collapse to one column; stat rows stay 3 columns with smaller numbers.
 - Case File stamps sit above the headline, never over it.
-- Header wraps to two lines; every tap target ≥ 44px tall.
+- Header: row 1 = "VOL. 04" + LinkedIn/Resume buttons; row 2 = nav as one row of 5 boxed tabs
+  (Features · Cases · Desk · Studio · About; full labels from lg; plain inline links from xl).
+  Kira asked for this instead of wrapping text or a hidden menu. Every tap target ≥ 44px tall.
+- Cover stays stacked (photo → one-liner + cover lines → video/Currently side by side) until lg.
 - Body text ≥ 15px. Loader 1.5s instead of 2.5s.
 - Videos: `muted playsInline loop` so they autoplay on iPhone.
 - No horizontal scrolling anywhere except intentional strips.
@@ -118,8 +121,10 @@ Studio, Contributor's Note. Right: outlined buttons "LINKEDIN ↗" and "RESUME �
 
 ### Masthead
 "Kira Pan" with "Pan" italic in accent, clamp(96px, 17vw, 250px), line-height 0.82.
-Below a 2px rule: serif "A personal magazine about data, the people behind it, and the
-things I draw by hand." Right: mono "COGNITIVE SCIENCE + DATA SCIENCE · UC BERKELEY '28".
+Below a 2px rule: accent mono kicker "PORTFOLIO", then serif one-liner (Kira-approved direction,
+must say plainly it's her portfolio): "I'm a data science and cognitive science student at UC
+Berkeley. I use data to understand people, and design and storytelling to make what I find
+useful." Right column label: mono "DATA · RESEARCH · DESIGN · WRITING". Page title "Kira Pan — Portfolio".
 
 ### Cover (three columns)
 - Left — "IN THIS ISSUE" cover lines (each links to its feature):
