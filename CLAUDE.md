@@ -26,7 +26,11 @@ taste and communication skills (journalism, art, video).
   show Kira before starting the next.
 - Keep the stack: Next.js (App Router), React, Tailwind, TypeScript. Add no UI kits.
   Small libraries are OK only if clearly needed (e.g. none for drag — use pointer events).
-- Use `next/image` for images and `next/font/google` for fonts.
+- Use `next/image` for images. Fonts are self-hosted via `@fontsource` packages (imported in
+  `app/layout.tsx`), not `next/font/google`, so builds never depend on Google's servers.
+- Tokens live in `tailwind.config.ts` (`paper`, `ink`, `muted`, `accent`, `manila`, `frame`,
+  `hairline`, `on-ink-muted`, `tape`; fonts `serif`, `sans`, `mono`, `hand`). Shared classes
+  `.label`, `.container-page`, `.art-frame` are in `app/globals.css`.
 - Videos: compressed H.264 MP4 in `public/videos/`. Loops ≤ 3 MB (6–10 s, 720p, no audio).
   Full videos ≤ 20 MB; anything larger goes on Vimeo/YouTube unlisted and is embedded.
   Convert `.mov` files to `.mp4`. Never commit a file over 50 MB.
@@ -60,8 +64,8 @@ Type (Google Fonts via next/font):
   Italic marks the emphasized phrase in a headline.
 - **Hanken Grotesk** (400/500/600): body, 15–17px, line-height 1.5–1.65.
 - **Geist Mono**: labels, nav, dates, kickers, captions. 11–13px, UPPERCASE, letter-spacing 0.08–0.14em.
-- **Nanum Pen Script**: handwritten margin notes only, accent color, slight rotation.
-  At most one per section.
+- **KiraHandwriting** (`public/fonts/KiraHandwritingV1.woff2`, Kira's real handwriting;
+  Tailwind `font-hand`): margin notes only, accent color, slight rotation. At most one per section.
 
 Layout:
 - Container max-width 1360px, side padding 24px (16px on mobile).
@@ -117,7 +121,8 @@ things I draw by hand." Right: mono "COGNITIVE SCIENCE + DATA SCIENCE · UC BERK
   - P. 08 / DATA DESK — "What a 25-cent cup fee actually changed" — "Reusables, compliance and Berkeley's disposable cup fee, for The Daily Californian."
   - P. 12 / MAPS — "Paradise, after the fire" — "Six years of rebuilding permits after the 2018 Camp Fire, mapped."
   - P. 16 / PRODUCT — "Dinner for the first-time cook" — "PantryPal, a meal planner for real student life."
-- Center — cover photo `magazine-kira.png`, with two artworks overlapping its corners
+- Center — portrait cutout `kira-tranparent.png`, pulled up so her head overlaps the masthead
+  (classic magazine cover), with two artworks overlapping it
   (`IMG_2955.jpeg` charcoal bottom-left, `venice_drawing.jpeg` top-right), draggable on desktop.
   Note: "that's me! drag the drawings around ↙".
 - Right — "NOW PLAYING" black 4:5 box looping a muted clip of the Yosemite video
