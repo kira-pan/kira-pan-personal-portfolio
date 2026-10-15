@@ -164,7 +164,8 @@ get her OK, then build. Keep whitespace tight — avoid empty columns and long b
   Pull quote from PantryPal usability testing.
 - Case Files (`CaseFiles.tsx`): Aflac + Oracle as manila folders (paper-colored, a labeled tab on
   top). Front: dates, stamp, title, the client logo paper-clipped on like a business card
-  (`public/images/logos/`, warm B&W → color on hover; originals in `source-assets/logos/`), and an
+  with a real paperclip image across the folder's top edge (`public/images/logos/`, logo warm B&W → color on hover;
+  originals in `source-assets/logos/`), and an
   "Open file ↓" button. Opening slides out a frame-colored sheet with the description (redaction
   bars) and the three stats. Click only, no hover-open. "Client details
   redacted." Never say "via DataStory". Details were public on the club's Instagram.

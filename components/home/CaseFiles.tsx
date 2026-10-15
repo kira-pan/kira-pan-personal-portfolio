@@ -101,9 +101,17 @@ function Folder({ f }: { f: FileData }) {
         {f.tab}
       </span>
       <div className="border border-ink/30 bg-paper p-5 sm:px-7 sm:py-6">
-        {/* Logo, clipped on like a business card. */}
-        <div className="relative float-right ml-4 mt-1 w-[108px] rotate-[3deg] border border-hairline bg-frame px-3 py-3 sm:w-[132px]">
-          <span aria-hidden="true" className="absolute -top-2.5 left-5 h-6 w-2.5 border-2 border-b-0 border-muted" />
+        {/* Logo, clipped onto the folder like a business card: the paperclip grips the folder's
+            top edge and the card together. */}
+        <div className="relative float-right -mt-1 ml-4 w-[108px] rotate-[3deg] border border-hairline bg-frame px-3 py-3 sm:w-[132px]">
+          <Image
+            src="/images/logos/paperclip.png"
+            alt=""
+            aria-hidden="true"
+            width={77}
+            height={140}
+            className="pointer-events-none absolute -top-[34px] left-4 z-10 h-[56px] w-auto -rotate-[8deg]"
+          />
           <Image src={f.logo.src} alt={f.logo.alt} width={f.logo.width} height={f.logo.height} className="feature-bw h-auto w-full" />
         </div>
         <div className="flex flex-wrap items-center gap-3">
