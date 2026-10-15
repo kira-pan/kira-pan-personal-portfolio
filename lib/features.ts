@@ -4,8 +4,8 @@
 
 export type Feature = {
   slug: string;
-  num: string; // 01–04, shown in red italic
-  page: string; // magazine page on the cover
+  num: string; // 01–04, used by the phone Contents sheet
+  page: string; // magazine page: cover lines and the label on each feature
   kicker: string; // short category under the number
   coverTitle: string;
   title: string;
@@ -17,7 +17,13 @@ export type Feature = {
   link: { href: string; label: string } | null; // null = case study coming soon
 };
 
-export const LEAD_PROCESS = ["Persona + problem", "Wireframes", "User testing", "Next iteration"];
+/** The lead's process, shown as a timeline: stage label + one short line of what happened. */
+export const LEAD_PROCESS = [
+  { stage: "Research", detail: "3 interviews" },
+  { stage: "Wireframes", detail: "9-screen flow" },
+  { stage: "Testing", detail: "2 think-alouds" },
+  { stage: "Redesign", detail: "V2 grocery flow" },
+];
 export const LEAD_TOOLS = "Balsamiq · Miro · Figma · UX research";
 
 export const FEATURES: Feature[] = [
@@ -29,14 +35,14 @@ export const FEATURES: Feature[] = [
     coverTitle: "PantryPal: a meal planner for first-time cooks",
     title: "PantryPal: a meal-planning app for students cooking for the first time",
     italic: "cooking for the first time",
-    dek: "Planning meals on a student budget eats up time and often ends in wasted food. I designed PantryPal on my own, from a notebook sketch to a tested prototype: tell it what's in your pantry, what you can spend and how much time you have, and it plans your week and builds a cost-estimated grocery list.",
+    dek: "Planning meals on a student budget eats up time and often ends in wasted food. I designed PantryPal on my own, from a notebook sketch to a tested prototype, then redesigned it around what testing showed. Tell it what's in your pantry, what you can spend and how much time you have, and it plans your week and builds a cost-estimated grocery list.",
     image: {
       src: "/images/features/pantrypal-wireframes.png",
       width: 1500,
       height: 670,
       alt: "Four PantryPal screens: swap a meal, the weekly plan, the grocery list and a saved plan",
     },
-    link: null,
+    link: { href: "https://pantrypal.kira-pan.com", label: "Read the case study ↗" },
   },
   {
     slug: "patent-dashboard",

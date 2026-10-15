@@ -1,11 +1,14 @@
 // "At a glance" fact sheet shown on the cover. Kept short on purpose: one line per degree/role.
-// `items` get a red ✦ each; `note` is one muted line under them; `text` is a plain line.
+// `items` get a red ✦ each; `note` is one muted line under them; `text` is a plain line;
+// `chips` are small square boxes (not buttons: no hover, not focusable).
 
 export type GlanceRow = {
   label: string;
   items?: { title: string; detail?: string }[];
   note?: string;
   text?: string;
+  /** Skill chips, grouped (e.g. Data / Design); each group gets a small mono sub-label. */
+  chips?: { group: string; items: string[] }[];
 };
 
 export const GLANCE: GlanceRow[] = [
@@ -27,6 +30,13 @@ export const GLANCE: GlanceRow[] = [
     items: [
       { title: "Data Strategy Consultant", detail: "Aflac" },
       { title: "Data Reporter + Deputy News Editor", detail: "Daily Cal" },
+    ],
+  },
+  {
+    label: "Skills",
+    chips: [
+      { group: "Data", items: ["Python", "SQL", "R", "pandas", "scikit-learn", "Streamlit", "ArcGIS"] },
+      { group: "Design", items: ["Figma", "UX research", "Adobe CC"] },
     ],
   },
   { label: "Looking for", text: "Summer 2027 internships" },

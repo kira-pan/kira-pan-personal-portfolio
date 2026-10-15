@@ -34,6 +34,22 @@ export default function AtAGlance() {
               )}
               {row.note && <span className="pl-3 text-muted">{row.note}</span>}
               {row.text && <span>{row.text}</span>}
+              {row.chips && (
+                <div className="flex flex-col gap-2">
+                  {row.chips.map((g) => (
+                    <div key={g.group} className="flex flex-col gap-1.5">
+                      <span className="font-mono text-[10.5px] uppercase tracking-[0.1em] text-accent">{g.group}</span>
+                      <ul className="flex flex-wrap gap-1.5" aria-label={`${g.group} skills`}>
+                        {g.items.map((s) => (
+                          <li key={s} className="border border-ink px-2 py-[3px] text-[13px] leading-[1.3]">
+                            {s}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              )}
             </dd>
           </div>
         ))}

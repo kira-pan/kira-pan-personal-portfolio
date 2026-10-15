@@ -13,8 +13,14 @@ function Title({ f, className }: { f: Feature; className: string }) {
   );
 }
 
-function Num({ n }: { n: string }) {
-  return <span className="font-serif text-[34px] italic leading-none text-accent">{n}</span>;
+/** Magazine page reference ("P. 08") + kicker. Page numbers match the cover's "In this issue"
+ *  list, so features don't read as a ranking and don't clash with the PantryPal step numbers. */
+function PageLine({ f }: { f: Feature }) {
+  return (
+    <span className="font-mono text-[12px] uppercase tracking-[0.1em] text-accent">
+      {f.page} · {f.kicker}
+    </span>
+  );
 }
 
 /** Small feature card: image + number + title. The description appears over the image on hover
@@ -54,9 +60,8 @@ function Card({ f }: { f: Feature }) {
           {f.credit && <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-on-ink-muted">{f.credit}</span>}
         </div>
       </div>
-      <div className="mt-1 flex items-baseline gap-3">
-        <Num n={f.num} />
-        <span className="font-mono text-[12px] uppercase tracking-[0.1em] text-accent">{f.kicker}</span>
+      <div className="mt-1">
+        <PageLine f={f} />
       </div>
       <Title
         f={f}
@@ -85,28 +90,38 @@ export default function Features() {
       {/* Lead: PantryPal, Kira's solo project */}
       <article id={`feature-${lead.slug}`} className="grid scroll-mt-6 grid-cols-1 items-center gap-x-12 gap-y-8 lg:grid-cols-12">
         <div className="flex flex-col gap-4 lg:col-span-6">
-          <div className="flex items-baseline gap-3">
-            <Num n={lead.num} />
-            <span className="font-mono text-[12px] uppercase tracking-[0.1em] text-accent">{lead.kicker}</span>
-          </div>
+          <PageLine f={lead} />
           <Title
             f={lead}
             className="text-balance font-serif text-[40px] font-normal leading-[0.96] tracking-[-0.025em] lg:text-[56px] xl:text-[60px]"
           />
           <p className="max-w-[560px] text-[17px] leading-[1.6]">{lead.dek}</p>
-          <ol className="grid grid-cols-2 gap-3 border-y border-hairline py-3.5 sm:grid-cols-4" aria-label="Process">
-            {LEAD_PROCESS.map((step, i) => (
-              <li key={step} className="flex flex-col gap-1">
-                <span className={`font-serif text-[30px] leading-none ${i === LEAD_PROCESS.length - 1 ? "text-accent" : ""}`}>
-                  0{i + 1}
-                </span>
-                <span className="text-[13px] text-muted">{step}</span>
-              </li>
-            ))}
+          {/* Process as a timeline: one line, a square marker per stage, the last stage in accent. */}
+          <ol className="relative grid grid-cols-2 gap-y-5 py-2 sm:grid-cols-4" aria-label="Process">
+            <span aria-hidden="true" className="absolute left-[5px] right-[12%] top-[13px] hidden border-t border-ink sm:block" />
+            {LEAD_PROCESS.map((p, i) => {
+              const last = i === LEAD_PROCESS.length - 1;
+              return (
+                <li key={p.stage} className="relative flex flex-col gap-1.5 pr-3">
+                  <span aria-hidden="true" className={`block h-[11px] w-[11px] ${last ? "bg-accent" : "bg-ink"}`} />
+                  <span className={`label mt-1 ${last ? "text-accent" : "text-muted"}`}>{p.stage}</span>
+                  <span className="text-[14px] leading-[1.35]">{p.detail}</span>
+                </li>
+              );
+            })}
           </ol>
-          <div className="flex flex-wrap items-center justify-between gap-2">
+          <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-3 border-t border-hairline pt-4">
             <span className="font-mono text-[12px] text-muted">{LEAD_TOOLS}</span>
-            <span className="label text-muted">Case study coming soon</span>
+            {lead.link && (
+              <a
+                href={lead.link.href}
+                target="_blank"
+                rel="noopener"
+                className="label inline-flex min-h-[48px] items-center border border-ink bg-ink px-6 text-[13px] text-paper no-underline transition-colors duration-[600ms] hover:bg-paper hover:text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              >
+                {lead.link.label}
+              </a>
+            )}
           </div>
         </div>
         <figure className="lg:col-span-6">

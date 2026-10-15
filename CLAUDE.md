@@ -58,7 +58,8 @@ taste and communication skills (journalism, art, video).
   "At a glance" (`components/home/AtAGlance.tsx`, data in `lib/glance.ts`) lives on the COVER's
   right column, in the same 1px ink box style used everywhere: ONE line per degree/role (red ✦,
   title, "· org" muted); Studying includes the Certificate in Design Innovation plus one muted
-  line "UC Berkeley '28 · 3.92 GPA · Dean's Honors List"; no skills row. On phones/tablets it
+  line "UC Berkeley '28 · 3.92 GPA · Dean's Honors List"; a Skills row of square 1px-ink chips grouped
+  Data / Design (data in `lib/glance.ts`; not buttons: no hover, not focusable). On phones/tablets it
   comes right after the intro quote, before the cover lines.
   Feature titles say plainly what the project is; personality lives in deks and design.
 - Feature data lives in `lib/features.ts` (single source for cover lines and Features).
@@ -152,11 +153,13 @@ get her OK, then build. Keep whitespace tight — avoid empty columns and long b
 - Marquee: DATA ANALYTICS ✦ PRODUCT ✦ UX RESEARCH ✦ DESIGN ✦ WRITING.
 - Letter from the editor (`EditorsLetter.tsx`): COLLAPSED teaser (headline + one line + "Read
   the letter ↓"); opens to Kira's four paragraphs in two columns, signed "Kira" (no dash).
-- Features (`Features.tsx`, data `lib/features.ts`): 01 PantryPal is the lead (solo project; process
-  row Persona + problem → Wireframes → User testing → Next iteration; tools Balsamiq · Miro ·
-  Figma · UX research; background-free wireframes image). Then cards 02 Patent (with a partner,
-  74% accuracy), 03 Cup fee (photo credit The Daily Californian Photo Department), 04 Paradise
-  (BEFORE/AFTER tags). Cards show number + kicker + title; description + link appear on hover.
+- Features (`Features.tsx`, data `lib/features.ts`): PantryPal is the lead (solo project; process
+  as a timeline Research → Wireframes → Testing → Redesign, each with one detail line; tools Balsamiq ·
+  Miro · Figma · UX research; ink "Read the case study ↗" button to https://pantrypal.kira-pan.com,
+  the Lovable-built case study site). Then cards Patent (with a partner, 74% accuracy), Cup fee
+  (photo credit The Daily Californian Photo Department), Paradise (BEFORE/AFTER tags). Every
+  feature is labeled by its magazine page ("P. 08 · Machine learning"), not 01–04, so features
+  don't read as a ranking. Cards show page + kicker + title; description + link appear on hover.
   Pull quote from PantryPal usability testing.
 - Case Files (`CaseFiles.tsx`): Aflac + Oracle files, stamps, redaction bars, "Client details
   redacted." Never say "via DataStory". Details were public on the club's Instagram.
