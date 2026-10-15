@@ -58,7 +58,7 @@ taste and communication skills (journalism, art, video).
   "At a glance" (`components/home/AtAGlance.tsx`, data in `lib/glance.ts`) lives on the COVER's
   right column, in the same 1px ink box style used everywhere: ONE line per degree/role (red ✦,
   title, "· org" muted); Studying includes the Certificate in Design Innovation plus one muted
-  line "UC Berkeley '28 · 3.92 GPA · Dean's Honors List"; no skills row. On phones/tablets it
+  line "UC Berkeley '28 · 3.92 GPA · Dean's Honors List"; no skills row (skills live in the marquee). On phones/tablets it
   comes right after the intro quote, before the cover lines.
   Feature titles say plainly what the project is; personality lives in deks and design.
 - Feature data lives in `lib/features.ts` (single source for cover lines and Features).
@@ -149,16 +149,25 @@ get her OK, then build. Keep whitespace tight — avoid empty columns and long b
   drawings (Venice top-right, charcoal window left) and the handwritten "↖ that's me! drag the
   drawings around" placed in the empty space right of her torso (never over an image); under it
   the red label "THE PORTFOLIO OF KIRA PAN" + small italic quote; right = At a glance box.
-- Marquee: DATA ANALYTICS ✦ PRODUCT ✦ UX RESEARCH ✦ DESIGN ✦ WRITING.
+- Marquee (`Marquee.tsx`, data `SKILLS` in `lib/glance.ts`): Kira's skills grouped CODE / ANALYSIS /
+  DESIGN (group label in light red #E8A48F, skills separated by ·, red ✦ between groups), 90s loop,
+  paused on hover; with reduced motion it becomes a static wrapped list.
 - Letter from the editor (`EditorsLetter.tsx`): COLLAPSED teaser (headline + one line + "Read
   the letter ↓"); opens to Kira's four paragraphs in two columns, signed "Kira" (no dash).
-- Features (`Features.tsx`, data `lib/features.ts`): 01 PantryPal is the lead (solo project; process
-  row Persona + problem → Wireframes → User testing → Next iteration; tools Balsamiq · Miro ·
-  Figma · UX research; background-free wireframes image). Then cards 02 Patent (with a partner,
-  74% accuracy), 03 Cup fee (photo credit The Daily Californian Photo Department), 04 Paradise
-  (BEFORE/AFTER tags). Cards show number + kicker + title; description + link appear on hover.
+- Features (`Features.tsx`, data `lib/features.ts`): PantryPal is the lead (solo project; process
+  as a timeline Research → Wireframes → Testing → Redesign, each with one detail line; tools Balsamiq ·
+  Miro · Figma · UX research; ink "Read the case study ↗" button to https://pantrypal.kira-pan.com,
+  the Lovable-built case study site). Then cards Patent (with a partner, 74% accuracy), Cup fee
+  (photo credit The Daily Californian Photo Department), Paradise (BEFORE/AFTER tags). Every
+  feature is labeled by its magazine page ("P. 08 · Machine learning"), not 01–04, so features
+  don't read as a ranking. Cards show page + kicker + title; description + link appear on hover.
   Pull quote from PantryPal usability testing.
-- Case Files (`CaseFiles.tsx`): Aflac + Oracle files, stamps, redaction bars, "Client details
+- Case Files (`CaseFiles.tsx`): Aflac + Oracle as manila folders (paper-colored, a labeled tab on
+  top). Front: dates, stamp, title, the client logo paper-clipped on like a business card
+  with a real paperclip image across the folder's top edge (`public/images/logos/`, logo warm B&W → color on hover;
+  originals in `source-assets/logos/`), and an
+  "Open file ↓" button. Opening slides out a frame-colored sheet with the description (redaction
+  bars) and the three stats. Click only, no hover-open. "Client details
   redacted." Never say "via DataStory". Details were public on the club's Instagram.
 - The Desk (`Desk.tsx`): timeline General News Reporter (Sep 2024–Jan 2025) → Business & Economy
   Beat Reporter (Jan–May 2025) → Deputy News Editor (May–Aug 2025, 60+ stories edited) → Data

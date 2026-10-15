@@ -145,9 +145,8 @@ export default function Studio() {
             </div>
             <figcaption className="mt-2.5">
               <span className="block font-serif text-[22px]">
-                Next cut, <em>still in the edit bay</em>
+                Still <em>editing…</em>
               </span>
-              <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-on-ink-muted">Coming soon · check back next week</span>
             </figcaption>
           </figure>
         </div>

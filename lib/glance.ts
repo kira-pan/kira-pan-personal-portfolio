@@ -31,3 +31,27 @@ export const GLANCE: GlanceRow[] = [
   },
   { label: "Looking for", text: "Summer 2027 internships" },
 ];
+
+/** Skills for the marquee under the cover, grouped Code / Analysis / Design.
+ *  Source: Kira's resume skills + tools her portfolio work shows (Oct 2026). */
+export const SKILLS: { group: string; items: string[] }[] = [
+  {
+    group: "Code",
+    items: ["Python", "SQL", "R", "JavaScript", "pandas", "NumPy", "scikit-learn", "Matplotlib", "Streamlit", "DuckDB", "Jupyter", "Git/GitHub", "LLM / AI tools"],
+  },
+  {
+    group: "Analysis",
+    items: [
+      "Machine learning",
+      "Statistics + hypothesis testing",
+      "Feature engineering",
+      "Model evaluation",
+      "EDA",
+      "Data visualization",
+      "Spatial analysis (ArcGIS)",
+      "Google Analytics",
+      "Excel",
+    ],
+  },
+  { group: "Design", items: ["Figma", "UX research", "Usability testing", "Adobe CC", "Canva", "CapCut"] },
+];
