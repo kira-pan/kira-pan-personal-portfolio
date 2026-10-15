@@ -58,8 +58,11 @@ taste and communication skills (journalism, art, video).
   "At a glance" (`components/home/AtAGlance.tsx`, data in `lib/glance.ts`) lives on the COVER's
   right column, in the same 1px ink box style used everywhere: ONE line per degree/role (red ✦,
   title, "· org" muted); Studying includes the Certificate in Design Innovation plus one muted
-  line "UC Berkeley '28 · 3.92 GPA · Dean's Honors List"; a Skills row of square 1px-ink chips grouped
-  Data / Design (data in `lib/glance.ts`; not buttons: no hover, not focusable). On phones/tablets it
+  line "UC Berkeley '28 · 3.92 GPA · Dean's Honors List"; "Right now" and "Previously" collapse to one line of
+  orgs and open on hover (desktop) or tap / Enter (+ → −) to list the roles. Under it, "The toolkit"
+  box (`components/home/Toolkit.tsx`, data `TOOLKIT` in `lib/glance.ts`): boxed tabs Code /
+  Analysis / Design (Code open by default; arrow keys move between tabs), skills as square 1px-ink
+  chips that are not buttons. Skills come from Kira's resume plus tools her portfolio work shows. On phones/tablets it
   comes right after the intro quote, before the cover lines.
   Feature titles say plainly what the project is; personality lives in deks and design.
 - Feature data lives in `lib/features.ts` (single source for cover lines and Features).
