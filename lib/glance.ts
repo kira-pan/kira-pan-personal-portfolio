@@ -1,14 +1,11 @@
-// "At a glance" fact sheet shown on the cover. Kept short on purpose: one line per fact.
+// "At a glance" fact sheet shown on the cover. Kept short on purpose: one line per degree/role.
 // `items` get a red ✦ each; `note` is one muted line under them; `text` is a plain line.
-// A row with `summary` is collapsible: closed it shows only the summary (the orgs), and it
-// opens on hover (desktop) or tap/Enter to list the full roles.
 
 export type GlanceRow = {
   label: string;
   items?: { title: string; detail?: string }[];
   note?: string;
   text?: string;
-  summary?: string;
 };
 
 export const GLANCE: GlanceRow[] = [
@@ -19,7 +16,6 @@ export const GLANCE: GlanceRow[] = [
   },
   {
     label: "Right now",
-    summary: "Oracle · Berkeley Haas · DataStory",
     items: [
       { title: "AI Consultant", detail: "Oracle" },
       { title: "Research Apprentice", detail: "Berkeley Haas" },
@@ -28,7 +24,6 @@ export const GLANCE: GlanceRow[] = [
   },
   {
     label: "Previously",
-    summary: "Aflac · Daily Cal",
     items: [
       { title: "Data Strategy Consultant", detail: "Aflac" },
       { title: "Data Reporter + Deputy News Editor", detail: "Daily Cal" },
@@ -37,15 +32,15 @@ export const GLANCE: GlanceRow[] = [
   { label: "Looking for", text: "Summer 2027 internships" },
 ];
 
-/** "The toolkit" box under At a glance: one tab per department, Code open by default.
+/** Skills for the marquee under the cover, grouped Code / Analysis / Design.
  *  Source: Kira's resume skills + tools her portfolio work shows (Oct 2026). */
-export const TOOLKIT: { tab: string; items: string[] }[] = [
+export const SKILLS: { group: string; items: string[] }[] = [
   {
-    tab: "Code",
+    group: "Code",
     items: ["Python", "SQL", "R", "JavaScript", "pandas", "NumPy", "scikit-learn", "Matplotlib", "Streamlit", "DuckDB", "Jupyter", "Git/GitHub", "LLM / AI tools"],
   },
   {
-    tab: "Analysis",
+    group: "Analysis",
     items: [
       "Machine learning",
       "Statistics + hypothesis testing",
@@ -58,8 +53,5 @@ export const TOOLKIT: { tab: string; items: string[] }[] = [
       "Excel",
     ],
   },
-  {
-    tab: "Design",
-    items: ["Figma", "UX research", "Usability testing", "Adobe CC", "Canva", "CapCut"],
-  },
+  { group: "Design", items: ["Figma", "UX research", "Usability testing", "Adobe CC", "Canva", "CapCut"] },
 ];

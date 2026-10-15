@@ -139,11 +139,18 @@
   }
 }
 .marquee-track {
-  animation: marquee 40s linear infinite;
+  animation: marquee 90s linear infinite;
+}
+/* Hover pauses the skills band so a recruiter can read it. */
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
 }
 @media (prefers-reduced-motion: reduce) {
   .marquee-track {
-    animation: none;
+    display: none;
+  }
+  .marquee-static {
+    display: flex;
   }
 }
 

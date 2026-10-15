@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import Draggable from "@/components/Draggable";
 import AtAGlance from "@/components/home/AtAGlance";
-import Toolkit from "@/components/home/Toolkit";
 import { FEATURES } from "@/lib/features";
 
 export default function Cover() {
@@ -107,9 +106,8 @@ export default function Cover() {
         </div>
 
         {/* Right: fact sheet */}
-        <div className="order-2 flex flex-col gap-4 lg:order-3 lg:col-span-4">
+        <div className="order-2 lg:order-3 lg:col-span-4">
           <AtAGlance />
-          <Toolkit />
         </div>
       </div>
     </section>

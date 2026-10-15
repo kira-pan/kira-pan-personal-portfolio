@@ -58,11 +58,7 @@ taste and communication skills (journalism, art, video).
   "At a glance" (`components/home/AtAGlance.tsx`, data in `lib/glance.ts`) lives on the COVER's
   right column, in the same 1px ink box style used everywhere: ONE line per degree/role (red ✦,
   title, "· org" muted); Studying includes the Certificate in Design Innovation plus one muted
-  line "UC Berkeley '28 · 3.92 GPA · Dean's Honors List"; "Right now" and "Previously" collapse to one line of
-  orgs and open on hover (desktop) or tap / Enter (+ → −) to list the roles. Under it, "The toolkit"
-  box (`components/home/Toolkit.tsx`, data `TOOLKIT` in `lib/glance.ts`): boxed tabs Code /
-  Analysis / Design (Code open by default; arrow keys move between tabs), skills as square 1px-ink
-  chips that are not buttons. Skills come from Kira's resume plus tools her portfolio work shows. On phones/tablets it
+  line "UC Berkeley '28 · 3.92 GPA · Dean's Honors List"; no skills row (skills live in the marquee). On phones/tablets it
   comes right after the intro quote, before the cover lines.
   Feature titles say plainly what the project is; personality lives in deks and design.
 - Feature data lives in `lib/features.ts` (single source for cover lines and Features).
@@ -153,7 +149,9 @@ get her OK, then build. Keep whitespace tight — avoid empty columns and long b
   drawings (Venice top-right, charcoal window left) and the handwritten "↖ that's me! drag the
   drawings around" placed in the empty space right of her torso (never over an image); under it
   the red label "THE PORTFOLIO OF KIRA PAN" + small italic quote; right = At a glance box.
-- Marquee: DATA ANALYTICS ✦ PRODUCT ✦ UX RESEARCH ✦ DESIGN ✦ WRITING.
+- Marquee (`Marquee.tsx`, data `SKILLS` in `lib/glance.ts`): Kira's skills grouped CODE / ANALYSIS /
+  DESIGN (group label in light red #E8A48F, skills separated by ·, red ✦ between groups), 90s loop,
+  paused on hover; with reduced motion it becomes a static wrapped list.
 - Letter from the editor (`EditorsLetter.tsx`): COLLAPSED teaser (headline + one line + "Read
   the letter ↓"); opens to Kira's four paragraphs in two columns, signed "Kira" (no dash).
 - Features (`Features.tsx`, data `lib/features.ts`): PantryPal is the lead (solo project; process
