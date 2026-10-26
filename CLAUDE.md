@@ -203,6 +203,9 @@ stat callouts breaking wider than the text column → mono captions on all media
 quote → "Next feature →". Content is drafted with Kira; never invent findings.
 
 ## Still to build (after the first launch)
+- REMIND KIRA: consult Thien-Kim Dang (Berkeley alum at Figma, gave the "work doesn't speak for
+  itself" feedback) at two points: (1) v3 mockup with placeholders filled, before building, via a
+  screenshot (the canvas is private); (2) the preview link, before merging. Her message isn't sent yet.
 - Case study pages `/features/[slug]` (template below): patent-dashboard first, then cup-fee,
   paradise, pantrypal. Drafted with Kira; until then feature cards link out or stay unlinked.
 - `/desk` archive of all Daily Cal articles (the Desk "All my stories →" link points to the
