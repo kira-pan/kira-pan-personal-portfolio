@@ -25,7 +25,7 @@ export default function Studio() {
   return (
     <section id="studio" aria-labelledby="studio-title" className="scroll-mt-6 bg-ink py-14 text-paper md:py-16">
       <div className="container-page">
-        <SectionHead number="04" title="Studio" page="p. 30" onInk />
+        <SectionHead number="04" title="Studio" page="Off the clock" onInk />
         <h2 id="studio-title" className="text-balance font-serif text-[44px] font-normal leading-[0.94] tracking-[-0.02em] md:text-[64px]">
           Things I make, <em>on paper, on screen and on film</em>
         </h2>

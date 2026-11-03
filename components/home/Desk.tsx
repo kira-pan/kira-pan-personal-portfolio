@@ -31,7 +31,7 @@ const ARCHIVE = "https://www.dailycal.org/users/profile/kira%20pan/";
 export default function Desk() {
   return (
     <section id="desk" aria-labelledby="desk-title" className="container-page scroll-mt-6 py-14 md:py-16">
-      <SectionHead number="03" title="The Desk" page="p. 26" />
+      <SectionHead number="03" title="Writing" page="The Daily Californian" />
       <div className="grid grid-cols-1 gap-x-12 gap-y-10 lg:grid-cols-12">
         <div className="flex flex-col gap-6 lg:col-span-4">
           <h2 id="desk-title" className="text-balance font-serif text-[42px] font-normal leading-[0.96] tracking-[-0.02em] md:text-[50px]">

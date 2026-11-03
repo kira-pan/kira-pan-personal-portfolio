@@ -12,7 +12,7 @@ const LINKS = [
 export default function ContributorsNote() {
   return (
     <section id="about" aria-labelledby="about-title" className="container-page scroll-mt-6 py-14 md:py-16">
-      <SectionHead number="05" title="Contributor's Note" page="p. 36" />
+      <SectionHead number="05" title="Contact" page="Say hi" />
       <div className="grid grid-cols-1 items-center gap-x-12 gap-y-8 md:grid-cols-12">
         <figure className="mx-auto w-[78%] max-w-[360px] -rotate-2 md:col-span-4 md:w-full">
           <div className="art-frame overflow-hidden">

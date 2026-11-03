@@ -47,10 +47,21 @@ taste and communication skills (journalism, art, video).
 
 ## Site structure
 
-- `/` — one long scroll: Header → Masthead → Cover → Marquee → Letter from the editor →
-  Features → Case Files → The Desk → Studio → Contributor's Note → Footer.
-  (The Contents section was cut: the cover's "In this issue" list and the nav do its job, and
-  Kira wants Features reached quickly.)
+- `/` (v3, recruiter-first, Nov 2026): Header → Hero → 01 Selected work → 02 Experience →
+  03 Writing (Desk) → 04 Studio → 05 Contact (ContributorsNote) → Footer. Mockup: canvas board
+  "Home-v3". Why: an alum at Figma said the work didn't speak for itself and At a glance didn't
+  need to be that high up.
+  - Hero (`components/home/Hero.tsx`): name, one-liner "Data and product, built around *how people
+    actually think.*", short summary, three jump boxes Build ↓ (Aflac) / Study ↓ (Haas) / Design ↓
+    (tot), "Looking for summer 2027 internships" line, buttons, portrait + one draggable Venice drawing.
+  - Selected work (`Work.tsx`, data `lib/work.ts`, figures `Diagrams.tsx`): Aflac, Haas (methods
+    only), tot, cup fee as full-width rows (kicker, title, meta, labeled facts, stats, tools, links,
+    figure alternating sides); then "More work" cards: PantryPal, Patent, Paradise.
+  - Experience (`Experience.tsx`): GLANCE roles one line each + SKILLS by group (replaces the
+    marquee and At a glance).
+  - Not on the home page any more (files kept): Cover, Marquee, EditorsLetter, Features, CaseFiles,
+    AtAGlance. The letter may move to a future About page.
+  - RULE: no placeholders ever ship. Missing facts = leave the line out; add it later.
 - Storyline rule: a recruiter or peer must be able to follow Kira's through-line (interests →
   experience → what ties it together) without being told "hire me". The Letter from the
   editor (`components/home/EditorsLetter.tsx`) tells it once, in a magazine split: headline +
@@ -203,6 +214,13 @@ stat callouts breaking wider than the text column → mono captions on all media
 quote → "Next feature →". Content is drafted with Kira; never invent findings.
 
 ## Still to build (after the first launch)
+- LATER LIST (park new ideas here; they never block a release):
+  - About page (canvas board "Field-notes", titled About): photo → drawing hover tiles ("Seen →
+    drawn"), Eats as a menu, By the numbers, reaction-time "p.s." easter egg. Needs Kira's photo +
+    drawing pairs (Venice, London photos first), eats list, real numbers.
+  - Work rows to fill: tot "what changed after testing"; cup fee data gathered + date; patent dates;
+    Haas findings once public; Aflac "the ask" line.
+  - Review the loader length now that the site is recruiter-first.
 - REMIND KIRA: consult Thien-Kim Dang (Berkeley alum at Figma, gave the "work doesn't speak for
   itself" feedback) at two points: (1) v3 mockup with placeholders filled, before building, via a
   screenshot (the canvas is private); (2) the preview link, before merging. Her message isn't sent yet.

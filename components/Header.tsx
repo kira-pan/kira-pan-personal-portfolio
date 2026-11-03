@@ -2,11 +2,11 @@ import Link from "next/link";
 
 // `short` is the phone label, so all five fit on one line as tappable tabs.
 const NAV = [
-  { href: "/#features", label: "Features", short: "Features" },
-  { href: "/#case-files", label: "Case Files", short: "Cases" },
-  { href: "/#desk", label: "The Desk", short: "Desk" },
+  { href: "/#work", label: "Work", short: "Work" },
+  { href: "/#experience", label: "Experience", short: "Roles" },
+  { href: "/#desk", label: "Writing", short: "Writing" },
   { href: "/#studio", label: "Studio", short: "Studio" },
-  { href: "/#about", label: "Contributor's Note", short: "About" },
+  { href: "/#about", label: "Contact", short: "Contact" },
 ];
 
 export default function Header() {
@@ -14,13 +14,12 @@ export default function Header() {
     <header className="border-b border-hairline">
       <div className="container-page flex flex-wrap items-center justify-between gap-x-8 gap-y-2 py-2">
         <Link href="/" className="label py-2 no-underline hover:text-accent">
-          Vol. 04<span className="hidden sm:inline"> — Fall Issue 2026</span>
-          <span className="hidden sm:inline"> · Berkeley, CA</span>
+          Kira Pan<span className="hidden sm:inline"> · Berkeley, CA</span>
         </Link>
 
         <nav aria-label="Sections" className="order-3 w-full pb-1 xl:order-none xl:w-auto xl:pb-0">
           {/* Phones and tablets: one row of boxed tabs. Wide screens: plain text links. */}
-          <ul className="grid grid-cols-[1.35fr_1fr_1fr_1fr_1fr] border border-ink sm:grid-cols-5 xl:flex xl:gap-x-7 xl:border-0">
+          <ul className="grid grid-cols-5 border border-ink sm:grid-cols-5 xl:flex xl:gap-x-7 xl:border-0">
             {NAV.map((item, i) => (
               <li key={item.href} className={i > 0 ? "border-l border-ink xl:border-0" : ""}>
                 <Link

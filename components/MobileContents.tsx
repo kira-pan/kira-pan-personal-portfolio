@@ -3,16 +3,16 @@
 import { useEffect, useState } from "react";
 
 const SECTIONS = [
-  { id: "top", num: "00", title: "The cover", page: "p. 01" },
-  { id: "features", num: "01", title: "Features", page: "p. 04" },
-  { id: "case-files", num: "02", title: "Case Files", page: "p. 20" },
-  { id: "desk", num: "03", title: "The Desk", page: "p. 26" },
-  { id: "studio", num: "04", title: "Studio", page: "p. 30" },
-  { id: "about", num: "05", title: "Contributor's Note", page: "p. 36" },
+  { id: "top", num: "00", title: "Kira Pan", page: "Top" },
+  { id: "work", num: "01", title: "Selected work", page: "Data · Product" },
+  { id: "experience", num: "02", title: "Experience", page: "Roles" },
+  { id: "desk", num: "03", title: "Writing", page: "Daily Cal" },
+  { id: "studio", num: "04", title: "Studio", page: "Art + film" },
+  { id: "about", num: "05", title: "Contact", page: "Say hi" },
 ];
 
 /**
- * Phones only: once you're past the cover, a bar follows you at the bottom of the screen,
+ * Phones only: once you're past the opening screen, a bar follows you at the bottom of the screen,
  * showing where you are. Tapping it opens the contents as a sheet.
  */
 export default function MobileContents() {
@@ -35,7 +35,7 @@ export default function MobileContents() {
       const el = document.getElementById(s.id);
       if (el) io.observe(el);
     });
-    const letter = document.getElementById("letter");
+    const letter = document.getElementById("work");
     const onTop = () => {
       if (letter && letter.getBoundingClientRect().top > window.innerHeight * 0.5) setCurrent("top");
     };
